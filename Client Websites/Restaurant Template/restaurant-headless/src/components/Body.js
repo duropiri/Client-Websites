@@ -10,6 +10,10 @@ import { TweenMax } from "gsap/all";
 const Body = () => {
   const { isLoading } = useGlobalState();
   const { marqueeContent } = useGlobalState(); // Destructuring marqueeContent directly from the global state
+  const { homePageContent } = useGlobalState();
+
+  // console.log(marqueeContent);
+  console.log(homePageContent);
   const strapiBaseURL =
     process.env.NEXT_PUBLIC_STRAPI_BASE_URL || "http://localhost:1337";
 
@@ -60,6 +64,10 @@ const Body = () => {
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, []);
+
+  if (isLoading) {
+    return <div>Loading...</div>; // Placeholder loading state
+  }
 
   return (
     <div className="flex flex-col w-full h-full justify-center bg-background rounded-b-[75px] z-[10]">
@@ -114,7 +122,7 @@ const Body = () => {
         </div>
       </div>
       {/* Marquee */}
-      <section className="px-[2vw] overflow-x-hidden mb-[10vh]">
+      {/* <section className="px-[2vw] overflow-x-hidden mb-[10vh]">
         <h2 className="block text-start relative text-[38px] lg:text-[2vw] font-primary font-bold uppercase mb-[2vh]">
           saskatoons premiere italian dining room
         </h2>
@@ -135,7 +143,11 @@ const Body = () => {
               ))}
           </Marquee>
         </div>
-      </section>
+      </section> */}
+      <MarqueeSection
+        content={[homePageContent, marqueeContent]}
+        strapiBaseURL={strapiBaseURL}
+      />
 
       {/* Info Section - Hosting */}
       <section className="flex flex-col lg:flex-row-reverse items-start justify-center my-[5vw]">
@@ -343,5 +355,41 @@ const Body = () => {
     </div>
   );
 };
+
+const MarqueeSection = ({ content, strapiBaseURL }) => (
+  <section className="px-[2vw] overflow-x-hidden mb-[10vh]">
+    <h2 className="block text-start relative text-[38px] lg:text-[2vw] font-primary font-bold uppercase mb-[2vh]">
+      {content[0] && content[0].marqueeHeading}
+    </h2>
+    <div className="-mx-[10vw]">
+      <Marquee>
+        {content[1] &&
+          [...content[1].images.data].map(({ id, attributes }) => (
+            <img
+              key={id}
+              src={`${strapiBaseURL}${attributes.url}`}
+              alt={attributes.alternativeText || "Marquee Image"}
+              className="sm:h-54 h-[40vw] w-64 border-y-2 border-card-foreground md:h-72 object-cover "
+              loading="eager"
+              width="1728"
+              height="992"
+              decoding="async"
+            />
+          ))}
+      </Marquee>
+    </div>
+  </section>
+);
+
+const InfoSection = ({ content }) => (
+  // Render each content section dynamically based on `content` prop
+  <></>
+  // Similar to the hardcoded sections, but fill data dynamically
+);
+
+const MapSection = ({ storeHoursContent }) => (
+  // Render map section based on `storeHoursContent`
+  <></>
+);
 
 export default Body;

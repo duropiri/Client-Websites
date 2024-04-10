@@ -15,6 +15,7 @@ export const GlobalStateProvider = ({ children }) => {
   const [ctaBannerContent, setCtaBannerContent] = useState(null);
   const [heroContent, setHeroContent] = useState(null);
   const [marqueeContent, setMarqueeContent] = useState(null);
+  const [homePageContent, setHomePageContent] = useState(null);
 
   // Mobile states
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -33,6 +34,8 @@ export const GlobalStateProvider = ({ children }) => {
     setHeroContent,
     marqueeContent,
     setMarqueeContent,
+    homePageContent,
+    setHomePageContent,
     mobileMenuOpen,
     setMobileMenuOpen,
   };

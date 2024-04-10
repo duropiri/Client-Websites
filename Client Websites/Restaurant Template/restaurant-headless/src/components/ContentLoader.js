@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
 import { useGlobalState } from "./GlobalStateContext";
-import config from "@/config";
 
 const fetchCMS = ({ collection }) => {
   const reqOptions = {
@@ -21,7 +20,6 @@ const fetchCMS = ({ collection }) => {
     })
     .catch((error) => {
       console.error("Fetch error:", error);
-      console.log("API Token:", process.env.NEXT_PUBLIC_API_TOKEN);
     });
 };
 
@@ -29,21 +27,25 @@ const ContentLoader = () => {
   const {
     setIsLoading,
     setMarqueeContent,
+    setHomePageContent,
   } = useGlobalState();
 
   useEffect(() => {
     setIsLoading(true);
 
-    // Define all fetch operations in an array
     const fetchOperations = [
-      fetchCMS({ collection: "marquee" }).then(
-        (data) => data.data[0].attributes
-      ),
+      fetchCMS({ collection: "marquee" }),
+      fetchCMS({ collection: "home-page-content" }),
     ];
 
     Promise.all(fetchOperations)
-      .then(([marqueeContent]) => {
-        setMarqueeContent(marqueeContent);
+      .then(([marqueeResponse, homePageResponse]) => {
+        if (marqueeResponse && marqueeResponse.data) {
+          setMarqueeContent(marqueeResponse.data[0].attributes);
+        }
+        if (homePageResponse && homePageResponse.data) {
+          setHomePageContent(homePageResponse.data[0].attributes);
+        }
       })
       .catch((error) => {
         console.error("Error fetching content:", error);
