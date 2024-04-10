@@ -1,0 +1,156 @@
+@import url("/fonts/Shentox/stylesheet.css");
+@import url("/fonts/Ciutadella/stylesheet.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%; /* white */
+    --foreground: 0 0% 0%; /* black */
+
+    --card: 0 0% 100%; /* white */
+    --card-foreground: 0 0% 0%; /* black */
+
+    --popover: 0 0% 100%; /* white */
+    --popover-foreground: 0 0% 0%; /* black */
+
+    --primary: 50.6 100% 50%; /* yellow */
+    --primary-foreground: 0 0% 0%; /* black */
+
+    --secondary: 51.1 100% 50%; /* light yellow */
+    --secondary-foreground: 0 0% 0%; /* black */
+
+    --muted: 50.8 100% 50%; /* similar yellow */
+    --muted-foreground: 45 25% 3.1%; /* dark brown */
+
+    --accent: 50.8 100% 50%; /* similar yellow */
+    --accent-foreground: 0 0% 0%; /* black */
+
+    --destructive: 0 0% 0%; /* black */
+    --destructive-foreground: 50.6 100% 50%; /* yellow */
+
+    --border: 0 0% 0%; /* black */
+    --input: 0 0% 100%; /* white */
+    --ring: 0 0% 0%; /* black */
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 6%; /* black */
+    --foreground: 0 0% 100%; /* white */
+
+    --card: 0 0% 0%; /* black */
+    --card-foreground: 0 0% 100%; /* white */
+
+    --popover: 0 0% 6%; /* black */
+    --popover-foreground: 0 0% 100%; /* white */
+
+    --primary: 0 0% 100%; /* white */
+    --primary-foreground: 51 100% 50%; /* yellow */
+
+    --secondary: 0 0% 6%; /* black */
+    --secondary-foreground: 0 0% 100%; /* white */
+
+    --muted: 0 0% 0%; /* black */
+    --muted-foreground: 45 25% 3.1%; /* dark brown */
+
+    --accent: 0 0% 0%; /* black */
+    --accent-foreground: 0 0% 100%; /* white */
+
+    --destructive: 0 0% 0%; /* black */
+    --destructive-foreground: 0 0% 100%; /* white */
+
+    --border: 0 0% 0%; /* black */
+    --input: 0 0% 0%; /* black */
+    --ring: 0 0% 100%; /* white */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Shentox-Bold", Arial, Helvetica, sans-serif;
+  }
+}
+
+.marquee-container {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: hidden;
+  min-width: 100%;
+  gap: 0rem;
+  z-index: 21;
+}
+
+.marquee-container > img {
+  flex-shrink: 0;
+}
+
+/* Applying Ciutadella and Shentox fonts */
+.font-sans {
+  font-family: "Ciutadella", Arial, Helvetica, sans-serif;
+}
+
+.font-primary {
+  font-family: "Shentox", Arial, Helvetica, sans-serif;
+}
+
+.font-secondary {
+  font-family: "Ciutadella", Arial, Helvetica, sans-serif;
+}
+
+.lines {
+  padding-left: 13px;
+}
+.lines {
+  display: flex;
+  flex-basis: 100%;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.lines:after,
+.lines:before {
+  background: #fff;
+}
+.lines:before {
+  margin-bottom: 5px;
+}
+.lines:after,
+.lines:before {
+  content: "";
+  display: block;
+  height: 4px;
+}
+
+
+.backdrop {
+  opacity: 0.75;
+}
+.backdrop {
+  background-color: #21262a;
+  content: " ";
+  inset: 0;
+  opacity: 0;
+  position: fixed;
+  transition: all 0.4s ease;
+}
+.mobile-menu {
+  overflow-y: auto;
+}
+
+.video-background video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150vh; /* Adjust as needed */
+  object-fit: cover;
+  z-index: -1; /* Keep the video in the background */
+}
