@@ -2,11 +2,18 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { useGlobalState } from "./GlobalStateContext";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fab } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faYoutube,
+  faFacebook,
+  faTiktok,
+  faLinkedin,
+  faInstagram,
+} from "@fortawesome/free-brands-svg-icons";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 const Navbar = () => {
+  const { isLoading } = useGlobalState();
   const { mobileMenuOpen, setMobileMenuOpen } = useGlobalState();
   const mobileMenuRef = useRef(null);
 
@@ -61,7 +68,7 @@ const Navbar = () => {
   }, [mobileMenuOpen]);
 
   useEffect(() => {
-    library.add(fab);
+    // library.add(fab);
     const handleScroll = () => {
       const navbar = document.querySelector(".navbar"); // Ensure your navbar has the class "navbar"
       if (window.scrollY > 200) {
@@ -89,11 +96,47 @@ const Navbar = () => {
       }
     };
 
+    const textUnderlineAnimation = () => {
+      document.querySelectorAll(".hover-link").forEach((link) => {
+        const underline = link.querySelector(".underline");
+
+        // Set initial styles for GSAP to manage transform origin
+        gsap.set(underline, { transformOrigin: "left center", scaleX: 0 });
+
+        // Hover start: expand the underline from the left
+        link.addEventListener("mouseenter", () => {
+          gsap.to(underline, {
+            scaleX: 1,
+            duration: 0.3,
+            ease: "power2.out",
+            transformOrigin: "left center", // Ensures the origin is correct for expanding
+          });
+        });
+
+        // Hover end: contract the underline to the right
+        link.addEventListener("mouseleave", () => {
+          gsap.to(underline, {
+            scaleX: 0,
+            duration: 0.3,
+            ease: "power2.in",
+            transformOrigin: "right center", // Shifts the origin to right for contraction
+          });
+        });
+      });
+    };
+
     window.addEventListener("scroll", handleScroll);
+    textUnderlineAnimation();
+    window.addEventListener("DOMContentLoaded", textUnderlineAnimation);
 
     // Clean up the event listener when the component unmounts
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("DOMContentLoaded", textUnderlineAnimation);
+
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+    };
+  }, [isLoading]);
 
   return (
     <div className="navbar sticky top-0 z-[99999] w-full text-[14px] xl:text-[1vw] h-[100px] font-primary font-bold uppercase">
@@ -113,21 +156,36 @@ const Navbar = () => {
           />
         </a>
         <div className="flex flex-row gap-x-8 justify-center cursor-pointer text-white">
-          <a href="/" className="hover:underline">
-            Menu
-          </a>
-          <a href="/" className="hover:underline">
-            Restaurants
-          </a>
-          <a href="/" className="hover:underline">
-            Offers & Promotions
-          </a>
-          <a href="/" className="hover:underline">
-            Gift Cards
-          </a>
-          <a href="/" className="hover:underline">
-            Store
-          </a>
+          <div className="flex flex-col hover-link">
+            <a href="/" className="">
+              Menu
+            </a>
+            <span className="underline bg-primary text-primary h-[1px]"></span>
+          </div>
+          <div className="flex flex-col hover-link">
+            <a href="/" className="">
+              Restaurants
+            </a>
+            <span className="underline bg-primary text-primary h-[1px]"></span>
+          </div>
+          <div className="flex flex-col hover-link">
+            <a href="/" className="">
+              Offers & Promotions
+            </a>
+            <span className="underline bg-primary text-primary h-[1px]"></span>
+          </div>
+          <div className="flex flex-col hover-link">
+            <a href="/" className="">
+              Gift Cards
+            </a>
+            <span className="underline bg-primary text-primary h-[1px]"></span>
+          </div>
+          <div className="flex flex-col hover-link">
+            <a href="/" className="">
+              Store
+            </a>
+            <span className="underline bg-primary text-primary h-[1px]"></span>
+          </div>
         </div>
         <div className="flex items-center gap-4">
           <a
@@ -143,52 +201,56 @@ const Navbar = () => {
           >
             Make a Reservation
           </a>
-          <a href="/" className="hover:underline">
-            IT
-          </a>
+          <div className="flex flex-col hover-link">
+            <a href="/" className="">
+              IT
+            </a>
+            <span className="underline bg-primary text-primary h-[1px]"></span>
+          </div>
         </div>
       </nav>
-      <nav className="flex justify-between items-center px-5 bg-transparent py-6 xl:hidden h-[100px]">
+      <nav className="flex justify-between items-center px-2 sm:px-5 bg-transparent py-6 xl:hidden h-[100px] w-full">
         <a
-          className="-ml-2 flex items-center rounded-full px-2 font-melodrama text-3xl transition w-auto"
+          className="flex flex-grow items-center rounded-full font-melodrama text-3xl transition w-auto h-full"
           href="/"
         >
           <img
             src="/img/logo.png/"
             alt="la cucina ristorante"
             loading="eager"
-            className="h-auto w-[4rem] lg:w-[8rem]"
+            className="h-auto w-[7rem] lg:w-[8rem]"
             width="516"
             height="516"
             decoding="async"
           />
         </a>
-
-        <div className="flex flex-row gap-x-8 justify-center cursor-pointer text-white">
-          <a href="/" className="hover:underline">
-            Make a Reservation
-          </a>
-          <a href="/" className="hover:underline">
-            Order Online
-          </a>
-        </div>
-        <div
-          className="flex flex-row justify-center items-center"
-          aria-label="Menu"
-          onClick={toggleMobileMenu}
-        >
-          <button className="w-6 h-6">
-            <svg
-              preserveAspectRatio="xMidYMin slice"
-              viewBox="0 0 24 24"
-              fill="white"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <line x1="21" y1="4.5" x2="3" y2="4.5" stroke="white"></line>
-              <line x1="21" y1="11.5" x2="3" y2="11.5" stroke="white"></line>
-              <line x1="3" y1="18.5" x2="21" y2="18.5" stroke="white"></line>
-            </svg>
-          </button>
+        <div className="flex flex-row sm:gap-x-[5vw] w-full">
+          <ul className="flex flex-row  justify-center items-center cursor-pointer text-white w-full h-full">
+            <li className="hover:underline w-1/2 text-center px-[1vw] leading-none">
+              <a href="/">Make a Reservation</a>
+            </li>
+            <li className="hover:underline w-1/2 text-center px-[1vw] leading-none">
+              <a href="/">Order Online</a>
+            </li>
+          </ul>
+          <div
+            className="flex flex-row justify-center items-center"
+            aria-label="Menu"
+            onClick={toggleMobileMenu}
+          >
+            <button className="w-6 h-6">
+              <svg
+                preserveAspectRatio="xMidYMin slice"
+                viewBox="0 0 24 24"
+                fill="white"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <line x1="21" y1="4.5" x2="3" y2="4.5" stroke="white"></line>
+                <line x1="21" y1="11.5" x2="3" y2="11.5" stroke="white"></line>
+                <line x1="3" y1="18.5" x2="21" y2="18.5" stroke="white"></line>
+              </svg>
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -288,21 +350,20 @@ const Navbar = () => {
               <div className="flex flex-row justify-between mt-[5vh] mb-[5vh]">
                 {/* Social Media Icons */}
                 <div className="flex justify-between items-center text-[30px] gap-[20px]">
-                  {/* Include SVG or icon components here */}
                   <a href="/" aria-label="Instagram">
-                    <FontAwesomeIcon icon="fa-brands fa-instagram" />
+                    <FontAwesomeIcon icon={faInstagram} />
                   </a>
                   <a href="/" aria-label="Facebook">
-                    <FontAwesomeIcon icon="fa-brands fa-facebook" />
+                    <FontAwesomeIcon icon={faFacebook} />
                   </a>
                   <a href="/" aria-label="TikTok">
-                    <FontAwesomeIcon icon="fa-brands fa-tiktok" />
+                    <FontAwesomeIcon icon={faTiktok} />
                   </a>
                   <a href="/" aria-label="YouTube">
-                    <FontAwesomeIcon icon="fa-brands fa-youtube" />
+                    <FontAwesomeIcon icon={faYoutube} />
                   </a>
                   <a href="/" aria-label="LinkedIn">
-                    <FontAwesomeIcon icon="fa-brands fa-linkedin" />
+                    <FontAwesomeIcon icon={faLinkedin} />
                   </a>
                 </div>
 

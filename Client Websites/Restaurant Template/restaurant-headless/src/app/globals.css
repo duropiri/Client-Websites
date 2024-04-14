@@ -105,29 +105,6 @@
   font-family: "Ciutadella", Arial, Helvetica, sans-serif;
 }
 
-.lines {
-  padding-left: 13px;
-}
-.lines {
-  display: flex;
-  flex-basis: 100%;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.lines:after,
-.lines:before {
-  background: #fff;
-}
-.lines:before {
-  margin-bottom: 5px;
-}
-.lines:after,
-.lines:before {
-  content: "";
-  display: block;
-  height: 4px;
-}
 
 
 .backdrop {
@@ -154,3 +131,4 @@
   object-fit: cover;
   z-index: -1; /* Keep the video in the background */
 }
+
