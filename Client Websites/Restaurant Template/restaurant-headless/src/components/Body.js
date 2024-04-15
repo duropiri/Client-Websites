@@ -11,11 +11,11 @@ import SplitType from "split-type";
 
 const Body = () => {
   const { isLoading } = useGlobalState();
-  const { marqueeContent } = useGlobalState(); // Destructuring marqueeContent directly from the global state
+  const { marqueeContent } = useGlobalState();
   const { homePageContent } = useGlobalState();
 
   // console.log(marqueeContent);
-  console.log(homePageContent);
+  // console.log(homePageContent);
 
   const strapiBaseURL =
     process.env.NEXT_PUBLIC_STRAPI_BASE_URL || "http://localhost:1337";

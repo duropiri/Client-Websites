@@ -9,6 +9,11 @@ import { useGlobalState } from "./GlobalStateContext";
 
 const Hero = () => {
   const { isLoading } = useGlobalState();
+  const { heroContent } = useGlobalState();
+
+  const strapiBaseURL =
+    process.env.NEXT_PUBLIC_STRAPI_BASE_URL || "http://localhost:1337";
+
   const setVideoFixed = (isFixed) => {
     // Obtain a reference to the video element
     const video = document.querySelector(".video-background video");
@@ -44,8 +49,6 @@ const Hero = () => {
     };
 
     const parallax = () => {
-      gsap.registerPlugin(ScrollTrigger);
-
       let effectElements = gsap.utils.toArray("[data-speed]");
       effectElements.forEach((el) => {
         let speed = parseFloat(el.getAttribute("data-speed"));
@@ -261,41 +264,45 @@ const Hero = () => {
       {/* Hero Main Content */}
       <div className="h-[100vh] md:h-[150vh]">
         {/* Hero Video */}
-        <div className="video-background">
-          <video
-            src="/video/file.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="fixed w-full h-[100vh] md:h-[150vh] object-cover -z-[1] top-0 left-0 right-0 bottom-0"
-          />
-        </div>
-        {/* Hero Heading */}
-        <div
-          className="content-over-video flex flex-col uppercase gap-10 justify-center px-[5vw] h-[100vh] w-full"
-          data-speed="0.25"
-        >
-          <h1 className="flex flex-col text-[10vw] md:text-[9vw] leading-[9vw] pointer-events-none">
-            <div className="text-crop-in block text-start relative hero-heading">
-              Saskatoon&apos;s
-            </div>
-            <div className="text-crop-in block text-start relative hero-heading">
-              Premiere Italian
-            </div>
-            <div className="text-crop-in block text-end relative hero-heading">
-              Dining Room
-            </div>
-          </h1>
-          <div className="fade-out flex w-full justify-center">
-            <a
-              href="/"
-              className="absolute rounded-full text-center transition-all duration-500 transform px-5 py-3 text-popover bg-primary-foreground button group text-sm uppercase hover:bg-primary-foreground/60"
-            >
-              Consult Menu
-            </a>
+        {!isLoading && heroContent && (
+          <div className="video-background">
+            <video
+              src={`${strapiBaseURL}${heroContent.heroVideo.data.attributes.url}`}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="fixed w-full h-[100vh] md:h-[150vh] object-cover -z-[1] top-0 left-0 right-0 bottom-0"
+            />
           </div>
-        </div>
+        )}
+        {/* Hero Heading */}
+        {!isLoading && heroContent && (
+          <div
+            className="content-over-video flex flex-col uppercase gap-10 justify-center px-[5vw] h-[100vh] w-full"
+            data-speed="0.25"
+          >
+            <h1 className="flex flex-col text-[10vw] md:text-[9vw] leading-[9vw] pointer-events-none">
+              <div className="text-crop-in block text-start relative hero-heading">
+                {heroContent.heroHeading[0].children[0].text}
+              </div>
+              <div className="text-crop-in block text-start relative hero-heading">
+                {heroContent.heroHeading[1].children[0].text}
+              </div>
+              <div className="text-crop-in block text-end relative hero-heading">
+                {heroContent.heroHeading[2].children[0].text}
+              </div>
+            </h1>
+            <div className="fade-out flex w-full justify-center">
+              <a
+                href="/"
+                className="absolute rounded-full text-center transition-all duration-500 transform px-5 py-3 text-popover bg-primary-foreground button group text-sm uppercase hover:bg-primary-foreground/60"
+              >
+                {heroContent.CTA}
+              </a>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

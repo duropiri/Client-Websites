@@ -26,25 +26,35 @@ const fetchCMS = ({ collection }) => {
 const ContentLoader = () => {
   const {
     setIsLoading,
+    setHeroContent,
     setMarqueeContent,
     setHomePageContent,
+    setFooterContent,
   } = useGlobalState();
 
   useEffect(() => {
     setIsLoading(true);
 
     const fetchOperations = [
+      fetchCMS({ collection: "hero-content" }),
       fetchCMS({ collection: "marquee" }),
       fetchCMS({ collection: "home-page-content" }),
+      fetchCMS({ collection: "footer-content" }),
     ];
 
     Promise.all(fetchOperations)
-      .then(([marqueeResponse, homePageResponse]) => {
+      .then(([heroResponse, marqueeResponse, homePageResponse, footerResponse, ]) => {
+        if (heroResponse && heroResponse.data) {
+          setHeroContent(heroResponse.data[0].attributes);
+        }
         if (marqueeResponse && marqueeResponse.data) {
           setMarqueeContent(marqueeResponse.data[0].attributes);
         }
         if (homePageResponse && homePageResponse.data) {
           setHomePageContent(homePageResponse.data[0].attributes);
+        }
+        if (footerResponse && footerResponse.data) {
+          setFooterContent(footerResponse.data[0].attributes);
         }
       })
       .catch((error) => {

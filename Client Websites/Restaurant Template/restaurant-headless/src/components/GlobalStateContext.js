@@ -11,11 +11,10 @@ export const GlobalStateProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   // New global states
-  const [whyContent, setWhyContent] = useState(null);
-  const [ctaBannerContent, setCtaBannerContent] = useState(null);
   const [heroContent, setHeroContent] = useState(null);
   const [marqueeContent, setMarqueeContent] = useState(null);
   const [homePageContent, setHomePageContent] = useState(null);
+  const [footerContent, setFooterContent] = useState(null);
 
   // Mobile states
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -26,10 +25,6 @@ export const GlobalStateProvider = ({ children }) => {
     setIsLoading, // Directly use the setter functions provided by useState
     user,
     setUser, // Directly use the setter functions provided by useState
-    whyContent,
-    setWhyContent,
-    ctaBannerContent,
-    setCtaBannerContent,
     heroContent,
     setHeroContent,
     marqueeContent,
@@ -38,6 +33,8 @@ export const GlobalStateProvider = ({ children }) => {
     setHomePageContent,
     mobileMenuOpen,
     setMobileMenuOpen,
+    footerContent,
+    setFooterContent,
   };
 
   return (

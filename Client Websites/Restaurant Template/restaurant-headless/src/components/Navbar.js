@@ -17,6 +17,9 @@ const Navbar = () => {
   const { mobileMenuOpen, setMobileMenuOpen } = useGlobalState();
   const mobileMenuRef = useRef(null);
 
+  const strapiBaseURL =
+    process.env.NEXT_PUBLIC_STRAPI_BASE_URL || "http://localhost:1337";
+
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
   const disableScroll = (shouldDisable) => {
     document.body.style.overflow = shouldDisable ? "hidden" : "";
@@ -68,29 +71,33 @@ const Navbar = () => {
   }, [mobileMenuOpen]);
 
   useEffect(() => {
-    // library.add(fab);
     const handleScroll = () => {
       const navbar = document.querySelector(".navbar"); // Ensure your navbar has the class "navbar"
       if (window.scrollY > 200) {
+        // Apply blur effect
         gsap.to(navbar, {
-          duration: 0.5, // Smoother transition duration
-          backdropFilter: "blur(10px)",
-          webkitBackdropFilter: "blur(10px)", // For Safari compatibility
-          backgroundColor: "rgba(16, 16, 16, 0.75)", // Semi-transparent black
-          ease: "power2.out", // Smoother easing function
+          duration: 0.5,
+          backgroundColor: "rgba(16, 16, 16, 0.75)",
+          ease: "power2.out",
+          onComplete: () => {
+            gsap.set(navbar, {
+              // webkitBackdropFilter: "blur(10px)",
+              backdropFilter: "blur(10px)",
+            });
+          },
         });
       } else {
-        // Transition to a very low opacity color instead of transparent
+        // Remove blur effect
         gsap.to(navbar, {
-          duration: 0.5, // Consistent duration for the transition
-          backdropFilter: "blur(0px)",
-          webkitBackdropFilter: "blur(0px)",
-          backgroundColor: "rgba(16, 16, 16, 0.01)", // Nearly transparent
-          ease: "power2.in", // Smoother easing function
+          duration: 0.5,
+          backgroundColor: "rgba(16, 16, 16, 0.01)",
+          ease: "power2.in",
           onComplete: () => {
-            // Once the animation completes, fully remove the background color
-            // This step is to ensure that there's no visible flash when the transition completes
-            gsap.set(navbar, { backgroundColor: "transparent" });
+            gsap.set(navbar, {
+              // webkitBackdropFilter: "blur(0px)",
+              backdropFilter: "blur(0px)",
+              backgroundColor: "transparent",
+            });
           },
         });
       }
@@ -146,7 +153,7 @@ const Navbar = () => {
           href="/"
         >
           <img
-            src="/img/logo.png/"
+            src={`${strapiBaseURL}/uploads/logo_aab5c515ac.png`}
             alt="la cucina ristorante"
             loading="eager"
             className="h-auto w-[4rem] lg:w-[8rem]"
@@ -215,7 +222,7 @@ const Navbar = () => {
           href="/"
         >
           <img
-            src="/img/logo.png/"
+            src={`${strapiBaseURL}/uploads/logo_aab5c515ac.png`}
             alt="la cucina ristorante"
             loading="eager"
             className="h-auto w-[7rem] lg:w-[8rem]"
