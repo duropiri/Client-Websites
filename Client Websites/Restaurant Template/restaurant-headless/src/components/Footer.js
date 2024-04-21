@@ -12,9 +12,8 @@ import { useGlobalState } from "./GlobalStateContext";
 import { gsap } from "gsap/all";
 
 const Footer = () => {
-  const { isLoading } = useGlobalState();
-  const { footerContent } = useGlobalState();
-  console.log(footerContent);
+  const { state } = useGlobalState();
+  const { isLoading, footerContent } = state;
 
   const strapiBaseURL =
     process.env.NEXT_PUBLIC_STRAPI_BASE_URL || "http://localhost:1337";
@@ -174,7 +173,7 @@ const Footer = () => {
                     const url = parts[0];
                     const text = parts[1];
                     const iconKey = parts[2];
-                    console.log(iconKey);
+                    // console.log(iconKey);
 
                     return (
                       <li key={index} className="flex w-auto mb-2">

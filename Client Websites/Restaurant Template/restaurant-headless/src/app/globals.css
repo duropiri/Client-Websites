@@ -1,5 +1,5 @@
-@import url("/fonts/Shentox/stylesheet.css");
-@import url("/fonts/Ciutadella/stylesheet.css");
+@import url("../../public/fonts/Shentox/stylesheet.css");
+@import url("../../public/fonts/Ciutadella/stylesheet.css");
 
 @tailwind base;
 @tailwind components;

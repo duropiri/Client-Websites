@@ -13,14 +13,17 @@ import {
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 const Navbar = () => {
-  const { isLoading } = useGlobalState();
-  const { mobileMenuOpen, setMobileMenuOpen } = useGlobalState();
+  const { state, dispatch } = useGlobalState();
+  const { isLoading, mobileMenuOpen } = state;
   const mobileMenuRef = useRef(null);
 
   const strapiBaseURL =
     process.env.NEXT_PUBLIC_STRAPI_BASE_URL || "http://localhost:1337";
 
-  const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
+  const toggleMobileMenu = () => {
+    dispatch({ type: "SET_MOBILE_MENU_OPEN", payload: !state.mobileMenuOpen });
+  };
+
   const disableScroll = (shouldDisable) => {
     document.body.style.overflow = shouldDisable ? "hidden" : "";
   };
@@ -154,7 +157,7 @@ const Navbar = () => {
         >
           <img
             src={`${strapiBaseURL}/uploads/logo_aab5c515ac.png`}
-            alt="la cucina ristorante"
+            alt="logo"
             loading="eager"
             className="h-auto w-[4rem] lg:w-[8rem]"
             width="516"
@@ -223,7 +226,7 @@ const Navbar = () => {
         >
           <img
             src={`${strapiBaseURL}/uploads/logo_aab5c515ac.png`}
-            alt="la cucina ristorante"
+            alt="logo"
             loading="eager"
             className="h-auto w-[7rem] lg:w-[8rem]"
             width="516"
@@ -231,7 +234,7 @@ const Navbar = () => {
             decoding="async"
           />
         </a>
-        <div className="flex flex-row sm:gap-x-[5vw] w-full">
+        <div className="flex flex-row items-center sm:gap-x-[5vw] w-full">
           <ul className="flex flex-row  justify-center items-center cursor-pointer text-white w-full h-full">
             <li className="hover:underline w-1/2 text-center px-[1vw] leading-none">
               <a href="/">Make a Reservation</a>

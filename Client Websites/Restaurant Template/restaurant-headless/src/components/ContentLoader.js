@@ -14,26 +14,19 @@ const fetchCMS = ({ collection }) => {
       if (response.ok) {
         return response.json();
       }
-      return response.text().then((text) => {
-        throw new Error(`Error ${response.status}: ${text}`);
-      });
+      throw new Error(`HTTP Error ${response.status}: Failed to fetch ${collection}`);
     })
     .catch((error) => {
       console.error("Fetch error:", error);
+      throw error; // Rethrow to handle in the calling function
     });
 };
 
 const ContentLoader = () => {
-  const {
-    setIsLoading,
-    setHeroContent,
-    setMarqueeContent,
-    setHomePageContent,
-    setFooterContent,
-  } = useGlobalState();
+  const { state, dispatch } = useGlobalState();
 
   useEffect(() => {
-    setIsLoading(true);
+    dispatch({ type: 'SET_LOADING', payload: true });
 
     const fetchOperations = [
       fetchCMS({ collection: "hero-content" }),
@@ -43,25 +36,17 @@ const ContentLoader = () => {
     ];
 
     Promise.all(fetchOperations)
-      .then(([heroResponse, marqueeResponse, homePageResponse, footerResponse, ]) => {
-        if (heroResponse && heroResponse.data) {
-          setHeroContent(heroResponse.data[0].attributes);
-        }
-        if (marqueeResponse && marqueeResponse.data) {
-          setMarqueeContent(marqueeResponse.data[0].attributes);
-        }
-        if (homePageResponse && homePageResponse.data) {
-          setHomePageContent(homePageResponse.data[0].attributes);
-        }
-        if (footerResponse && footerResponse.data) {
-          setFooterContent(footerResponse.data[0].attributes);
-        }
+      .then(([heroResponse, marqueeResponse, homePageResponse, footerResponse]) => {
+        dispatch({ type: 'SET_HERO_CONTENT', payload: heroResponse.data[0].attributes });
+        dispatch({ type: 'SET_MARQUEE_CONTENT', payload: marqueeResponse.data[0].attributes });
+        dispatch({ type: 'SET_HOMEPAGE_CONTENT', payload: homePageResponse.data[0].attributes });
+        dispatch({ type: 'SET_FOOTER_CONTENT', payload: footerResponse.data[0].attributes });
       })
       .catch((error) => {
         console.error("Error fetching content:", error);
       })
       .finally(() => {
-        setIsLoading(false);
+        dispatch({ type: 'SET_LOADING', payload: false });
       });
   }, []); // Empty dependency array to run once on mount
 

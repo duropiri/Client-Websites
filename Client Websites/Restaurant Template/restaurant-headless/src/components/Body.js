@@ -10,9 +10,9 @@ import { Skeleton } from "@nextui-org/react";
 import SplitType from "split-type";
 
 const Body = () => {
-  const { isLoading } = useGlobalState();
-  const { marqueeContent } = useGlobalState();
-  const { homePageContent } = useGlobalState();
+  const { state } = useGlobalState();
+  const { isLoading, marqueeContent, homePageContent } = state;
+
 
   // console.log(marqueeContent);
   // console.log(homePageContent);

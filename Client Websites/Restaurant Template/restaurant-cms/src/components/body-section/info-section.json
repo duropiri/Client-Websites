@@ -1,7 +1,8 @@
 {
   "collectionName": "components_body_section_info_sections",
   "info": {
-    "displayName": "Info Section"
+    "displayName": "Info Section",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -13,23 +14,23 @@
       "type": "string",
       "default": "faucibus et molestie ac feugiat sed lectus"
     },
-    "description": {
-      "type": "text",
-      "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Est pellentesque elit ullamcorper dignissim cras tincidunt. Sem integer vitae justo eget magna fermentum iaculis."
-    },
     "links": {
       "type": "string",
       "default": "tempor, orci, dapibus"
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "description": {
+      "type": "richtext"
     }
   }
 }

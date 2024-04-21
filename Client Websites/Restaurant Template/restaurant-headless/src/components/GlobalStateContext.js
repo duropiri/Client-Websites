@@ -1,44 +1,49 @@
 "use client";
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useReducer } from "react";
 
 // Step 1: Create a new context
 const GlobalStateContext = createContext();
 
+// Initial state for the reducer
+const initialState = {
+  isLoading: false,
+  user: null,
+  heroContent: null,
+  marqueeContent: null,
+  homePageContent: null,
+  footerContent: null,
+  mobileMenuOpen: false,
+};
+
+// Reducer function to handle state updates
+function globalReducer(state, action) {
+  switch (action.type) {
+    case "SET_LOADING":
+      return { ...state, isLoading: action.payload };
+    case "SET_USER":
+      return { ...state, user: action.payload };
+    case "SET_HERO_CONTENT":
+      return { ...state, heroContent: action.payload };
+    case "SET_MARQUEE_CONTENT":
+      return { ...state, marqueeContent: action.payload };
+    case "SET_HOMEPAGE_CONTENT":
+      return { ...state, homePageContent: action.payload };
+    case "SET_FOOTER_CONTENT":
+      return { ...state, footerContent: action.payload };
+    case "SET_MOBILE_MENU_OPEN":
+      return { ...state, mobileMenuOpen: action.payload };
+    // Handle other state updates
+    default:
+      return state;
+  }
+}
+
 // Step 2: Create a provider component
 export const GlobalStateProvider = ({ children }) => {
-  // Existing global states
-  const [isLoading, setIsLoading] = useState(false);
-  const [user, setUser] = useState(null);
-
-  // New global states
-  const [heroContent, setHeroContent] = useState(null);
-  const [marqueeContent, setMarqueeContent] = useState(null);
-  const [homePageContent, setHomePageContent] = useState(null);
-  const [footerContent, setFooterContent] = useState(null);
-
-  // Mobile states
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  // Combine all global states and their update functions into a single object
-  const globalState = {
-    isLoading,
-    setIsLoading, // Directly use the setter functions provided by useState
-    user,
-    setUser, // Directly use the setter functions provided by useState
-    heroContent,
-    setHeroContent,
-    marqueeContent,
-    setMarqueeContent,
-    homePageContent,
-    setHomePageContent,
-    mobileMenuOpen,
-    setMobileMenuOpen,
-    footerContent,
-    setFooterContent,
-  };
+  const [state, dispatch] = useReducer(globalReducer, initialState);
 
   return (
-    <GlobalStateContext.Provider value={globalState}>
+    <GlobalStateContext.Provider value={{ state, dispatch }}>
       {children}
     </GlobalStateContext.Provider>
   );

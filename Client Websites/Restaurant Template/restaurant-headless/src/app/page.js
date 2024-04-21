@@ -1,24 +1,78 @@
 "use client";
-import Body from "@/components/Body";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useGlobalState } from "@/components/GlobalStateContext";
+
+import Navbar from "@/components/Navbar";
+import Body from "@/components/Body";
+import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
-import { useEffect } from "react";
 
 export default function Page() {
-  const { isLoading } = useGlobalState();
+  const { state } = useGlobalState();
+  const router = useRouter();
+  const [contentLoadedSuccessfully, setContentLoadedSuccessfully] =
+    useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    // It's important to only perform client-side routing after verifying the window object is defined
+    if (typeof window !== "undefined") {
+      window.scrollTo(0, 0);
 
-  if (isLoading) {
-    return null; // No spinner, just waiting until content is ready
-  }
+      // Simulate fetching data from CMS
+      fetchCMS()
+        .then((data) => {
+          // Debug: Check the fetched data
+          console.log("CMS Data:", data);
+
+          // Ensure data is not null and has expected structure
+          if (!data) {
+            console.error(
+              "No data returned or data structure incorrect:",
+              data
+            );
+            router.replace("/");
+          } else {
+            setContentLoadedSuccessfully(true);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching content:", error);
+          router.replace("/404");
+        });
+    }
+  }, [router]); // Router removed from dependencies to avoid unnecessary re-runs
+
+  if (!contentLoadedSuccessfully) return null; // Optionally show a loading spinner here
 
   return (
-    <main className="flex flex-col relative z-[99]">
-      <Hero />
-      <Body />
-    </main>
+    <>
+      <Navbar />
+      <main className="flex flex-col relative z-[99]">
+        <Hero />
+        <Body />
+      </main>
+      <Footer />
+    </>
   );
 }
+
+const fetchCMS = () => {
+  const reqOptions = {
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+    },
+  };
+
+  return fetch(`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}/api/hero-contents?populate=*`, reqOptions)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP Error ${response.status}: Failed to fetch`);
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      throw error; // Ensure error handling logic in useEffect can catch this
+    });
+};

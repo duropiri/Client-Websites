@@ -4,15 +4,27 @@ export interface BodySectionInfoSection extends Schema.Component {
   collectionName: 'components_body_section_info_sections';
   info: {
     displayName: 'Info Section';
+    description: '';
   };
   attributes: {
     category: Attribute.String & Attribute.DefaultTo<'tincidunt'>;
     heading: Attribute.String &
       Attribute.DefaultTo<'faucibus et molestie ac feugiat sed lectus'>;
-    description: Attribute.Text &
-      Attribute.DefaultTo<'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Est pellentesque elit ullamcorper dignissim cras tincidunt. Sem integer vitae justo eget magna fermentum iaculis.'>;
     links: Attribute.String & Attribute.DefaultTo<'tempor, orci, dapibus'>;
-    image: Attribute.Media;
+    image: Attribute.Media & Attribute.Required;
+    description: Attribute.RichText;
+  };
+}
+
+export interface FooterSectionFooterLinks extends Schema.Component {
+  collectionName: 'components_footer_section_footer_links';
+  info: {
+    displayName: 'Footer Links';
+    description: '';
+  };
+  attributes: {
+    linksCategory: Attribute.String;
+    linksList: Attribute.Blocks;
   };
 }
 
@@ -31,6 +43,7 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'body-section.info-section': BodySectionInfoSection;
+      'footer-section.footer-links': FooterSectionFooterLinks;
       'marquee.marquee': MarqueeMarquee;
     }
   }

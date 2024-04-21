@@ -5,8 +5,7 @@ import { cn } from "@/lib/utils";
 import data from "../../public/meta.json";
 import ContentLoader from "@/components/ContentLoader";
 import SmoothScrolling from "@/components/SmoothScrolling";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
+
 
 export const metadata = {
   title: data.title,
@@ -20,9 +19,9 @@ export default function RootLayout({ children }) {
         <GlobalStateProvider>
           <ContentLoader />
           <SmoothScrolling>
-            <Navbar />
+            
             {children}
-            <Footer />
+            
           </SmoothScrolling>
         </GlobalStateProvider>
       </body>

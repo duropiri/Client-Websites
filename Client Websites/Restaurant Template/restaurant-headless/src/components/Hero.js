@@ -8,8 +8,8 @@ import { TweenMax } from "gsap/all";
 import { useGlobalState } from "./GlobalStateContext";
 
 const Hero = () => {
-  const { isLoading } = useGlobalState();
-  const { heroContent } = useGlobalState();
+  const { state } = useGlobalState();
+  const { isLoading, heroContent } = state;
 
   const strapiBaseURL =
     process.env.NEXT_PUBLIC_STRAPI_BASE_URL || "http://localhost:1337";
