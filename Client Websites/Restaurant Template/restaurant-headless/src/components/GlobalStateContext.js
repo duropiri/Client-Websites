@@ -8,6 +8,7 @@ const GlobalStateContext = createContext();
 const initialState = {
   isLoading: false,
   user: null,
+  navbarContent: null,
   heroContent: null,
   marqueeContent: null,
   homePageContent: null,
@@ -22,6 +23,8 @@ function globalReducer(state, action) {
       return { ...state, isLoading: action.payload };
     case "SET_USER":
       return { ...state, user: action.payload };
+    case "SET_NAVBAR_CONTENT":
+      return { ...state, navbarContent: action.payload };
     case "SET_HERO_CONTENT":
       return { ...state, heroContent: action.payload };
     case "SET_MARQUEE_CONTENT":

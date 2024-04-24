@@ -590,6 +590,46 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
+export interface PluginGoogleMapsConfig extends Schema.SingleType {
+  collectionName: 'google_maps_configs';
+  info: {
+    singularName: 'config';
+    pluralName: 'configs';
+    displayName: 'Google Maps Config';
+  };
+  options: {
+    populateCreatorFields: false;
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    googleMapsKey: Attribute.String &
+      Attribute.Required &
+      Attribute.DefaultTo<''>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::google-maps.config',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::google-maps.config',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginI18NLocale extends Schema.CollectionType {
   collectionName: 'i18n_locale';
   info: {
@@ -788,6 +828,156 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiCenteredContentCenteredContent
+  extends Schema.CollectionType {
+  collectionName: 'centered_contents';
+  info: {
+    singularName: 'centered-content';
+    pluralName: 'centered-contents';
+    displayName: 'centeredContent';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    category: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    heading: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    visual: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    description: Attribute.RichText &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    links: Attribute.JSON &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::centered-content.centered-content',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::centered-content.centered-content',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::centered-content.centered-content',
+      'oneToMany',
+      'api::centered-content.centered-content'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiCenteredStyledContentCenteredStyledContent
+  extends Schema.CollectionType {
+  collectionName: 'centered_styled_contents';
+  info: {
+    singularName: 'centered-styled-content';
+    pluralName: 'centered-styled-contents';
+    displayName: 'CenteredStyledContent';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    category: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    heading: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    links: Attribute.JSON &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    visual: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    description: Attribute.RichText &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    map: Attribute.JSON &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::centered-styled-content.centered-styled-content',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::centered-styled-content.centered-styled-content',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::centered-styled-content.centered-styled-content',
+      'oneToMany',
+      'api::centered-styled-content.centered-styled-content'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiFooterContentFooterContent extends Schema.CollectionType {
   collectionName: 'footer_contents';
   info: {
@@ -805,12 +995,6 @@ export interface ApiFooterContentFooterContent extends Schema.CollectionType {
     };
   };
   attributes: {
-    logo: Attribute.Media &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     footerLinks: Attribute.Component<'footer-section.footer-links', true> &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -818,6 +1002,12 @@ export interface ApiFooterContentFooterContent extends Schema.CollectionType {
         };
       }>;
     pageLinks: Attribute.Blocks &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    logo: Attribute.Media &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -869,7 +1059,8 @@ export interface ApiHeroContentHeroContent extends Schema.CollectionType {
         i18n: {
           localized: true;
         };
-      }>;
+      }> &
+      Attribute.DefaultTo<'Browse Menu'>;
     heroVideo: Attribute.Media &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -930,38 +1121,44 @@ export interface ApiHomePageContentHomePageContent
           localized: true;
         };
       }> &
-      Attribute.DefaultTo<'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Libero volutpat sed cras ornare arcu dui.'>;
+      Attribute.DefaultTo<'We are a locally owned  & Italian owned, casual and authentic Italian restaurant located in the  heart of downtown Saskatoon.  The magic at La Cucina happens in \u201Cthe kitchen\u201D.  We use simple and fresh ingredients to create classic, home-style Italian dishes.'>;
     marqueeHeading: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }> &
-      Attribute.DefaultTo<'tellus orci ac auctor'>;
-    marquee: Attribute.Component<'marquee.marquee', true> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    centeredContent: Attribute.Component<'body-section.info-section', true> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+      Attribute.DefaultTo<'Saskatoons Premiere Italian Dining Room'>;
     heroSubheading: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
-      }>;
+      }> &
+      Attribute.DefaultTo<'Rustic - Authentic - Italian'>;
     heroHeading: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
+      }> &
+      Attribute.DefaultTo<'Enjoy a little taste of Italy! Buon Appetito!'>;
+    marquee: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
       }>;
+    centered_contents: Attribute.Relation<
+      'api::home-page-content.home-page-content',
+      'oneToMany',
+      'api::centered-content.centered-content'
+    >;
+    centered_styled_contents: Attribute.Relation<
+      'api::home-page-content.home-page-content',
+      'oneToMany',
+      'api::centered-styled-content.centered-styled-content'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -986,33 +1183,110 @@ export interface ApiHomePageContentHomePageContent
   };
 }
 
-export interface ApiMarqueeMarquee extends Schema.CollectionType {
-  collectionName: 'marquees';
+export interface ApiNavbarContentNavbarContent extends Schema.CollectionType {
+  collectionName: 'navbar_contents';
   info: {
-    singularName: 'marquee';
-    pluralName: 'marquees';
-    displayName: 'Marquee';
+    singularName: 'navbar-content';
+    pluralName: 'navbar-contents';
+    displayName: 'NavbarContent';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    images: Attribute.Media;
+    logo: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    desktopMenu: Attribute.JSON &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    mobileMenu: Attribute.JSON &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pageLinks: Attribute.JSON &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    instagram: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.DefaultTo<'instagram.com'>;
+    facebook: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.DefaultTo<'facebook.com'>;
+    tiktok: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.DefaultTo<'tiktok.com'>;
+    youtube: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.DefaultTo<'youtube.com'>;
+    linkedin: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.DefaultTo<'linkedin.com'>;
+    language: Attribute.Enumeration<['Long', 'Abbreviated']> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.DefaultTo<'Long'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::marquee.marquee',
+      'api::navbar-content.navbar-content',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::marquee.marquee',
+      'api::navbar-content.navbar-content',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::navbar-content.navbar-content',
+      'oneToMany',
+      'api::navbar-content.navbar-content'
+    >;
+    locale: Attribute.String;
   };
 }
 
@@ -1030,14 +1304,17 @@ declare module '@strapi/types' {
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::google-maps.config': PluginGoogleMapsConfig;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::centered-content.centered-content': ApiCenteredContentCenteredContent;
+      'api::centered-styled-content.centered-styled-content': ApiCenteredStyledContentCenteredStyledContent;
       'api::footer-content.footer-content': ApiFooterContentFooterContent;
       'api::hero-content.hero-content': ApiHeroContentHeroContent;
       'api::home-page-content.home-page-content': ApiHomePageContentHomePageContent;
-      'api::marquee.marquee': ApiMarqueeMarquee;
+      'api::navbar-content.navbar-content': ApiNavbarContentNavbarContent;
     }
   }
 }

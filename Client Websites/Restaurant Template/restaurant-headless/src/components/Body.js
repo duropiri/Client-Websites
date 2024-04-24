@@ -13,9 +13,8 @@ const Body = () => {
   const { state } = useGlobalState();
   const { isLoading, marqueeContent, homePageContent } = state;
 
-
   // console.log(marqueeContent);
-  // console.log(homePageContent);
+  console.log(homePageContent);
 
   const strapiBaseURL =
     process.env.NEXT_PUBLIC_STRAPI_BASE_URL || "http://localhost:1337";
@@ -281,70 +280,52 @@ const Body = () => {
             </h2>
 
             <MarqueeSection
-              content={[homePageContent, marqueeContent]}
+              content={homePageContent.marquee}
               strapiBaseURL={strapiBaseURL}
             />
           </section>
 
-          {/* Info Section - Hosting */}
+          {/* Info Sections */}
+          {homePageContent.centered_contents &&
+            homePageContent.centered_contents.data.map((content, index) => (
+              <React.Fragment key={content.id}>
+                <Skeleton isLoaded={!isLoading} className="w-full" />
+
+                <InfoSection
+                  category={content.attributes.category}
+                  heading={content.attributes.heading}
+                  description={content.attributes.description}
+                  links={content.attributes.links}
+                  imageUrl={`${strapiBaseURL}${content.attributes.visual.data.attributes.url}`}
+                />
+              </React.Fragment>
+            ))}
+
+          {/* Fancy Section */}
           <Skeleton isLoaded={!isLoading} className="w-full" />
 
-          <InfoSection
-            key={homePageContent.centeredContent[0].id}
-            category={homePageContent.centeredContent[0].category}
-            heading={homePageContent.centeredContent[0].heading}
-            description={homePageContent.centeredContent[0].description}
-            links={homePageContent.centeredContent[0].links}
-            imageUrl={`${strapiBaseURL}/uploads/04ad3e_389803479c5b411ebc60e3a4610b3f33_mv2_3e9fd27d00.webp`} // Assuming an image URL needs to be constructed
-          />
+          {homePageContent.centered_styled_contents &&
+            homePageContent.centered_styled_contents.data.map(
+              (content, index) => (
+                <>
+                  <Skeleton isLoaded={!isLoading} className="w-full" />
 
-          {/* Info Section - Catering */}
-          <Skeleton isLoaded={!isLoading} className="w-full" />
-
-          <InfoSection
-            key={homePageContent.centeredContent[1].id}
-            category={homePageContent.centeredContent[1].category}
-            heading={homePageContent.centeredContent[1].heading}
-            description={homePageContent.centeredContent[1].description}
-            links={homePageContent.centeredContent[1].links}
-            imageUrl={`${strapiBaseURL}/uploads/04ad3e_5412b1d32cac43e2906ae9c0c08109a8_mv2_0aece42413.webp`} // Assuming an image URL needs to be constructed
-          />
-
-          {/* Fancy Section - Gift Cards */}
-          <Skeleton isLoaded={!isLoading} className="w-full" />
-
-          <InfoSectionStyled
-            key={homePageContent.centeredContent[2].id}
-            category={homePageContent.centeredContent[2].category}
-            heading={homePageContent.centeredContent[2].heading}
-            description={homePageContent.centeredContent[2].description}
-            links={homePageContent.centeredContent[2].links}
-            imageUrl={`${strapiBaseURL}/uploads/04ad3e_43c0cedee30d46539629dd7c662f1239_mv2_2030aaa428.webp`} // Assuming an image URL needs to be constructed
-          />
-
-          {/* Info Section - Menu */}
-          <Skeleton isLoaded={!isLoading} className="w-full" />
-
-          <InfoSection
-            key={homePageContent.centeredContent[3].id}
-            category={homePageContent.centeredContent[3].category}
-            heading={homePageContent.centeredContent[3].heading}
-            description={homePageContent.centeredContent[3].description}
-            links={homePageContent.centeredContent[3].links}
-            imageUrl={`${strapiBaseURL}/uploads/04ad3e_b19978f2e02e4f7b92cbd97f057ca619_mv2_1dd2fbd575.webp`} // Assuming an image URL needs to be constructed
-          />
-
-          {/* Fancy Section - Store Hours & Location */}
-          <Skeleton isLoaded={!isLoading} className="w-full" />
-
-          <InfoSectionStyled
-            key={homePageContent.centeredContent[4].id}
-            category={homePageContent.centeredContent[4].category}
-            heading={homePageContent.centeredContent[4].heading}
-            description={homePageContent.centeredContent[4].description}
-            links={homePageContent.centeredContent[4].links}
-            isMap={true}
-          />
+                  <InfoSectionStyled
+                    key={content.id}
+                    category={content.attributes.category}
+                    heading={content.attributes.heading}
+                    description={content.attributes.description}
+                    links={content.attributes.links}
+                    isMap={content.attributes.map}
+                    imageUrl={
+                      content.attributes.visual?.data
+                        ? `${strapiBaseURL}${content.attributes.visual.data.attributes.url}`
+                        : null
+                    }
+                  />
+                </>
+              )
+            )}
         </section>
       )}
     </>
@@ -354,8 +335,8 @@ const Body = () => {
 const MarqueeSection = ({ content, strapiBaseURL }) => (
   <div className="-mx-[10vw]">
     <Marquee>
-      {content[1] &&
-        [...content[1].images.data].map(({ id, attributes }) => (
+      {content &&
+        content.data.map(({ id, attributes }) => (
           <img
             key={id}
             src={`${strapiBaseURL}${attributes.url}`}
@@ -371,9 +352,16 @@ const MarqueeSection = ({ content, strapiBaseURL }) => (
   </div>
 );
 
-const InfoSection = ({ category, heading, description, links, imageUrl }) => {
+const InfoSection = ({
+  category,
+  heading,
+  description,
+  links,
+  imageUrl = null,
+}) => {
   // Split links string by comma and trim whitespace
-  const linkItems = links.split(",").map((link) => link.trim());
+  // const linkItems = links.split(",").map((link) => link.trim());
+  const linksEntries = links ? Object.entries(links) : [];
 
   // Render each content section dynamically based on `content` prop
   return (
@@ -399,14 +387,15 @@ const InfoSection = ({ category, heading, description, links, imageUrl }) => {
             {heading}
           </h2>
           <div className="max-w-[50ch]">
-            <p className="fade-in font-secondary font-normal mb-[2vh] text[16px]">
-              {description}
-            </p>
+            <p
+              className="fade-in font-secondary font-normal mb-[2vh] text[16px]"
+              dangerouslySetInnerHTML={{ __html: description }}
+            ></p>
             <div className="flex flex-row gap-x-8 text-white font-primary font-bold uppercase text-[18px]">
-              {linkItems.map((link, index) => (
+              {linksEntries.map(([key, value]) => (
                 <div className="flex flex-col hover-link">
-                  <a key={index} href="/" className="fade-in cursor-pointer">
-                    {link}
+                  <a key={key} href={value} className="fade-in cursor-pointer">
+                    {key}
                   </a>
                   <span className="underline bg-primary text-primary h-[1px]"></span>
                 </div>
@@ -428,7 +417,8 @@ const InfoSectionStyled = ({
   isMap = false,
 }) => {
   // Split links string by comma and trim whitespace
-  const linkItems = links.split(",").map((link) => link.trim());
+  // const linkItems = links.split(",").map((link) => link.trim());
+  const linksEntries = links ? Object.entries(links) : [];
 
   // Render each content section dynamically based on `content` prop
   return (
@@ -437,7 +427,7 @@ const InfoSectionStyled = ({
         {isMap ? (
           <div id="map" className="w-full h-full">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2449.3675950849456!2d-106.66545552254475!3d52.12763446520408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5304f7b9fd7a7e5b%3A0xa0331f6e08a8a18e!2sLa%20Cucina%20Ristorante!5e0!3m2!1sen!2sca!4v1712587547418!5m2!1sen!2sca"
+              src={isMap}
               width="600" // Adjust width as needed or use Tailwind's width classes
               height="450" // Adjust height as needed or use Tailwind's height classes
               style={{ border: 0 }}
@@ -466,14 +456,19 @@ const InfoSectionStyled = ({
               {heading}
             </h2>
             <div className="flex flex-col  justify-between max-w-[50ch]">
-              <p className="fade-in font-secondary font-normal mb-[2vh] text[16px]">
-                {description}
-              </p>
+              <p
+                className="fade-in font-secondary font-normal mb-[2vh] text[16px]"
+                dangerouslySetInnerHTML={{ __html: description }}
+              ></p>
               <div className="flex flex-row gap-x-8 text-white font-primary font-bold uppercase text-[18px]">
-                {linkItems.map((link, index) => (
+                {linksEntries.map(([key, value]) => (
                   <div className="flex flex-col hover-link">
-                    <a key={index} href="/" className="fade-in cursor-pointer">
-                      {link}
+                    <a
+                      key={key}
+                      href={value}
+                      className="fade-in cursor-pointer"
+                    >
+                      {key}
                     </a>
                     <span className="underline bg-primary text-primary h-[1px]"></span>
                   </div>

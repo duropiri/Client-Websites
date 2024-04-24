@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_client_creatives_client_map_embeds",
+  "info": {
+    "displayName": "Client Map Embed",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "googleMaps": {
+      "type": "customField",
+      "customField": "plugin::google-maps.location-picker"
+    }
+  }
+}

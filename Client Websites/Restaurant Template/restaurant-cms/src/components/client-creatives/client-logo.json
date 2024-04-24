@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_client_creatives_client_logos",
+  "info": {
+    "displayName": "Client Logo"
+  },
+  "options": {},
+  "attributes": {
+    "clientLogo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

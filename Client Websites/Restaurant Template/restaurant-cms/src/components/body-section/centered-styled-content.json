@@ -1,18 +1,16 @@
 {
-  "collectionName": "components_body_section_info_sections",
+  "collectionName": "components_body_section_centered_styled_contents",
   "info": {
-    "displayName": "Info Section",
+    "displayName": "centeredStyledContent",
     "description": ""
   },
   "options": {},
   "attributes": {
     "category": {
-      "type": "string",
-      "default": "tincidunt"
+      "type": "string"
     },
     "heading": {
-      "type": "string",
-      "default": "faucibus et molestie ac feugiat sed lectus"
+      "type": "text"
     },
     "links": {
       "type": "json"
@@ -30,6 +28,10 @@
     },
     "description": {
       "type": "richtext"
+    },
+    "mapEmbed": {
+      "type": "customField",
+      "customField": "plugin::google-maps.location-picker"
     }
   }
 }

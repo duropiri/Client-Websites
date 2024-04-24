@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_client_creatives_client_carousel_images",
+  "info": {
+    "displayName": "Client Carousel Images"
+  },
+  "options": {},
+  "attributes": {
+    "clientCarouselImages": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

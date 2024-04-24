@@ -11,6 +11,8 @@ const Hero = () => {
   const { state } = useGlobalState();
   const { isLoading, heroContent } = state;
 
+  console.log(heroContent);
+
   const strapiBaseURL =
     process.env.NEXT_PUBLIC_STRAPI_BASE_URL || "http://localhost:1337";
 

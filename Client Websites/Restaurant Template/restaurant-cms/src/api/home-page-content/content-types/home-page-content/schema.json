@@ -23,7 +23,7 @@
         }
       },
       "type": "text",
-      "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Libero volutpat sed cras ornare arcu dui."
+      "default": "We are a locally owned  & Italian owned, casual and authentic Italian restaurant located in the  heart of downtown Saskatoon.  The magic at La Cucina happens in “the kitchen”.  We use simple and fresh ingredients to create classic, home-style Italian dishes."
     },
     "marqueeHeading": {
       "pluginOptions": {
@@ -32,27 +32,7 @@
         }
       },
       "type": "string",
-      "default": "tellus orci ac auctor"
-    },
-    "marquee": {
-      "type": "component",
-      "repeatable": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "marquee.marquee"
-    },
-    "centeredContent": {
-      "type": "component",
-      "repeatable": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "body-section.info-section"
+      "default": "Saskatoons Premiere Italian Dining Room"
     },
     "heroSubheading": {
       "pluginOptions": {
@@ -60,7 +40,8 @@
           "localized": true
         }
       },
-      "type": "string"
+      "type": "string",
+      "default": "Rustic - Authentic - Italian"
     },
     "heroHeading": {
       "pluginOptions": {
@@ -68,7 +49,34 @@
           "localized": true
         }
       },
-      "type": "string"
+      "type": "string",
+      "default": "Enjoy a little taste of Italy! Buon Appetito!"
+    },
+    "marquee": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "centered_contents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::centered-content.centered-content"
+    },
+    "centered_styled_contents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::centered-styled-content.centered-styled-content"
     }
   }
 }
