@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -60,38 +61,50 @@ export default function Hero() {
         <div className="absolute top-0 left-0 grid grid-cols-2 grid-rows-1 justify-between w-full overflow-x-clip -z-10 mt-[150px] gap-[550px] pointer-events-none">
           <div className="flex flex-col items-end justify-between -mt-5">
             <div className="flex flex-col items-center gap-12">
-              <img
-                src="/img/Rectangle 95.png"
-                alt=""
-                loading="eager"
-                className="w-[245px] h-[179px] object-cover rounded-2xl shadow-xl"
-                decoding="async"
-              />
-              <img
-                src="/img/Rectangle 94.png"
-                alt=""
-                loading="eager"
-                className="w-[340px] h-[229px] object-cover rounded-2xl shadow-xl"
-                decoding="async"
-              />
+              <div className="relative w-[245px] h-[179px] object-cover rounded-2xl shadow-xl">
+                <Image
+                  src="/img/Rectangle 95.png"
+                  alt=""
+                  loading="lazy"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-2xl"
+                />
+              </div>
+              <div className="relative w-[340px] h-[229px] object-cover rounded-2xl shadow-xl">
+                <Image
+                  src="/img/Rectangle 94.png"
+                  alt=""
+                  loading="lazy"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-2xl"
+                />
+              </div>
             </div>
           </div>
           <div className="flex flex-col items-start justify-between ml-[0px]">
             <div className="flex flex-col items-center gap-20">
-              <img
-                src="/img/Rectangle 92.png"
-                alt=""
-                loading="eager"
-                className="w-[298px] h-[190px] object-cover rounded-2xl shadow-xl"
-                decoding="async"
-              />
-              <img
-                src="/img/Frame 1000004307.png"
-                alt=""
-                loading="eager"
-                className="w-[291px] h-[281px] object-cover rounded-2xl shadow-xl ml-[60px]"
-                decoding="async"
-              />
+              <div className="relative w-[298px] h-[190px] object-cover rounded-2xl shadow-xl">
+                <Image
+                  src="/img/Rectangle 92.png"
+                  alt=""
+                  loading="lazy"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-2xl"
+                />
+              </div>
+              <div className="relative w-[291px] h-[281px] object-cover rounded-2xl shadow-xl ml-[60px]">
+                <Image
+                  src="/img/Frame 1000004307.png"
+                  alt=""
+                  loading="lazy"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-2xl"
+                />
+              </div>
             </div>
           </div>
         </div>

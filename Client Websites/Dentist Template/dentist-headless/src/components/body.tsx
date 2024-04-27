@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 
 import {
   Card,
@@ -317,13 +318,15 @@ export default function Body() {
                 >
                   <Card className="shadow-none bg-white rounded-xl max-w-[285px] h-[320px] ">
                     <CardContent className="flex flex-col items-start justify-between h-full w-full py-10 gap-y-3 ">
-                      <img
-                        src={item.icon}
-                        alt={item.title}
-                        loading="eager"
-                        className="w-[50px] h-[50px] object-contain"
-                        decoding="async"
-                      />
+                      <div className="relative w-[50px] h-[50px]">
+                        <Image
+                          src={item.icon}
+                          alt={item.title}
+                          loading="lazy"
+                          layout="fill"
+                          objectFit="contain"
+                        />
+                      </div>
                       <h2 className="text-[18px] font-semibold">
                         {item.title}
                       </h2>
@@ -382,13 +385,16 @@ export default function Body() {
                 90% of patients gave these primary care doctors 5 stars
               </p>
             </div>
-            <img
-              src="/img/cachedImage 1.jpg"
-              alt=""
-              loading="eager"
-              className="inline opacity-40 xl:opacity-100 xl:absolute h-[300px] w-full xl:w-[524px] xl:h-[416px] object-cover rounded-2xl shadow-xl xl:-mt-[150px] xl:-right-[100px]"
-              decoding="async"
-            />
+            <div className="inline opacity-40 xl:opacity-100 xl:absolute relative h-[300px] w-full xl:w-[524px] xl:h-[416px] shadow-xl xl:-mt-[150px] xl:-right-[100px]">
+              <Image
+                src="/img/cachedImage 1.jpg"
+                alt=""
+                loading="lazy"
+                layout="fill"
+                className="rounded-2xl"
+                objectFit="cover"
+              />
+            </div>
           </div>
 
           {/* Carousel */}
@@ -582,14 +588,16 @@ export default function Body() {
             </svg>
 
             {/* Background Image */}
-            <img
-              src="/img/Frame 216.png"
-              alt=""
-              loading="eager"
-              className="absolute w-full h-full object-cover rounded-2xl shadow-xl -z-20 opacity-70 brightness-[25%]"
-              decoding="async"
-            />
-
+            <div className="absolute w-full h-full shadow-xl -z-20 opacity-70 brightness-[25%]">
+              <Image
+                src="/img/Frame 216.png"
+                alt=""
+                loading="lazy"
+                layout="fill"
+                className=" rounded-2xl"
+                objectFit="cover"
+              />
+            </div>
             {/* CTA Text */}
             <div className="text-center lg:mx-0 lg:flex-auto py-10 sm:py-20 px-5">
               <h2 className="text-[30px] font-semibold leading-tight text-white">
@@ -658,36 +666,48 @@ export default function Body() {
               {/* Image Grid Decoration */}
               <div className="absolute right-0 opacity-20 pointer-events-none lg:opacity-100 lg:static flex flex-col gap-4">
                 <div className="flex flex-row items-end justify-end gap-4">
-                  <img
-                    src="/img/Rectangle 94 (1).png"
-                    alt=""
-                    loading="eager"
-                    className="w-[207px] h-[150px] object-cover max-w-none rounded-xl"
-                    decoding="async"
-                  />
-                  <img
-                    src="/img/Frame 1000004307.png"
-                    alt=""
-                    loading="eager"
-                    className="w-[167px] h-[241px] object-cover max-w-none rounded-xl"
-                    decoding="async"
-                  />
+                  <div className="relative w-[207px] h-[150px]">
+                    <Image
+                      src="/img/Rectangle 94 (1).png"
+                      alt=""
+                      layout="fill"
+                      loading="lazy"
+                      className="rounded-xl"
+                      objectFit="cover"
+                    />
+                  </div>
+                  <div className="relative w-[167px] h-[241px]">
+                    <Image
+                      src="/img/Frame 1000004307.png"
+                      alt=""
+                      layout="fill"
+                      loading="lazy"
+                      className="rounded-xl"
+                      objectFit="cover"
+                    />
+                  </div>
                 </div>
                 <div className="flex flex-row items-start justify-end gap-4">
-                  <img
-                    src="/img/image 65 (1).png"
-                    alt=""
-                    loading="eager"
-                    className="w-[206px] h-[140px] object-cover max-w-none rounded-xl"
-                    decoding="async"
-                  />
-                  <img
-                    src="/img/image 67 (2).png"
-                    alt=""
-                    loading="eager"
-                    className="w-[313px] h-[207px] object-cover max-w-none rounded-xl"
-                    decoding="async"
-                  />
+                  <div className="relative w-[206px] h-[140px] max-w-none">
+                    <Image
+                      src="/img/image 65 (1).png"
+                      alt=""
+                      loading="lazy"
+                      layout="fill"
+                      className="rounded-xl"
+                      objectFit="cover"
+                    />
+                  </div>
+                  <div className="relative w-[313px] h-[207px] max-w-none">
+                    <Image
+                      src="/img/image 67 (2).png"
+                      alt=""
+                      loading="lazy"
+                      layout="fill"
+                      className="rounded-xl"
+                      objectFit="cover"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -948,14 +968,16 @@ export default function Body() {
           <div className="flex flex-col justify-between w-full">
             <div className="flex flex-row items-center justify-between">
               <div className="relative w-1/2">
-                <img
-                  src="/img/Image 68.png"
-                  alt=""
-                  loading="eager"
-                  className="w-[529px] h-[424px] object-cover"
-                  style={{ clipPath: "url(#hexagon-clip1)" }}
-                  decoding="async"
-                />
+                <div className="relative w-[529px] h-[424px]">
+                  <Image
+                    src="/img/Image 68.png"
+                    alt=""
+                    loading="lazy"
+                    layout="fill"
+                    objectFit="cover"
+                    style={{ clipPath: "url(#hexagon-clip1)" }}
+                  />
+                </div>
                 <svg
                   width="565"
                   height="446"
@@ -1065,14 +1087,16 @@ export default function Body() {
                 Gentle
               </h2>
               <div className="relative w-1/2">
-                <img
-                  src="/img/Image 72.png"
-                  alt=""
-                  loading="eager"
-                  className="w-[490px] h-[472px] object-cover"
-                  style={{ clipPath: "url(#hexagon-clip2)" }}
-                  decoding="async"
-                />
+                <div className="relative w-[490px] h-[472px]">
+                  <Image
+                    src="/img/Image 72.png"
+                    alt=""
+                    loading="lazy"
+                    layout="fill"
+                    objectFit="cover"
+                    style={{ clipPath: "url(#hexagon-clip2)" }}
+                  />
+                </div>
                 <svg
                   width="527"
                   height="494"
@@ -1176,14 +1200,16 @@ export default function Body() {
             </div>
             <div className="flex flex-row items-center justify-between">
               <div className="relative w-1/2">
-                <img
-                  src="/img/Image 67 (2).png"
-                  alt=""
-                  loading="eager"
-                  className="w-[526px] h-[344px] object-cover"
-                  style={{ clipPath: "url(#hexagon-clip3)" }}
-                  decoding="async"
-                />
+                <div className="relative w-[526px] h-[344px]">
+                  <Image
+                    src="/img/Image 67 (2).png"
+                    alt=""
+                    loading="lazy"
+                    layout="fill"
+                    objectFit="cover"
+                    style={{ clipPath: "url(#hexagon-clip3)" }}
+                  />
+                </div>
                 <svg
                   width="563"
                   height="366"
@@ -1344,14 +1370,16 @@ export default function Body() {
       <div className="relative flex flex-col items-center w-full bg-[#E5F6F9] ">
         {/* Image Divider */}
         <div className="relative w-full">
-          <div className="absolute w-full h-[400px] bg-gradient-to-t from-transparent to-white -top-1"></div>
-          <img
-            src="/img/Image 71.png"
-            alt=""
-            loading="eager"
-            className="w-full h-[702px] object-cover"
-            decoding="async"
-          />
+          <div className="absolute w-full h-[400px] bg-gradient-to-t from-transparent to-white -top-1 z-10"></div>
+          <div className="relative w-full h-[702px]">
+            <Image
+              src="/img/Image 71.png"
+              alt=""
+              loading="lazy"
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
         </div>
         {/* Testimonials Section */}
         <div className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-32">
@@ -1438,7 +1466,7 @@ export default function Body() {
       <div className="relative flex flex-col items-center w-full bg-[#1493A4] ">
         <div className="isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-32 mb-12">
           <div className="mx-auto w-full">
-            <div className="mx-auto mt-10 flex flex-row justify-between">
+            <div className="mx-auto mt-10 flex flex-col md:flex-row justify-between gap-y-10">
               {footer.map((item, index) => (
                 <div key={index} className="flex max-w-xl flex-col items-start">
                   <h2 className="text-[18px] text-white">{item.title}</h2>
@@ -1466,7 +1494,7 @@ export default function Body() {
               </div>
             </div>
             <Separator className="absolute mt-10 left-0 bg-white" />
-            <div className="relative flex flex-row mt-24 justify-between">
+            <div className="relative flex flex-col md:flex-row mt-24 justify-between gap-4">
               <div className="flex flex-row gap-8">
                 <svg
                   width="29"
@@ -1505,7 +1533,7 @@ export default function Body() {
               <Separator orientation="vertical" />
               <div className="flex flex-row gap-8">
                 <div className="flex flex-col">
-                  <h2 className="text-[26px] font-semibold italic tracking-wider text-white">
+                  <h2 className="text-[18px] sm:text-[26px] font-semibold italic tracking-wider text-white">
                     Love...Kindness...and Excellence.
                   </h2>
                   <p className="text-[11px] text-white italic mt-8">
