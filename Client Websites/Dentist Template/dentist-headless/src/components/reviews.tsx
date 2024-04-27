@@ -1,6 +1,9 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
+
+import { bounceAnimation, staggeredAnimationFast } from "@/utils/animations";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 
 import {
   Carousel,
@@ -49,6 +52,11 @@ export default function Reviews() {
     testimonials.reduce((acc, testimonial) => acc + testimonial.rating, 0) /
     testimonials.length;
 
+  const ref1 = useRef(null);
+  const ref2 = useRef(null);
+  const isInView1 = useInView(ref1);
+  const isInView2 = useInView(ref2);
+
   return (
     <div className="relative flex flex-col items-center w-full bg-[#E5F6F9] ">
       {/* Image Divider */}
@@ -67,21 +75,29 @@ export default function Reviews() {
       {/* Testimonials Section */}
       <div className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-32">
         <div className="overflow-hidden py-10 w-full">
-          <div className="flex flex-row items-center justify-between lg:pt-4">
+          <motion.div
+            className="flex flex-row items-center justify-between lg:pt-4"
+            ref={ref1}
+            animate={isInView1 ? "animate" : "initial"}
+            variants={staggeredAnimationFast}
+          >
             {/* About Us Info */}
-            <div className="lg:max-w-lg">
-              <h1 className="text-[16px] leading-6 text-white uppercase font-extralight">
+            <motion.div className="lg:max-w-lg" variants={bounceAnimation}>
+              <motion.h1 className="text-[16px] leading-6 text-white uppercase font-extralight">
                 <span className="bg-[#1493A4] px-6 py-1">
                   <span className="tracking-[0.4em]">Community Prais</span>e
                 </span>
-              </h1>
-              <h2 className="mt-4 text-[38px] font-medium tracking-tight text-[#1C1C1C] font-outfit">
+              </motion.h1>
+              <motion.h2 className="mt-4 text-[38px] font-medium tracking-tight text-[#1C1C1C] font-outfit">
                 What People think{" "}
                 <span className="text-[#1493A4]">about us</span>
-              </h2>
-            </div>
+              </motion.h2>
+            </motion.div>
             {/* Google Review */}
-            <div className="flex flex-col bg-white w-[200px] h-full rounded-lg px-4 py-1 justify-between font-jakarta">
+            <motion.div
+              className="flex flex-col bg-white w-[200px] h-full rounded-lg px-4 py-1 justify-between font-jakarta"
+              variants={bounceAnimation}
+            >
               <div className="flex flex-row text-[#FCD34D] justify-between items-center">
                 <p className="text-[21px] font-extrabold leading-[1.0]">
                   {averageRating.toFixed(1)}
@@ -96,10 +112,15 @@ export default function Reviews() {
                   Customer Reviews
                 </p>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
           {/* Carousel */}
-          <div className="flex flex-col items-center w-full overflow-hidden my-16">
+          <motion.div
+            className="flex flex-col items-center w-full overflow-hidden my-16"
+            ref={ref2}
+            animate={isInView2 ? "animate" : "initial"}
+            variants={staggeredAnimationFast}
+          >
             <Carousel
               opts={{
                 align: "start",
@@ -112,7 +133,7 @@ export default function Reviews() {
                     key={index}
                     className="max-h-[363px] sm:max-w-[527px] pl-0 pr-3 flex flex-row justify-center"
                   >
-                    <div className="p-1">
+                    <motion.div className="p-1" variants={bounceAnimation}>
                       <Card className="flex flex-col items-start text-start rounded-3xl max-h-[333px]">
                         <CardHeader className="flex flex-row items-center px-4 gap-4">
                           <Avatar className=" w-10 h-10 border-2 border-white">
@@ -138,14 +159,14 @@ export default function Reviews() {
                           </CardDescription>
                         </CardFooter>
                       </Card>
-                    </div>
+                    </motion.div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
               <CarouselPrevious className="hidden xl:inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input absolute h-10 w-10 -right-12 top-1/2 -translate-y-1/2 bg-[#1493A4] rounded-none text-white hover:bg-[#1493A4]/80 hover:text-white border-none" />
               <CarouselNext className="hidden xl:inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input absolute h-10 w-10 -right-12 top-1/2 -translate-y-1/2 bg-[#1493A4] rounded-none text-white hover:bg-[#1493A4]/80 hover:text-white border-none" />
             </Carousel>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

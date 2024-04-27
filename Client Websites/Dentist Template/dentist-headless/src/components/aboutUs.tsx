@@ -1,6 +1,9 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
+
+import { bounceAnimation, staggeredAnimationFast } from "@/utils/animations";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 
 const features = [
   {
@@ -42,13 +45,27 @@ const features = [
 ];
 
 export default function AboutUs() {
+  const ref1 = useRef(null);
+  const ref2 = useRef(null);
+  const ref3 = useRef(null);
+  const ref4 = useRef(null);
+  const isInView1 = useInView(ref1);
+  const isInView2 = useInView(ref2);
+  const isInView3 = useInView(ref3);
+  const isInView4 = useInView(ref4);
+
   return (
     <div className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-32 py-24 overflow-hidden">
       {/* Features Section */}
       <div className="overflow-hidden py-24 sm:py-32 w-full">
-        <div className="mx-auto flex flex-col lg:flex-row justify-between">
+        <motion.div
+          className="mx-auto flex flex-col lg:flex-row justify-between"
+          ref={ref1}
+          animate={isInView1 ? "animate" : "initial"}
+          variants={staggeredAnimationFast}
+        >
           {/* About Us Info */}
-          <div className="lg:pt-4 z-10">
+          <motion.div className="lg:pt-4 z-10" variants={bounceAnimation}>
             <div className="lg:max-w-lg">
               <h1 className="text-[16px] leading-6 text-white uppercase font-extralight">
                 <span className="bg-[#1493A4] px-6 py-1">
@@ -86,9 +103,12 @@ export default function AboutUs() {
                 About Us
               </a>
             </div>
-          </div>
+          </motion.div>
           {/* Image Grid Decoration */}
-          <div className="absolute right-0 opacity-20 pointer-events-none lg:opacity-100 lg:static flex flex-col gap-4">
+          <motion.div
+            className="absolute right-0 pointer-events-none lg:static flex flex-col gap-4"
+            variants={bounceAnimation}
+          >
             <div className="flex flex-row items-end justify-end gap-4">
               <div className="relative w-[207px] h-[150px] rounded-xl overflow-hidden">
                 <Image
@@ -97,6 +117,7 @@ export default function AboutUs() {
                   layout="fill"
                   loading="lazy"
                   objectFit="cover"
+                  className="opacity-20 lg:opacity-100"
                 />
               </div>
               <div className="relative w-[167px] h-[241px] rounded-xl overflow-hidden">
@@ -106,6 +127,7 @@ export default function AboutUs() {
                   layout="fill"
                   loading="lazy"
                   objectFit="cover"
+                  className="opacity-20 lg:opacity-100"
                 />
               </div>
             </div>
@@ -117,6 +139,7 @@ export default function AboutUs() {
                   loading="lazy"
                   layout="fill"
                   objectFit="cover"
+                  className="opacity-20 lg:opacity-100"
                 />
               </div>
               <div className="relative w-[313px] h-[207px] max-w-none rounded-xl overflow-hidden">
@@ -126,11 +149,12 @@ export default function AboutUs() {
                   loading="lazy"
                   layout="fill"
                   objectFit="cover"
+                  className="opacity-20 lg:opacity-100"
                 />
               </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
         <svg
           width="408"
           height="427"
@@ -388,8 +412,13 @@ export default function AboutUs() {
       <div className="relative w-full">
         <div className="flex flex-col justify-between w-full">
           {/* Embrace */}
-          <div className="flex flex-col lg:flex-row items-center justify-between">
-            <div className="relative w-1/2">
+          <motion.div
+            className="flex flex-col lg:flex-row items-center justify-between"
+            ref={ref2}
+            animate={isInView2 ? "animate" : "initial"}
+            variants={staggeredAnimationFast}
+          >
+            <motion.div className="relative w-1/2" variants={bounceAnimation}>
               <div className="relative w-[529px] h-[424px] overflow-hidden">
                 <Image
                   src="/img/image 68.png"
@@ -499,17 +528,28 @@ export default function AboutUs() {
                   />
                 </clipPath>
               </svg>
-            </div>
-            <h2 className="text-[60px] font-semibold tracking-tight text-[#1C1C1C] w-1/2 z-10">
+            </motion.div>
+            <motion.h2
+              className="text-[60px] font-semibold tracking-tight text-[#1C1C1C] w-1/2 z-10"
+              variants={bounceAnimation}
+            >
               Embrace
-            </h2>
-          </div>
+            </motion.h2>
+          </motion.div>
           {/* Gentle */}
-          <div className="flex flex-row items-center justify-between">
-            <h2 className="text-[60px] font-semibold tracking-tight text-[#1C1C1C] w-1/2 text-center z-10">
+          <motion.div
+            className="flex flex-row items-center justify-between"
+            ref={ref3}
+            animate={isInView3 ? "animate" : "initial"}
+            variants={staggeredAnimationFast}
+          >
+            <motion.h2
+              className="text-[60px] font-semibold tracking-tight text-[#1C1C1C] w-1/2 text-center z-10"
+              variants={bounceAnimation}
+            >
               Gentle
-            </h2>
-            <div className="relative w-1/2">
+            </motion.h2>
+            <motion.div className="relative w-1/2" variants={bounceAnimation}>
               <div className="relative w-[490px] h-[472px] overflow-hidden">
                 <Image
                   src="/img/image 72.png"
@@ -619,11 +659,16 @@ export default function AboutUs() {
                   />
                 </clipPath>
               </svg>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
           {/* Dentistry */}
-          <div className="flex flex-col-reverse lg:flex-row items-center justify-between">
-            <div className="relative w-1/2">
+          <motion.div
+            className="flex flex-col-reverse lg:flex-row items-center justify-between"
+            ref={ref4}
+            animate={isInView4 ? "animate" : "initial"}
+            variants={staggeredAnimationFast}
+          >
+            <motion.div className="relative w-1/2" variants={bounceAnimation}>
               <div className="relative w-[526px] h-[344px] overflow-hidden">
                 <Image
                   src="/img/image 67 (2).png"
@@ -717,11 +762,14 @@ export default function AboutUs() {
                   />
                 </clipPath>
               </svg>
-            </div>
-            <h2 className="text-[60px] font-semibold tracking-tight text-[#1C1C1C] w-1/2 z-10">
+            </motion.div>
+            <motion.h2
+              className="text-[60px] font-semibold tracking-tight text-[#1C1C1C] w-1/2 z-10"
+              variants={bounceAnimation}
+            >
               Dentistry
-            </h2>
-          </div>
+            </motion.h2>
+          </motion.div>
         </div>
 
         {/* SVG Decorations */}

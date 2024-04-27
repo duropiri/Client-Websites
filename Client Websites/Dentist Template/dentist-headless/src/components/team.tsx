@@ -1,6 +1,9 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
+
+import { bounceAnimation, staggeredAnimationFast } from "@/utils/animations";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 
 import {
   Carousel,
@@ -70,6 +73,12 @@ const people = [
 ];
 
 export default function Team() {
+  const ref1 = useRef(null);
+  const ref2 = useRef(null);
+  const ref3 = useRef(null);
+  const isInView1 = useInView(ref1);
+  const isInView2 = useInView(ref2);
+  const isInView3 = useInView(ref3);
   return (
     <div className="relative flex flex-col items-center w-full bg-[#1493A4] overflow-x-clip">
       {/* SVG Decorations */}
@@ -91,9 +100,17 @@ export default function Team() {
 
       {/* Main Content */}
       <div className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-32 mb-56 ">
-        <div className="relative flex flex-col-reverse xl:flex-row w-full gap-y-10 xl:mb-40 mt-14">
+        <motion.div
+          className="relative flex flex-col-reverse xl:flex-row w-full gap-y-10 xl:mb-40 mt-14"
+          ref={ref1}
+          animate={isInView1 ? "animate" : "initial"}
+          variants={staggeredAnimationFast}
+        >
           <div className="flex flex-row gap-3 -mt-24 xl:m-0">
-            <div className="relative w-[55.66px] h-[54.8px] rounded-xl overflow-hidden z-10">
+            <motion.div
+              className="relative w-[55.66px] h-[54.8px] rounded-xl overflow-hidden z-10"
+              variants={bounceAnimation}
+            >
               <Image
                 src="/img/download (1).png"
                 alt=""
@@ -101,29 +118,41 @@ export default function Team() {
                 loading="lazy"
                 objectFit="cover"
               />
-            </div>
-            <div className="flex flex-col w-full text-white z-10">
+            </motion.div>
+            <motion.div
+              className="flex flex-col w-full text-white z-10"
+              variants={bounceAnimation}
+            >
               <h1 className="text-3xl font-regular tracking-tight sm:text-[38px]">
                 Top-rated primary care doctors
               </h1>
               <p className="mt-6 text-[16px] leading-8 ">
                 90% of patients gave these primary care doctors 5 stars
               </p>
-            </div>
+            </motion.div>
           </div>
-          <div className="inline opacity-40 xl:opacity-100 xl:absolute relative h-[300px] w-full xl:w-[524px] xl:h-[416px] shadow-xl xl:-mt-[150px] xl:-right-[100px] rounded-2xl overflow-hidden">
+          <motion.div
+            className="inline  xl:absolute relative h-[300px] w-full xl:w-[524px] xl:h-[416px] shadow-xl xl:-mt-[150px] xl:-right-[100px] rounded-2xl overflow-hidden"
+            variants={bounceAnimation}
+          >
             <Image
               src="/img/cachedImage 1.jpg"
               alt=""
               loading="lazy"
               layout="fill"
               objectFit="cover"
+              className="opacity-40 xl:opacity-100"
             />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Carousel */}
-        <div className="flex flex-col justify-center items-start w-full">
+        <motion.div
+          className="flex flex-col justify-center items-start w-full"
+          ref={ref2}
+          animate={isInView2 ? "animate" : "initial"}
+          variants={staggeredAnimationFast}
+        >
           <Carousel
             opts={{
               align: "start",
@@ -136,51 +165,53 @@ export default function Team() {
                   key={index}
                   className="sm:max-w-[334px] h-[379px] pl-0 pr-4 xl:pr-8 flex flex-row justify-center items-end"
                 >
-                  <Card className="flex flex-col items-center text-center rounded-3xl max-h-[333px]">
-                    <CardHeader className="items-center">
-                      <Avatar className="w-[70px] h-[70px] -mt-16 border-2 border-white">
-                        <AvatarImage
-                          src="https://github.com/shadcn.png"
-                          alt=""
-                        />
-                        <AvatarFallback>?</AvatarFallback>
-                      </Avatar>
+                  <motion.div className="p-1" variants={bounceAnimation}>
+                    <Card className="flex flex-col items-center text-center rounded-3xl max-h-[333px]">
+                      <CardHeader className="items-center">
+                        <Avatar className="w-[70px] h-[70px] -mt-16 border-2 border-white">
+                          <AvatarImage
+                            src="https://github.com/shadcn.png"
+                            alt=""
+                          />
+                          <AvatarFallback>?</AvatarFallback>
+                        </Avatar>
 
-                      <CardTitle className="text-[#1493A4] text-[16px] pt-3">
-                        {person.name}
-                      </CardTitle>
-                      <div className="text-[#4DA430] bg-[#EEF7EB] text-[14px] rounded-md px-2 py-1">
-                        {person.recommendation}
-                      </div>
-                    </CardHeader>
-                    <CardContent className="text-black/40 ">
-                      <p>{person.role}</p>
-                      <p>{person.location}</p>
-                      <div className="flex flex-row gap-3 ">
-                        <div className="text-[#FFB800] flex flex-row items-center gap-1">
-                          <svg
-                            width="15"
-                            height="14"
-                            viewBox="0 0 15 14"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M7.5 0L9.18386 5.18237H14.6329L10.2245 8.38525L11.9084 13.5676L7.5 10.3647L3.09161 13.5676L4.77547 8.38525L0.367076 5.18237H5.81614L7.5 0Z"
-                              fill="currentColor"
-                            />
-                          </svg>
-                          <p>{person.rating.stars}</p>
+                        <CardTitle className="text-[#1493A4] text-[16px] pt-3">
+                          {person.name}
+                        </CardTitle>
+                        <div className="text-[#4DA430] bg-[#EEF7EB] text-[14px] rounded-md px-2 py-1">
+                          {person.recommendation}
                         </div>
-                        <p>{person.rating.reviews} reviews</p>
-                      </div>
-                    </CardContent>
-                    <CardFooter className="px-4">
-                      <CardDescription className="text-black text-[16px] leading-tight">
-                        {person.description}
-                      </CardDescription>
-                    </CardFooter>
-                  </Card>
+                      </CardHeader>
+                      <CardContent className="text-black/40 ">
+                        <p>{person.role}</p>
+                        <p>{person.location}</p>
+                        <div className="flex flex-row gap-3 ">
+                          <div className="text-[#FFB800] flex flex-row items-center gap-1">
+                            <svg
+                              width="15"
+                              height="14"
+                              viewBox="0 0 15 14"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M7.5 0L9.18386 5.18237H14.6329L10.2245 8.38525L11.9084 13.5676L7.5 10.3647L3.09161 13.5676L4.77547 8.38525L0.367076 5.18237H5.81614L7.5 0Z"
+                                fill="currentColor"
+                              />
+                            </svg>
+                            <p>{person.rating.stars}</p>
+                          </div>
+                          <p>{person.rating.reviews} reviews</p>
+                        </div>
+                      </CardContent>
+                      <CardFooter className="px-4">
+                        <CardDescription className="text-black text-[16px] leading-tight">
+                          {person.description}
+                        </CardDescription>
+                      </CardFooter>
+                    </Card>
+                  </motion.div>
                 </CarouselItem>
               ))}
             </CarouselContent>
@@ -189,12 +220,20 @@ export default function Team() {
               <CarouselNext className="hidden xl:inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input static h-14 w-14 -right-40 top-1/2 -translate-y-1/2 bg-[#6DA235] rounded-sm text-white hover:bg-[#6DA235]/80 hover:text-white border-none" />
             </div>
           </Carousel>
-        </div>
+        </motion.div>
       </div>
 
       {/* CTA Section */}
-      <div className="absolute isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-32 my-12 -bottom-52 z-10">
-        <div className="relative isolate overflow-hidden bg-[#1493A4] shadow-2xl rounded-3xl w-full">
+      <motion.div
+        className="absolute isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-32 my-12 -bottom-52 z-10"
+        ref={ref3}
+        animate={isInView3 ? "animate" : "initial"}
+        variants={staggeredAnimationFast}
+      >
+        <motion.div
+          className="relative isolate overflow-hidden bg-[#1493A4] shadow-2xl rounded-3xl w-full"
+          variants={bounceAnimation}
+        >
           {/* Decorations */}
           <svg
             width="354"
@@ -340,8 +379,8 @@ export default function Team() {
               </a>
             </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 }

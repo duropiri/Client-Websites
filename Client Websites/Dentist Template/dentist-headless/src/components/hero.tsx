@@ -8,7 +8,7 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ className }) => {
   return (
-    <div className={className}>
+    <div className={`${className} relative flex flex-col items-center w-full bg-transparent overflow-x-clip`}>
       <div className="relative isolate px-6 lg:px-8 max-w-screen-2xl mx-auto overflow-x-clip z-10">
         {/* SVG Decorations */}
         {/* <svg

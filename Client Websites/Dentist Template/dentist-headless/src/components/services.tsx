@@ -1,6 +1,9 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
+
+import { bounceAnimation, staggeredAnimationFast } from "@/utils/animations";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 
 import {
   Carousel,
@@ -84,9 +87,15 @@ interface ServicesProps {
 }
 
 const Services: React.FC<ServicesProps> = ({ className }) => {
+  const ref1 = useRef(null);
+  const ref2 = useRef(null);
+  const ref3 = useRef(null);
+  const isInView1 = useInView(ref1);
+  const isInView2 = useInView(ref2);
+  const isInView3 = useInView(ref3);
   return (
     <div
-      className={`${className} relative flex flex-col items-center w-full bg-[#E5F6F9] overflow-x-clip pt-24`}
+      className={`${className} relative flex flex-col items-center w-full bg-[#E5F6F9] overflow-x-clip py-24`}
     >
       {/* SVG Decorations */}
       <div className="relative -top-80 ">
@@ -105,7 +114,7 @@ const Services: React.FC<ServicesProps> = ({ className }) => {
             stroke-width="30"
           />
         </svg>
-        <div className="absolute w-[1200px] -mt-[270px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[1] pointer-events-none">
+        <div className="absolute w-[1200px] -mt-[270px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-[10] pointer-events-none">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -120,17 +129,33 @@ const Services: React.FC<ServicesProps> = ({ className }) => {
       {/* Main Content */}
       <div className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-32 z-10">
         {/* Section Heading */}
-        <div className="flex flex-col items-center">
-          <h1 className="text-[16px] leading-6 text-white uppercase font-extralight bg-[#1493A4] px-2">
+        <motion.div
+          className="flex flex-col items-center"
+          ref={ref1}
+          animate={isInView1 ? "animate" : "initial"}
+          variants={staggeredAnimationFast}
+        >
+          <motion.h1
+            className="text-[16px] leading-6 text-white uppercase font-extralight bg-[#1493A4] px-2"
+            variants={bounceAnimation}
+          >
             <span className="tracking-[0.4em]">Service</span>s
-          </h1>
-          <h2 className="font-medium text-gray-900 text-[38px] mt-2 tracking-tight text-center">
+          </motion.h1>
+          <motion.h2
+            className="font-medium text-gray-900 text-[38px] mt-2 tracking-tight text-center"
+            variants={bounceAnimation}
+          >
             Feel Like Home in Our Spa-like Atmosphere
-          </h2>
-        </div>
+          </motion.h2>
+        </motion.div>
 
         {/* Carousel */}
-        <div className="flex flex-col items-center w-full overflow-hidden my-16">
+        <motion.div
+          className="flex flex-col items-center w-full overflow-hidden my-16"
+          ref={ref2}
+          animate={isInView2 ? "animate" : "initial"}
+          variants={staggeredAnimationFast}
+        >
           <Carousel
             opts={{
               align: "start",
@@ -143,7 +168,7 @@ const Services: React.FC<ServicesProps> = ({ className }) => {
                   key={index}
                   className="sm:max-w-[285px] pl-0 pr-3 flex flex-row justify-center"
                 >
-                  <div className="p-1">
+                  <motion.div className="p-1" variants={bounceAnimation}>
                     <Card className="shadow-none bg-white rounded-xl sm:max-w-[285px] h-[320px] border-none">
                       <CardContent className="flex flex-col items-start justify-between h-full w-full py-10 gap-y-3">
                         <div className="relative w-[50px] h-[50px] overflow-hidden">
@@ -183,22 +208,30 @@ const Services: React.FC<ServicesProps> = ({ className }) => {
                         </a>
                       </CardContent>
                     </Card>
-                  </div>
+                  </motion.div>
                 </CarouselItem>
               ))}
             </CarouselContent>
             <CarouselPrevious className="hidden xl:inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input absolute h-10 w-10 -right-12 top-1/2 -translate-y-1/2 bg-[#1493A4] rounded-none text-white hover:bg-[#1493A4]/80 hover:text-white border-none" />
             <CarouselNext className="hidden xl:inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input absolute h-10 w-10 -right-12 top-1/2 -translate-y-1/2 bg-[#1493A4] rounded-none text-white hover:bg-[#1493A4]/80 hover:text-white border-none" />
           </Carousel>
-          <div className="mt-12 flex items-center justify-center gap-x-6">
-            <a
-              href="#"
-              className="bg-[#1493A4] px-10 py-2.5 text-[16px] font-bold text-white shadow-sm hover:bg-[#1493A4]/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-            >
-              View Details
-            </a>
-          </div>
-        </div>
+        </motion.div>
+
+        {/* More Button */}
+        <motion.div
+          className="flex items-center justify-center gap-x-6"
+          ref={ref3}
+          animate={isInView3 ? "animate" : "initial"}
+          variants={staggeredAnimationFast}
+        >
+          <motion.a
+            href="#"
+            className="bg-[#1493A4] px-10 py-2.5 text-[16px] font-bold text-white shadow-sm hover:bg-[#1493A4]/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+            variants={bounceAnimation}
+          >
+            View Details
+          </motion.a>
+        </motion.div>
       </div>
     </div>
   );
