@@ -4,6 +4,15 @@ import "./globals.css";
 import SmoothScrolling from "@/components/animations/SmoothScrolling";
 
 const inter = Inter({ subsets: ["latin"] });
+import {
+  PoppinsFont,
+  RobotoFont,
+  DM_SansFont,
+  OutfitFont,
+  LatoFont,
+  Plus_Jakarta_SansFont,
+  ManropeFont,
+} from "@/utils/fonts";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}><SmoothScrolling>{children}</SmoothScrolling></body>
+      <body className={`${PoppinsFont.className}`}><SmoothScrolling>{children}</SmoothScrolling></body>
     </html>
   );
 }

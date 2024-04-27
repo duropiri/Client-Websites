@@ -17,6 +17,15 @@ import {
   PhoneIcon,
   PlayCircleIcon,
 } from "@heroicons/react/20/solid";
+import {
+  PoppinsFont,
+  RobotoFont,
+  DM_SansFont,
+  OutfitFont,
+  LatoFont,
+  Plus_Jakarta_SansFont,
+  ManropeFont,
+} from "@/utils/fonts";
 
 const navigation = [
   {
@@ -107,7 +116,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white">
+    <header className={`bg-white ${DM_SansFont.className}`}>
       <nav
         className="flex items-center justify-between py-5 px-5 xl:px-16 max-w-screen-2xl mx-auto"
         aria-label="Global"
