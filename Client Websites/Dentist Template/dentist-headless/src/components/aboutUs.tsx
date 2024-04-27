@@ -46,89 +46,87 @@ export default function AboutUs() {
     <div className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-32 py-24 overflow-hidden">
       {/* Features Section */}
       <div className="overflow-hidden py-24 sm:py-32 w-full">
-        <div className="">
-          <div className="mx-auto flex flex-col lg:flex-row justify-between">
-            {/* About Us Info */}
-            <div className="lg:pt-4 z-10">
-              <div className="lg:max-w-lg">
-                <h1 className="text-[16px] leading-6 text-white uppercase font-extralight">
-                  <span className="bg-[#1493A4] px-6 py-1">
-                    <span className="tracking-[0.4em]">About U</span>s
-                  </span>
-                </h1>
-                <h2 className="mt-4 text-[30px] font-bold tracking-tight text-[#1C1C1C]">
-                  Faster Treatment with CERC
-                </h2>
-                <p className="mt-6 text-[16px] leading-8 text-black">
-                  At Trischuk Dental Clinic, we are proud to offer you more
-                  efficient cosmetic treatment options through our CEREC
-                  systems. CEREC can be a good option for patients in need of
-                  restoration treatments such as bridges, inlays, onlays,
-                  veneers, and crowns, and the materials used are designed to
-                  ensure a more natural look.
-                </p>
-                <div className="mt-10 max-w-xl space-y-8 text-base leading-7 text-black lg:max-w-none">
-                  {features.map((feature, index) => (
-                    <div
-                      key={index}
-                      className="relative flex flex-row items-center gap-2"
-                    >
-                      {feature.svg}
-                      <p className="inline">{feature.description}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="mt-12 flex items-center justify-start gap-x-6">
-                <a
-                  href="#"
-                  className="bg-[#1493A4] px-10 py-2.5 text-[16px] font-bold text-white shadow-sm hover:bg-[#1493A4]/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                >
-                  About Us
-                </a>
+        <div className="mx-auto flex flex-col lg:flex-row justify-between">
+          {/* About Us Info */}
+          <div className="lg:pt-4 z-10">
+            <div className="lg:max-w-lg">
+              <h1 className="text-[16px] leading-6 text-white uppercase font-extralight">
+                <span className="bg-[#1493A4] px-6 py-1">
+                  <span className="tracking-[0.4em]">About U</span>s
+                </span>
+              </h1>
+              <h2 className="mt-4 text-[30px] font-bold tracking-tight text-[#1C1C1C]">
+                Faster Treatment with CERC
+              </h2>
+              <p className="mt-6 text-[16px] leading-8 text-black">
+                At Trischuk Dental Clinic, we are proud to offer you more
+                efficient cosmetic treatment options through our CEREC systems.
+                CEREC can be a good option for patients in need of restoration
+                treatments such as bridges, inlays, onlays, veneers, and crowns,
+                and the materials used are designed to ensure a more natural
+                look.
+              </p>
+              <div className="mt-10 max-w-xl space-y-8 text-base leading-7 text-black lg:max-w-none">
+                {features.map((feature, index) => (
+                  <div
+                    key={index}
+                    className="relative flex flex-row items-center gap-2"
+                  >
+                    {feature.svg}
+                    <p className="inline">{feature.description}</p>
+                  </div>
+                ))}
               </div>
             </div>
-            {/* Image Grid Decoration */}
-            <div className="absolute right-0 opacity-20 pointer-events-none lg:opacity-100 lg:static flex flex-col gap-4">
-              <div className="flex flex-row items-end justify-end gap-4">
-                <div className="relative w-[207px] h-[150px] rounded-xl overflow-hidden">
-                  <Image
-                    src="/img/Rectangle 94 (1).png"
-                    alt=""
-                    layout="fill"
-                    loading="lazy"
-                    objectFit="cover"
-                  />
-                </div>
-                <div className="relative w-[167px] h-[241px] rounded-xl overflow-hidden">
-                  <Image
-                    src="/img/Frame 1000004307.png"
-                    alt=""
-                    layout="fill"
-                    loading="lazy"
-                    objectFit="cover"
-                  />
-                </div>
+            <div className="mt-12 flex items-center justify-start gap-x-6">
+              <a
+                href="#"
+                className="bg-[#1493A4] px-10 py-2.5 text-[16px] font-bold text-white shadow-sm hover:bg-[#1493A4]/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+              >
+                About Us
+              </a>
+            </div>
+          </div>
+          {/* Image Grid Decoration */}
+          <div className="absolute right-0 opacity-20 pointer-events-none lg:opacity-100 lg:static flex flex-col gap-4">
+            <div className="flex flex-row items-end justify-end gap-4">
+              <div className="relative w-[207px] h-[150px] rounded-xl overflow-hidden">
+                <Image
+                  src="/img/Rectangle 94 (1).png"
+                  alt=""
+                  layout="fill"
+                  loading="lazy"
+                  objectFit="cover"
+                />
               </div>
-              <div className="flex flex-row items-start justify-end gap-4">
-                <div className="relative w-[206px] h-[140px] max-w-none rounded-xl overflow-hidden">
-                  <Image
-                    src="/img/image 65 (1).png"
-                    alt=""
-                    loading="lazy"
-                    layout="fill"
-                    objectFit="cover"
-                  />
-                </div>
-                <div className="relative w-[313px] h-[207px] max-w-none rounded-xl overflow-hidden">
-                  <Image
-                    src="/img/image 67 (2).png"
-                    alt=""
-                    loading="lazy"
-                    layout="fill"
-                    objectFit="cover"
-                  />
-                </div>
+              <div className="relative w-[167px] h-[241px] rounded-xl overflow-hidden">
+                <Image
+                  src="/img/Frame 1000004307.png"
+                  alt=""
+                  layout="fill"
+                  loading="lazy"
+                  objectFit="cover"
+                />
+              </div>
+            </div>
+            <div className="flex flex-row items-start justify-end gap-4">
+              <div className="relative w-[206px] h-[140px] max-w-none rounded-xl overflow-hidden">
+                <Image
+                  src="/img/image 65 (1).png"
+                  alt=""
+                  loading="lazy"
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </div>
+              <div className="relative w-[313px] h-[207px] max-w-none rounded-xl overflow-hidden">
+                <Image
+                  src="/img/image 67 (2).png"
+                  alt=""
+                  loading="lazy"
+                  layout="fill"
+                  objectFit="cover"
+                />
               </div>
             </div>
           </div>
@@ -385,9 +383,12 @@ export default function AboutUs() {
           />
         </g>
       </svg>
+
+      {/* Slogan Section */}
       <div className="relative w-full">
         <div className="flex flex-col justify-between w-full">
-          <div className="flex flex-row items-center justify-between">
+          {/* Embrace */}
+          <div className="flex flex-col lg:flex-row items-center justify-between">
             <div className="relative w-1/2">
               <div className="relative w-[529px] h-[424px] overflow-hidden">
                 <Image
@@ -499,12 +500,13 @@ export default function AboutUs() {
                 </clipPath>
               </svg>
             </div>
-            <h2 className="text-[60px] font-semibold tracking-tight text-[#1C1C1C] w-1/2">
+            <h2 className="text-[60px] font-semibold tracking-tight text-[#1C1C1C] w-1/2 z-10">
               Embrace
             </h2>
           </div>
+          {/* Gentle */}
           <div className="flex flex-row items-center justify-between">
-            <h2 className="text-[60px] font-semibold tracking-tight text-[#1C1C1C] w-1/2 text-center">
+            <h2 className="text-[60px] font-semibold tracking-tight text-[#1C1C1C] w-1/2 text-center z-10">
               Gentle
             </h2>
             <div className="relative w-1/2">
@@ -619,7 +621,8 @@ export default function AboutUs() {
               </svg>
             </div>
           </div>
-          <div className="flex flex-row items-center justify-between">
+          {/* Dentistry */}
+          <div className="flex flex-col-reverse lg:flex-row items-center justify-between">
             <div className="relative w-1/2">
               <div className="relative w-[526px] h-[344px] overflow-hidden">
                 <Image
@@ -715,12 +718,14 @@ export default function AboutUs() {
                 </clipPath>
               </svg>
             </div>
-            <h2 className="text-[60px] font-semibold tracking-tight text-[#1C1C1C] w-1/2">
+            <h2 className="text-[60px] font-semibold tracking-tight text-[#1C1C1C] w-1/2 z-10">
               Dentistry
             </h2>
           </div>
         </div>
-        <div className="absolute bottom-0 right-0 pointer-events-none">
+
+        {/* SVG Decorations */}
+        <div className="hidden sm:inline absolute bottom-0 right-0 pointer-events-none -z-10">
           <svg
             width="351"
             height="490"

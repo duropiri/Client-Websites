@@ -92,8 +92,8 @@ export default function Team() {
       {/* Main Content */}
       <div className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-32 mb-56 ">
         <div className="relative flex flex-col-reverse xl:flex-row w-full gap-y-10 xl:mb-40 mt-14">
-          <div className="flex flex-row gap-3">
-            <div className="relative w-[55.66px] h-[54.8px] rounded-xl overflow-hidden">
+          <div className="flex flex-row gap-3 -mt-24 xl:m-0">
+            <div className="relative w-[55.66px] h-[54.8px] rounded-xl overflow-hidden z-10">
               <Image
                 src="/img/download (1).png"
                 alt=""
@@ -102,7 +102,7 @@ export default function Team() {
                 objectFit="cover"
               />
             </div>
-            <div className="flex flex-col w-full text-white -mt-24 xl:m-0 z-10">
+            <div className="flex flex-col w-full text-white z-10">
               <h1 className="text-3xl font-regular tracking-tight sm:text-[38px]">
                 Top-rated primary care doctors
               </h1>
@@ -134,7 +134,7 @@ export default function Team() {
               {people.map((person, index) => (
                 <CarouselItem
                   key={index}
-                  className="max-w-[334px] h-[379px] pl-0 pr-4 xl:pr-8 flex flex-row justify-center items-end"
+                  className="sm:max-w-[334px] h-[379px] pl-0 pr-4 xl:pr-8 flex flex-row justify-center items-end"
                 >
                   <Card className="flex flex-col items-center text-center rounded-3xl max-h-[333px]">
                     <CardHeader className="items-center">

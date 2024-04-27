@@ -104,39 +104,41 @@ export default function Reviews() {
               opts={{
                 align: "start",
               }}
-              className="xl:w-[90%]"
+              className="w-full xl:w-[90%] flex flex-row justify-between xl:gap-5"
             >
               <CarouselContent className="flex flex-row ml-1">
                 {testimonials.map((person, index) => (
                   <CarouselItem
                     key={index}
-                    className="max-w-[527px] max-h-[363px] pl-0 pr-2 xl:pr-4 flex flex-row justify-start items-center"
+                    className="max-h-[363px] sm:max-w-[527px] pl-0 pr-3 flex flex-row justify-center"
                   >
-                    <Card className="flex flex-col items-start text-start rounded-3xl max-h-[333px]">
-                      <CardHeader className="flex flex-row items-center px-4 gap-4">
-                        <Avatar className=" w-10 h-10 border-2 border-white">
-                          <AvatarImage
-                            src="https://github.com/shadcn.png"
-                            alt=""
-                          />
-                          <AvatarFallback>?</AvatarFallback>
-                        </Avatar>
-                        <div>
-                          <CardTitle className="text-black text-[16px] font-satoshi">
-                            {person.name}
-                          </CardTitle>
-                          {/* Render the amount of stars that reflect the person's rating */}
-                          <div className="flex flex-row text-[#FCD34D]">
-                            {renderStars(person.rating)}
+                    <div className="p-1">
+                      <Card className="flex flex-col items-start text-start rounded-3xl max-h-[333px]">
+                        <CardHeader className="flex flex-row items-center px-4 gap-4">
+                          <Avatar className=" w-10 h-10 border-2 border-white">
+                            <AvatarImage
+                              src="https://github.com/shadcn.png"
+                              alt=""
+                            />
+                            <AvatarFallback>?</AvatarFallback>
+                          </Avatar>
+                          <div>
+                            <CardTitle className="text-black text-[16px] font-satoshi">
+                              {person.name}
+                            </CardTitle>
+                            {/* Render the amount of stars that reflect the person's rating */}
+                            <div className="flex flex-row text-[#FCD34D]">
+                              {renderStars(person.rating)}
+                            </div>
                           </div>
-                        </div>
-                      </CardHeader>
-                      <CardFooter className="px-4">
-                        <CardDescription className="text-black text-[16px] leading-tight font-manrope">
-                          {person.review}
-                        </CardDescription>
-                      </CardFooter>
-                    </Card>
+                        </CardHeader>
+                        <CardFooter className="px-4">
+                          <CardDescription className="text-black text-[16px] leading-tight font-manrope">
+                            {person.review}
+                          </CardDescription>
+                        </CardFooter>
+                      </Card>
+                    </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>

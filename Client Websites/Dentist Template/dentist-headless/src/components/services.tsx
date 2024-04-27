@@ -135,53 +135,55 @@ const Services: React.FC<ServicesProps> = ({ className }) => {
             opts={{
               align: "start",
             }}
-            className="xl:w-[85%]"
+            className="w-full xl:w-[85%] mt-10 flex flex-row justify-between xl:gap-5"
           >
-            <CarouselContent className="flex flex-row ">
+            <CarouselContent className="flex flex-row ml-1">
               {posts.map((item, index) => (
                 <CarouselItem
                   key={index}
-                  className="max-w-[285px] pl-1 flex flex-row justify-center md:basis-1/2 lg:basis-1/3"
+                  className="sm:max-w-[285px] pl-0 pr-3 flex flex-row justify-center"
                 >
-                  <Card className="shadow-none bg-white rounded-xl max-w-[285px] h-[320px] ">
-                    <CardContent className="flex flex-col items-start justify-between h-full w-full py-10 gap-y-3 ">
-                      <div className="relative w-[50px] h-[50px] overflow-hidden">
-                        <Image
-                          src={item.icon}
-                          alt={item.title}
-                          loading="lazy"
-                          layout="fill"
-                          objectFit="contain"
-                        />
-                      </div>
-                      <h2 className="text-[18px] font-semibold">
-                        {item.title}
-                      </h2>
-                      <p className="text-[16px] font-regular">
-                        {item.description}
-                      </p>
-                      <a
-                        href={item.href}
-                        className="flex flex-row items-center gap-2 text-[16px]"
-                      >
-                        <p className="font-medium">Read More</p>
-                        <span className="flex rounded-full bg-[#C9C9C9] w-4 h-4 items-center justify-center">
-                          <svg
-                            width="9"
-                            height="9"
-                            viewBox="0 0 9 9"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M3.62757 8.40447V0.722656H5.15598V8.40447H3.62757ZM0.553711 5.32493V3.79652H8.23553V5.32493H0.553711Z"
-                              fill="white"
-                            />
-                          </svg>
-                        </span>
-                      </a>
-                    </CardContent>
-                  </Card>
+                  <div className="p-1">
+                    <Card className="shadow-none bg-white rounded-xl sm:max-w-[285px] h-[320px] border-none">
+                      <CardContent className="flex flex-col items-start justify-between h-full w-full py-10 gap-y-3">
+                        <div className="relative w-[50px] h-[50px] overflow-hidden">
+                          <Image
+                            src={item.icon}
+                            alt={item.title}
+                            loading="lazy"
+                            layout="fill"
+                            objectFit="contain"
+                          />
+                        </div>
+                        <h2 className="text-[18px] font-semibold">
+                          {item.title}
+                        </h2>
+                        <p className="text-[16px] font-regular">
+                          {item.description}
+                        </p>
+                        <a
+                          href={item.href}
+                          className="flex flex-row items-center gap-2 text-[16px]"
+                        >
+                          <p className="font-medium">Read More</p>
+                          <span className="flex rounded-full bg-[#C9C9C9] w-4 h-4 items-center justify-center">
+                            <svg
+                              width="9"
+                              height="9"
+                              viewBox="0 0 9 9"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M3.62757 8.40447V0.722656H5.15598V8.40447H3.62757ZM0.553711 5.32493V3.79652H8.23553V5.32493H0.553711Z"
+                                fill="white"
+                              />
+                            </svg>
+                          </span>
+                        </a>
+                      </CardContent>
+                    </Card>
+                  </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
