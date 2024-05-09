@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 
 import { bounceAnimation, staggeredAnimationFast } from "@/utils/animations";
@@ -10,6 +10,14 @@ interface ComponentProps {
 }
 
 const Hero: React.FC<ComponentProps> = ({ pageTitle }) => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "-25%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+
   const renderTitle = (title: string) => {
     const words = title.split(" ");
     // Map over words to apply conditional styling
@@ -41,7 +49,10 @@ const Hero: React.FC<ComponentProps> = ({ pageTitle }) => {
   return (
     <div className="relative flex flex-col items-center w-full bg-transparent overflow-x-clip z-10">
       {/* Main Content */}
-      <div className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col-reverse xl:flex-row items-center justify-between xl:px-16 mb-0 gap-x-12">
+      <div
+        className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col-reverse xl:flex-row items-center justify-between xl:px-16 mb-0 gap-x-12"
+        ref={ref}
+      >
         {/* Headers and CTA */}
         <div className="w-full xl:w-auto py-12 xl:py-32 z-10">
           {/* Page Title */}
@@ -108,7 +119,10 @@ const Hero: React.FC<ComponentProps> = ({ pageTitle }) => {
         </div>
 
         {/* Hero Image */}
-        <div className="relative w-full -mt-12 xl:mt-0 xl:w-[749px] h-[300px] xl:h-[423px] rounded-3xl overflow-hidden">
+        <motion.div
+          className="relative w-full -mt-12 xl:mt-0 xl:w-[749px] h-[300px] xl:h-[423px] rounded-3xl overflow-hidden"
+          style={{ y: backgroundY }}
+        >
           <Image
             src="/img/IMG_0075 1.jpg"
             alt=""
@@ -118,7 +132,7 @@ const Hero: React.FC<ComponentProps> = ({ pageTitle }) => {
             className="opacity-70 xl:opacity-100"
             sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 749px"
           />
-        </div>
+        </motion.div>
       </div>
     </div>
   );

@@ -122,9 +122,15 @@ const Contact: React.FC<ComponentProps> = ({
   const ref1 = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
+  const ref4 = useRef(null);
+  const ref5 = useRef(null);
+  const ref6 = useRef(null);
   const isInView1 = useInView(ref1);
   const isInView2 = useInView(ref2);
   const isInView3 = useInView(ref3);
+  const isInView4 = useInView(ref4);
+  const isInView5 = useInView(ref5);
+  const isInView6 = useInView(ref6);
 
   return (
     <div className="relative flex flex-col items-center w-full bg-white overflow-clip">
@@ -133,11 +139,22 @@ const Contact: React.FC<ComponentProps> = ({
         <div className="overflow-hidden py-24 sm:py-32 w-full">
           <div className="mx-auto flex flex-col-reverse lg:flex-row justify-between gap-x-12">
             {/* Contact Form */}
-            <div className="flex flex-col justify-between lg:max-w-[50%] w-full">
-              <h2 className="mt-4 mb-8 text-3xl tracking-[2.5%] text-black sm:text-[45px] font-light lg:max-w-[12ch]">
+            <motion.div
+              className="flex flex-col justify-between lg:max-w-[50%] w-full"
+              ref={ref1}
+              animate={isInView1 ? "animate" : "initial"}
+              variants={staggeredAnimationFast}
+            >
+              <motion.h2
+                className="mt-4 mb-8 text-3xl tracking-[2.5%] text-black sm:text-[45px] font-light lg:max-w-[12ch]"
+                variants={bounceAnimation}
+              >
                 Contact <span className="text-[#1493A4]">us</span>
-              </h2>
-              <div className="flex flex-row justify-center lg:justify-between items-center bg-[#1493A4] gap-x-6 py-2 px-6 rounded-full">
+              </motion.h2>
+              <motion.div
+                className="flex flex-row justify-center lg:justify-between items-center bg-[#1493A4] gap-x-6 py-2 px-6 rounded-full"
+                variants={bounceAnimation}
+              >
                 <p className="text-sm leading-6 text-white">Call Us On:</p>
                 <a
                   href="#"
@@ -158,9 +175,9 @@ const Contact: React.FC<ComponentProps> = ({
                   </svg>
                   306-782-1224
                 </a>
-              </div>
+              </motion.div>
               <ContactForm />
-            </div>
+            </motion.div>
             {/* Separator */}
             <Separator
               orientation="vertical"
@@ -171,18 +188,32 @@ const Contact: React.FC<ComponentProps> = ({
               className="bg-[#B6B6B6] my-24 h-[1px] block lg:hidden"
             />
             {/* Info */}
-            <div className="flex flex-col lg:max-w-[50%] w-full justify-center lg:items-end lg:text-right">
-              <h2 className="text-3xl tracking-[2.5%] leading-tight text-[#1493A4] sm:text-[56px] font-light lg:max-w-[12ch]">
+            <motion.div
+              className="flex flex-col lg:max-w-[50%] w-full justify-center lg:items-end lg:text-right"
+              ref={ref2}
+              animate={isInView2 ? "animate" : "initial"}
+              variants={staggeredAnimationFast}
+            >
+              <motion.h2
+                className="text-3xl tracking-[2.5%] leading-tight text-[#1493A4] sm:text-[56px] font-light lg:max-w-[12ch]"
+                variants={bounceAnimation}
+              >
                 Contact our team today
-              </h2>
-              <p className="mt-12 text-[26px] text-[#484848] lg:max-w-[23ch]">
+              </motion.h2>
+              <motion.p
+                className="mt-12 text-[26px] text-[#484848] lg:max-w-[23ch]"
+                variants={bounceAnimation}
+              >
                 every little detail matters, relationships matter, experience
                 matters,
-              </p>
-              <p className="mt-8 text-[26px] font-medium text-[#1493A4] lg:max-w-[23ch]">
+              </motion.p>
+              <motion.p
+                className="mt-8 text-[26px] font-medium text-[#1493A4] lg:max-w-[23ch]"
+                variants={bounceAnimation}
+              >
                 first-class dental care matters.
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
           </div>
         </div>
       </div>

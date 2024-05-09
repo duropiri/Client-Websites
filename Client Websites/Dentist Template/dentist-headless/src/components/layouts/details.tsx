@@ -12,13 +12,19 @@ interface ComponentProps {
   details?: string;
 }
 
-const Details: React.FC<ComponentProps> = ({ infoCard, pageTitle, details }) => {
+const Details: React.FC<ComponentProps> = ({
+  infoCard,
+  pageTitle,
+  details,
+}) => {
   const ref1 = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
+  const ref4 = useRef(null);
   const isInView1 = useInView(ref1);
   const isInView2 = useInView(ref2);
   const isInView3 = useInView(ref3);
+  const isInView4 = useInView(ref4);
 
   const renderTitle = (title: string) => {
     const words = title.split(" ");
@@ -49,40 +55,69 @@ const Details: React.FC<ComponentProps> = ({ infoCard, pageTitle, details }) => 
   };
 
   return (
-    <div
-      className="relative flex flex-col items-center w-full bg-[#E5F6F9] overflow-clip py-24"
-    >
+    <div className="relative flex flex-col items-center w-full bg-[#E5F6F9] overflow-clip py-24">
       {/* Main Content */}
       <div className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-32 z-10">
         <div className="overflow-hidden py-24 sm:py-32 w-full">
           <div className="mx-auto flex flex-col lg:flex-row justify-between gap-x-12">
             {/* Factoid */}
-            <div className="lg:max-w-[50%] w-full">
-              <h2 className="text-5xl tracking-[2.5%] text-[#4D4D4D] sm:text-[58px] font-thin text-center lg:text-right leading-relaxed">
+            <motion.div
+              className="lg:max-w-[50%] w-full"
+              ref={ref1}
+              animate={isInView1 ? "animate" : "initial"}
+              variants={staggeredAnimationFast}
+            >
+              <motion.h2
+                className="text-5xl tracking-[2.5%] text-[#4D4D4D] sm:text-[58px] font-thin text-center lg:text-right leading-relaxed"
+                variants={bounceAnimation}
+              >
                 Children typically start teething within their first six months.
                 It is highly beneficial to have us examine their teeth and
                 monitor their dental development.
-              </h2>
-            </div>
+              </motion.h2>
+            </motion.div>
             {/* Separator */}
-            <Separator orientation="vertical" className="bg-[#1493A4] h-auto hidden lg:block" />
-            <Separator orientation="horizontal" className="bg-[#1493A4] my-24 h-[1px] block lg:hidden" />
+            <Separator
+              orientation="vertical"
+              className="bg-[#1493A4] h-auto hidden lg:block"
+            />
+            <Separator
+              orientation="horizontal"
+              className="bg-[#1493A4] my-24 h-[1px] block lg:hidden"
+            />
             {/* Info */}
-            <div className="lg:max-w-[50%] w-full">
-              <h2 className="mt-4 text-5xl tracking-[2.5%] text-black sm:text-[58px] font-semibold">
+            <motion.div
+              className="lg:max-w-[50%] w-full"
+              ref={ref2}
+              animate={isInView2 ? "animate" : "initial"}
+              variants={staggeredAnimationFast}
+            >
+              <motion.div
+                className="mt-4 text-5xl tracking-[2.5%] text-black sm:text-[58px] font-semibold"
+                ref={ref3}
+                animate={isInView3 ? "animate" : "initial"}
+                variants={staggeredAnimationFast}
+              >
                 {pageTitle ? (
-                  renderTitle(pageTitle)
+                  <motion.h2 variants={bounceAnimation}>
+                    {renderTitle(pageTitle)}
+                  </motion.h2>
                 ) : (
-                  <>
+                  <motion.h2 variants={bounceAnimation}>
                     Pediatric <span className="text-[#1493A4]">dentistry</span>
-                  </>
+                  </motion.h2>
                 )}
-              </h2>
-              <p className="mt-12 text-[16px] leading-8 text-black lg:max-w-[52ch]">
+              </motion.div>
+              <motion.div
+                className="mt-12 text-[16px] leading-8 text-black lg:max-w-[52ch]"
+                ref={ref4}
+                animate={isInView4 ? "animate" : "initial"}
+                variants={staggeredAnimationFast}
+              >
                 {details ? (
-                  <>{details}</>
+                  <motion.p variants={bounceAnimation}>{details}</motion.p>
                 ) : (
-                  <>
+                  <motion.p variants={bounceAnimation}>
                     Children's dentistry, also known as pediatric dentistry, is
                     a specialized field in dental science dedicated to the oral
                     health of children, spanning from infancy through the
@@ -118,10 +153,10 @@ const Details: React.FC<ComponentProps> = ({ infoCard, pageTitle, details }) => 
                     Trischuk Dental Clinic offers the necessary qualifications
                     and expertise in working with children, ensuring top-quality
                     dental care for both you and your child
-                  </>
+                  </motion.p>
                 )}
-              </p>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </div>

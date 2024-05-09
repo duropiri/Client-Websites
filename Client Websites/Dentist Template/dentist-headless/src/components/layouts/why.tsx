@@ -71,21 +71,33 @@ const Why: React.FC<ComponentProps> = ({ infoCard, pageTitle, details }) => {
           <div className="mx-auto flex flex-col lg:flex-row justify-between gap-x-12">
             {/* Info */}
             <div className="w-full">
-              <h2 className="mt-4 text-5xl tracking-[2.5%] text-[#1493A4] sm:text-[45px] leading-snug max-w-[30ch]">
+              <motion.div
+                className="mt-4 text-5xl tracking-[2.5%] text-[#1493A4] sm:text-[45px] leading-snug max-w-[30ch]"
+                ref={ref1}
+                animate={isInView1 ? "animate" : "initial"}
+                variants={staggeredAnimationFast}
+              >
                 {pageTitle ? (
-                  renderTitle(pageTitle)
+                  <motion.h2 variants={bounceAnimation}>
+                    {renderTitle(pageTitle)}
+                  </motion.h2>
                 ) : (
-                  <>
+                  <motion.h2 variants={bounceAnimation}>
                     Why is Haimanot Trischuk dental clinic your perfect
                     pediatric dentist?
-                  </>
+                  </motion.h2>
                 )}
-              </h2>
-              <p className="mt-12 text-[16px] leading-8 text-black">
+              </motion.div>
+              <motion.div
+                className="mt-12 text-[16px] leading-8 text-black"
+                ref={ref2}
+                animate={isInView2 ? "animate" : "initial"}
+                variants={staggeredAnimationFast}
+              >
                 {details ? (
-                  <>{details}</>
+                  <motion.p variants={bounceAnimation}>{details}</motion.p>
                 ) : (
-                  <>
+                  <motion.p variants={bounceAnimation}>
                     An essential aspect of pediatric dentistry is finding the
                     best dentist for both you and your child. It's crucial to
                     ensure that you select a dental team qualified to provide
@@ -116,9 +128,9 @@ const Why: React.FC<ComponentProps> = ({ infoCard, pageTitle, details }) => {
                     dental team as they transition from childhood to their
                     teenage and adult years. They can continue to visit us, a
                     team they know and trust.
-                  </>
+                  </motion.p>
                 )}
-              </p>
+              </motion.div>
             </div>
           </div>
         </div>

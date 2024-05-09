@@ -8,8 +8,13 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 interface ComponentProps {
   infoCard?: string;
   pageTitle?: string;
-  details?: object;
+  details?: Details[];
   people?: Person[];
+}
+
+interface Details {
+  title: string;
+  content: string;
 }
 
 interface Person {
@@ -27,9 +32,15 @@ const About: React.FC<ComponentProps> = ({
   const ref1 = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
+  const ref4 = useRef(null);
+  const ref5 = useRef(null);
+  const ref6 = useRef(null);
   const isInView1 = useInView(ref1);
   const isInView2 = useInView(ref2);
   const isInView3 = useInView(ref3);
+  const isInView4 = useInView(ref4);
+  const isInView5 = useInView(ref5);
+  const isInView6 = useInView(ref6);
 
   return (
     <div className="relative flex flex-col items-center w-full bg-[#1493A4] overflow-x-clip">
@@ -37,48 +48,95 @@ const About: React.FC<ComponentProps> = ({
       <div className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-16 mb-56 ">
         {/* Info */}
         <div className="flex flex-col lg:flex-row w-full xl:w-auto gap-y-16 pt-12 xl:pt-32 z-10 text-white gap-x-8">
-          <div className="flex flex-col gap-12 lg:max-w-[50%]">
-            {/* Info Heading */}
-            <h2 className="text-3xl font-regular tracking-tight leading-snug sm:text-[37px]">
-              regular examinations are critical in preventative children&apos;s
-              dentistry
-            </h2>
-            <p className="text-[16px] leading-8">
-              {details ? (
-                <>{details}</>
-              ) : (
-                <>
-                  Similar to adults, your child should visit us for routine
-                  children's dentistry services, which include checkups and
-                  cleanings. These cleanings are most beneficial every six
-                  months. Regular children's dentistry exams help your child,
-                  you, and us prevent unnecessary cavities, tooth decay, and gum
-                  disease. Just like a dental cleaning for you, at Haimanot
-                  Trischuk Dental Clinic, we will remove damaging plaque and
-                  debris from your child's teeth. We always include an oral exam
-                  for your child to ensure their teeth are erupting properly. As
-                  your child grows older, we will also monitor their adult teeth
-                  to ensure they are coming in correctly.
-                </>
-              )}
-            </p>
-          </div>
-          <div className="flex flex-col gap-12 lg:max-w-[50%]">
-            {/* Info Heading */}
-            <h2 className="text-3xl font-regular tracking-tight leading-snug sm:text-[37px]">
-              simple tips to help avoid tooth decay
-            </h2>
-            <div className="text-[16px] leading-8">
-              {details ? (
-                <>{details}</>
-              ) : (
-                <>
-                  <span>
+          {details ? (
+            details.map((detail) => (
+              <motion.div className="flex flex-col gap-12 lg:max-w-[50%]">
+                <motion.div
+                  className="text-3xl font-regular tracking-tight leading-snug sm:text-[37px]"
+                  ref={ref1}
+                  animate={isInView1 ? "animate" : "initial"}
+                  variants={staggeredAnimationFast}
+                >
+                  <motion.h2 variants={bounceAnimation}>
+                    {detail.title}
+                  </motion.h2>
+                </motion.div>
+                <motion.div
+                  className="text-[16px] leading-8"
+                  ref={ref2}
+                  animate={isInView2 ? "animate" : "initial"}
+                  variants={staggeredAnimationFast}
+                >
+                  <motion.p variants={bounceAnimation}>
+                    {detail.content}
+                  </motion.p>
+                </motion.div>
+              </motion.div>
+            ))
+          ) : (
+            <>
+              <motion.div className="flex flex-col gap-12 lg:max-w-[50%]">
+                <motion.div
+                  className="text-3xl font-regular tracking-tight leading-snug sm:text-[37px]"
+                  ref={ref1}
+                  animate={isInView1 ? "animate" : "initial"}
+                  variants={staggeredAnimationFast}
+                >
+                  {/* Info Heading */}
+                  <motion.h2 variants={bounceAnimation}>
+                    regular examinations are critical in preventative
+                    children&apos;s dentistry
+                  </motion.h2>
+                </motion.div>
+                <motion.div
+                  className="text-[16px] leading-8"
+                  ref={ref2}
+                  animate={isInView2 ? "animate" : "initial"}
+                  variants={staggeredAnimationFast}
+                >
+                  <motion.p variants={bounceAnimation}>
+                    Similar to adults, your child should visit us for routine
+                    children's dentistry services, which include checkups and
+                    cleanings. These cleanings are most beneficial every six
+                    months. Regular children's dentistry exams help your child,
+                    you, and us prevent unnecessary cavities, tooth decay, and
+                    gum disease. Just like a dental cleaning for you, at
+                    Haimanot Trischuk Dental Clinic, we will remove damaging
+                    plaque and debris from your child's teeth. We always include
+                    an oral exam for your child to ensure their teeth are
+                    erupting properly. As your child grows older, we will also
+                    monitor their adult teeth to ensure they are coming in
+                    correctly.
+                  </motion.p>
+                </motion.div>
+              </motion.div>
+              <div className="flex flex-col gap-12 lg:max-w-[50%]">
+                {/* Info Heading */}
+                <motion.div
+                  className="text-3xl font-regular tracking-tight leading-snug sm:text-[37px]"
+                  ref={ref3}
+                  animate={isInView3 ? "animate" : "initial"}
+                  variants={staggeredAnimationFast}
+                >
+                  <motion.h2 variants={bounceAnimation}>
+                    simple tips to help avoid tooth decay
+                  </motion.h2>
+                </motion.div>
+                <motion.div
+                  className="text-[16px] leading-8"
+                  ref={ref4}
+                  animate={isInView4 ? "animate" : "initial"}
+                  variants={staggeredAnimationFast}
+                >
+                  <motion.p variants={bounceAnimation}>
                     As a parent, you can take early preventative measures to
                     protect your child against tooth decay, even before their
                     first dental visit:
-                  </span>
-                  <ol className="list-decimal pl-8">
+                  </motion.p>
+                  <motion.ol
+                    className="list-decimal pl-8"
+                    variants={bounceAnimation}
+                  >
                     <li>
                       <span>
                         Make an effort to rinse your baby's teeth with water or
@@ -115,20 +173,28 @@ const About: React.FC<ComponentProps> = ({
                       Limit the consumption of sugary foods and drinks in your
                       child's diet.
                     </li>
-                  </ol>
-                </>
-              )}
-            </div>
-          </div>
+                  </motion.ol>
+                </motion.div>
+              </div>
+            </>
+          )}
         </div>
 
         {/* People */}
-        <div className="flex flex-col sm:flex-row justify-between w-full pt-12 xl:pt-32 z-10 text-white gap-x-8 gap-y-12">
+        <motion.div className="flex flex-col sm:flex-row justify-between w-full pt-12 xl:pt-32 z-10 text-white gap-x-8 gap-y-12">
           {people ? (
             people.map((person) => (
-              <div className="flex flex-col items-center gap-2 sm:gap-12 w-full lg:max-w-[50%]">
+              <motion.div
+                className="flex flex-col items-center gap-2 sm:gap-12 w-full lg:max-w-[50%]"
+                ref={ref3}
+                animate={isInView3 ? "animate" : "initial"}
+                variants={staggeredAnimationFast}
+              >
                 {/* Headshot */}
-                <div className="relative w-full max-w-[631px] h-[300px] xl:h-[494px] rounded-3xl overflow-hidden">
+                <motion.div
+                  className="relative w-full max-w-[631px] h-[300px] xl:h-[494px] rounded-3xl overflow-hidden"
+                  variants={bounceAnimation}
+                >
                   <Image
                     src={person.imageSrc}
                     alt={person.name}
@@ -138,23 +204,34 @@ const About: React.FC<ComponentProps> = ({
                     className="opacity-70 xl:opacity-100"
                     sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 749px"
                   />
-                </div>
+                </motion.div>
                 {/* Name Card */}
-                <div className="flex flex-col items-center justify-center">
-                  <h2 className="text-3xl font-semibold leading-snug sm:text-[64px]">
+                <motion.div
+                  className="flex flex-col items-center justify-center"
+                  variants={bounceAnimation}
+                >
+                  <motion.h2 className="text-3xl font-semibold leading-snug sm:text-[64px]">
                     {person.name}
-                  </h2>
-                  <h2 className="text-2xl pt-6 leading-snug sm:text-[32px] text-center">
+                  </motion.h2>
+                  <motion.h3 className="text-2xl pt-6 leading-snug sm:text-[32px] text-center">
                     {person.jobTitle}
-                  </h2>
-                </div>
-              </div>
+                  </motion.h3>
+                </motion.div>
+              </motion.div>
             ))
           ) : (
             <>
-              <div className="flex flex-col items-center gap-2 sm:gap-12 w-full lg:max-w-[50%]">
+              <motion.div
+                className="flex flex-col items-center gap-2 sm:gap-12 w-full lg:max-w-[50%]"
+                ref={ref5}
+                animate={isInView5 ? "animate" : "initial"}
+                variants={staggeredAnimationFast}
+              >
                 {/* Headshot */}
-                <div className="relative w-full max-w-[631px] h-[300px] xl:h-[494px] rounded-3xl overflow-hidden">
+                <motion.div
+                  className="relative w-full max-w-[631px] h-[300px] xl:h-[494px] rounded-3xl overflow-hidden"
+                  variants={bounceAnimation}
+                >
                   <Image
                     src="/img/Rectangle 113 (1).png"
                     alt=""
@@ -163,20 +240,31 @@ const About: React.FC<ComponentProps> = ({
                     objectFit="cover"
                     sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 749px"
                   />
-                </div>
+                </motion.div>
                 {/* Name Card */}
-                <div className="flex flex-col items-center justify-center">
-                  <h2 className="text-3xl font-semibold leading-snug sm:text-[64px]">
+                <motion.div
+                  className="flex flex-col items-center justify-center"
+                  variants={bounceAnimation}
+                >
+                  <motion.h2 className="text-3xl font-semibold leading-snug sm:text-[64px]">
                     Megan N
-                  </h2>
-                  <h2 className="text-2xl pt-6 leading-snug sm:text-[32px] text-center">
+                  </motion.h2>
+                  <motion.h3 className="text-2xl pt-6 leading-snug sm:text-[32px] text-center">
                     Dental Assistant
-                  </h2>
-                </div>
-              </div>
-              <div className="flex flex-col items-center gap-2 sm:gap-12 w-full lg:max-w-[50%]">
+                  </motion.h3>
+                </motion.div>
+              </motion.div>
+              <motion.div
+                className="flex flex-col items-center gap-2 sm:gap-12 w-full lg:max-w-[50%]"
+                ref={ref6}
+                animate={isInView6 ? "animate" : "initial"}
+                variants={staggeredAnimationFast}
+              >
                 {/* Headshot */}
-                <div className="relative w-full max-w-[631px] h-[300px] xl:h-[494px] rounded-3xl overflow-hidden">
+                <motion.div
+                  className="relative w-full max-w-[631px] h-[300px] xl:h-[494px] rounded-3xl overflow-hidden"
+                  variants={bounceAnimation}
+                >
                   <Image
                     src="/img/Rectangle 108.png"
                     alt=""
@@ -185,20 +273,23 @@ const About: React.FC<ComponentProps> = ({
                     objectFit="cover"
                     sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 749px"
                   />
-                </div>
+                </motion.div>
                 {/* Name Card */}
-                <div className="flex flex-col items-center justify-center">
-                  <h2 className="text-3xl font-semibold leading-snug sm:text-[64px]">
+                <motion.div
+                  className="flex flex-col items-center justify-center"
+                  variants={bounceAnimation}
+                >
+                  <motion.h2 className="text-3xl font-semibold leading-snug sm:text-[64px]">
                     Tori S
-                  </h2>
-                  <h2 className="text-2xl pt-6 leading-snug sm:text-[32px] text-center">
+                  </motion.h2>
+                  <motion.h3 className="text-2xl pt-6 leading-snug sm:text-[32px] text-center">
                     Registered Dental Hygienist
-                  </h2>
-                </div>
-              </div>
+                  </motion.h3>
+                </motion.div>
+              </motion.div>
             </>
           )}
-        </div>
+        </motion.div>
       </div>
     </div>
   );
