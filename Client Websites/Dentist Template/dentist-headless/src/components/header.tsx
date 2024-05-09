@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { StrapiProvider, useStrapi } from "@/contexts/strapiContext";
 
 import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
@@ -12,6 +13,23 @@ import {
   SquaresPlusIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+
+import * as HeroIcons from "@heroicons/react/24/outline";
+
+// Define a mapping from icon string names to components
+const iconMap: { [key: string]: React.ElementType } = {
+  ArrowPathIcon: HeroIcons.ArrowPathIcon,
+  Bars3Icon: HeroIcons.Bars3Icon,
+  ChartPieIcon: HeroIcons.ChartPieIcon,
+  CursorArrowRaysIcon: HeroIcons.CursorArrowRaysIcon,
+  FingerPrintIcon: HeroIcons.FingerPrintIcon,
+  SquaresPlusIcon: HeroIcons.SquaresPlusIcon,
+  XMarkIcon: HeroIcons.XMarkIcon,
+  ChevronDownIcon: ChevronDownIcon,
+  PhoneIcon: PhoneIcon,
+  PlayCircleIcon: PlayCircleIcon,
+};
+
 import {
   ChevronDownIcon,
   PhoneIcon,
@@ -26,13 +44,43 @@ import {
   Plus_Jakarta_SansFont,
   ManropeFont,
 } from "@/utils/fonts";
+import Image from "next/image";
+import { Skeleton } from "@/components/ui/skeleton";
 
-const navigation = [
+type MenuItem = {
+  name: string;
+  description: string;
+  href: string;
+  flyout: boolean | MenuItem[];
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>> | null;
+};
+
+interface HeaderContentProps {
+  mobileMenuOpen: boolean;
+  setMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+interface CTA {
+  id: number;
+  name: string;
+  href: string;
+  icon?: keyof typeof iconMap;
+}
+
+interface NavigationItem {
+  id?: number;
+  name: string;
+  description: string;
+  href: string;
+  icon?: keyof typeof iconMap; // Optional if some items might not have icons
+  flyout?: NavigationItem[]; // Optional for nested navigation items
+}
+
+const navigation: NavigationItem[] = [
   {
     name: "Home",
     description: "Home page",
-    href: "#",
-    flyout: false,
+    href: "/",
   },
   {
     name: "Services",
@@ -40,66 +88,54 @@ const navigation = [
     href: "#",
     flyout: [
       {
-        name: "Analytics",
-        description: "Get a better understanding of your traffic",
-        href: "#",
-        icon: ChartPieIcon,
+        name: "Pediatric Dentistry",
+        description:
+          "Specialized dental care for children, ensuring a friendly and comforting experience",
+        href: "/services/pediatric-dentistry",
       },
       {
-        name: "Engagement",
-        description: "Speak directly to your customers",
-        href: "#",
-        icon: CursorArrowRaysIcon,
+        name: "Sedation Dentistry",
+        description:
+          "Experience stress-free dental procedures with our sedation options",
+        href: "/services/sedation-dentistry",
       },
       {
-        name: "Security",
-        description: "Your customers’ data will be safe and secure",
-        href: "#",
-        icon: FingerPrintIcon,
+        name: "Orthodontics",
+        description: "Align your teeth for a healthier, more attractive smile",
+        href: "/services/orthodontics",
       },
       {
-        name: "Integrations",
-        description: "Connect with third-party tools",
-        href: "#",
-        icon: SquaresPlusIcon,
-      },
-      {
-        name: "Automations",
-        description: "Build strategic funnels that will convert",
-        href: "#",
-        icon: ArrowPathIcon,
+        name: "General & Family Dentistry",
+        description:
+          "Comprehensive dental care for the entire family in one convenient location",
+        href: "/services/general-family-dentistry",
       },
     ],
   },
   {
     name: "Cosmetic Dentistry",
-    description: "Home",
-    href: "#",
-    flyout: false,
+    description: "Cosmetic Dentistry page",
+    href: "/services/cosmetic-dentistry",
   },
   {
     name: "Dental Implants",
     description: "Dental Implants page",
-    href: "#",
-    flyout: false,
+    href: "/services/dental-implants",
   },
   {
     name: "Dentures",
     description: "Dentures page",
-    href: "#",
-    flyout: false,
+    href: "/services/dentures",
   },
   {
     name: "About",
     description: "About page",
-    href: "#",
-    flyout: false,
+    href: "/about",
   },
   {
     name: "Contact",
     description: "Contact page",
-    href: "#",
-    flyout: false,
+    href: "/contact",
   },
 ];
 
@@ -116,6 +152,20 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
+    // <StrapiProvider
+    //   collection="headers"
+    //   populateStructure={{
+    //     companyLogo: { populate: "*" },
+    //     navigation: { populate: "*" },
+    //     callsToAction: { populate: "*" },
+    //     // footer: { populate: { links: { populate: '*' } } }
+    //   }}
+    // >
+    //   <HeaderContent
+    //     mobileMenuOpen={mobileMenuOpen}
+    //     setMobileMenuOpen={setMobileMenuOpen}
+    //   />
+    // </StrapiProvider>
     <header className={`bg-white ${DM_SansFont.className}`}>
       <nav
         className="flex items-center justify-between py-5 px-5 xl:px-16 max-w-screen-2xl mx-auto"
@@ -123,7 +173,7 @@ export default function Header() {
       >
         {/* Company Logo */}
         <div className="flex">
-          <a href="#" className="">
+          <a href="/" className="">
             <span className="sr-only">Haimanot Trischuk Dental Clinic</span>
             <svg
               width="288"
@@ -190,16 +240,23 @@ export default function Header() {
                           key={subItem.name}
                           className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
                         >
-                          <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                            <subItem.icon
-                              className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
-                              aria-hidden="true"
-                            />
-                          </div>
+                          {subItem.icon && (
+                            <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                              {React.createElement(iconMap[subItem.icon], {
+                                className:
+                                  "h-6 w-6 text-gray-600 group-hover:text-[#1493A4]",
+                                "aria-hidden": "true",
+                              })}
+                              {/* <subItem.icon
+                                
+                              /> */}
+                            </div>
+                          )}
+
                           <div className="flex-auto">
                             <a
                               href={subItem.href}
-                              className="block font-semibold text-gray-900"
+                              className="block font-semibold text-gray-900 group-hover:text-[#1493A4]"
                             >
                               {subItem.name}
                               <span className="absolute inset-0" />
@@ -216,10 +273,10 @@ export default function Header() {
                         <a
                           key={cta.name}
                           href={cta.href}
-                          className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
+                          className="group flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
                         >
                           <cta.icon
-                            className="h-5 w-5 flex-none text-gray-400"
+                            className="h-5 w-5 flex-none text-gray-400 group-hover:text-[#1493A4]"
                             aria-hidden="true"
                           />
                           {cta.name}
@@ -414,3 +471,343 @@ export default function Header() {
     </header>
   );
 }
+
+// const HeaderContent: React.FC<HeaderContentProps> = ({
+//   mobileMenuOpen,
+//   setMobileMenuOpen,
+// }) => {
+//   const { data, error, isLoading } = useStrapi<Header>();
+
+//   // Check if there is data and extract the necessary parts
+//   const headerData = data && data[0]?.attributes;
+//   // console.log(headerData?.callsToAction[1].icon);
+
+//   if (isLoading)
+//     return (
+//       <header className="bg-white">
+//         <Skeleton className="h-12 w-12 rounded-full" />
+//       </header>
+//     );
+//   if (error) return <div>Error: {error.message}</div>;
+
+//   const strapiBaseURL =
+//     process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+
+//   const logoUrl = headerData?.companyLogo?.data?.attributes?.url
+//     ? `${strapiBaseURL}${headerData.companyLogo.data.attributes.url}`
+//     : null;
+
+//   return (
+//     <header className={`bg-white ${DM_SansFont.className}`}>
+//       <nav
+//         className="flex items-center justify-between py-5 px-5 xl:px-16 max-w-screen-2xl mx-auto"
+//         aria-label="Global"
+//       >
+//         {/* Company Logo */}
+//         <div className="flex">
+//           <a href="#" className="">
+//             <span className="sr-only">
+//               {headerData?.companyLogo.data.attributes.caption ||
+//                 "Company Logo"}
+//             </span>
+//             {logoUrl ? (
+//               <div className="relative w-[287px] h-[44px]">
+//                 <Image
+//                   src={`${strapiBaseURL}${headerData?.companyLogo.data.attributes.url}`}
+//                   alt={
+//                     headerData?.companyLogo.data.attributes.alternativeText ||
+//                     "Company Logo"
+//                   }
+//                   loading="eager"
+//                   layout="fill"
+//                   objectFit="cover"
+//                   sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 287px"
+//                 />
+//               </div>
+//             ) : (
+//               <div className="relative w-[287px] h-[44px]">
+//                 <Skeleton className="h-full w-full" />
+//               </div>
+//             )}
+//           </a>
+//         </div>
+//         {/* Hamburger Menu Icon */}
+//         <div className="flex lg:hidden">
+//           <button
+//             type="button"
+//             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+//             onClick={() => setMobileMenuOpen(true)}
+//           >
+//             <span className="sr-only">Open main menu</span>
+//             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+//           </button>
+//         </div>
+//         {/* Desktop Navigation - [Flyout Menu] */}
+//         <Popover.Group className="hidden lg:flex lg:gap-x-6">
+//           {headerData?.navigation?.map((item: NavigationItem) => {
+//             // Check if 'flyout' is an array and not empty before mapping over it
+//             return item.flyout &&
+//               Array.isArray(item.flyout) &&
+//               item.flyout.length > 0 ? (
+//               <Popover className="relative" key={item.name}>
+//                 <Popover.Button className="flex items-center gap-x-1 text-[16px] font-semibold leading-6 text-black hover:text-[#1493A4]">
+//                   {item.name}
+//                   <ChevronDownIcon
+//                     className="h-5 w-5 flex-none text-gray-400"
+//                     aria-hidden="true"
+//                   />
+//                 </Popover.Button>
+
+//                 <Transition
+//                   as={Fragment}
+//                   enter="transition ease-out duration-200"
+//                   enterFrom="opacity-0 translate-y-1"
+//                   enterTo="opacity-100 translate-y-0"
+//                   leave="transition ease-in duration-150"
+//                   leaveFrom="opacity-100 translate-y-0"
+//                   leaveTo="opacity-0 translate-y-1"
+//                 >
+//                   <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-black/5">
+//                     <div className="p-4">
+//                       {item.flyout.map((subItem) => (
+//                         <div
+//                           key={subItem.name}
+//                           className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
+//                         >
+//                           {subItem.icon &&
+//                             typeof subItem.icon === "string" && ( // Only render this block if `icon` is not null
+//                               <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+//                                 {React.createElement(
+//                                   iconMap[JSON.parse(subItem.icon).name],
+//                                   {
+//                                     className:
+//                                       "h-6 w-6 text-gray-600 group-hover:text-indigo-600",
+//                                     "aria-hidden": "true",
+//                                   }
+//                                 )}
+//                               </div>
+//                             )}
+//                           <div className="flex-auto">
+//                             <a
+//                               href={subItem.href}
+//                               className="block font-semibold text-gray-900"
+//                             >
+//                               {subItem.name}
+//                               <span className="absolute inset-0" />
+//                             </a>
+//                             <p className="mt-1 text-gray-600">
+//                               {subItem.description}
+//                             </p>
+//                           </div>
+//                         </div>
+//                       ))}
+//                     </div>
+//                     <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+//                       {headerData?.callsToAction?.map((cta: CTA) => (
+//                         <a
+//                           key={cta.name}
+//                           href={cta.href}
+//                           className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
+//                         >
+//                           {cta.icon &&
+//                             typeof cta.icon === "string" && ( // Only render this block if `icon` is not null
+//                               <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+//                                 {React.createElement(
+//                                   iconMap[JSON.parse(cta.icon).name],
+//                                   {
+//                                     className:
+//                                       "h-5 w-5 flex-none text-gray-400",
+//                                     "aria-hidden": "true",
+//                                   }
+//                                 )}
+//                               </div>
+//                             )}
+
+//                           {cta.name}
+//                         </a>
+//                       ))}
+//                     </div>
+//                   </Popover.Panel>
+//                 </Transition>
+//               </Popover>
+//             ) : (
+//               <a
+//                 key={item.name}
+//                 href={item.href}
+//                 className="flex items-center gap-x-1 text-[16px] font-semibold leading-6 text-gray-900 hover:text-[#1493A4]"
+//               >
+//                 {item.name}
+//               </a>
+//             );
+//           })}
+//         </Popover.Group>
+//         {/* Header Extras - [Social Media Icons] */}
+//         <div className="hidden xl:flex  xl:justify-end gap-[18px] items-center">
+//           <a
+//             href="#"
+//             className="text-sm font-semibold leading-6 text-gray-900 hover:text-[#1493A4]"
+//           >
+//             <svg
+//               xmlns="http://www.w3.org/2000/svg"
+//               className="w-5 h-5"
+//               viewBox="0 0 512 512"
+//             >
+//               <path
+//                 d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"
+//                 fill="currentColor"
+//               />
+//             </svg>
+//           </a>
+//           <a
+//             href="#"
+//             className="text-sm font-semibold leading-6 text-gray-900 hover:text-[#1493A4]"
+//           >
+//             <svg
+//               xmlns="http://www.w3.org/2000/svg"
+//               className="w-5 h-5"
+//               viewBox="0 0 512 512"
+//             >
+//               <path
+//                 d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
+//                 fill="currentColor"
+//               />
+//             </svg>
+//           </a>
+//           <a
+//             href="#"
+//             className="text-sm font-semibold leading-6 text-gray-900 hover:text-[#1493A4]"
+//           >
+//             <svg
+//               xmlns="http://www.w3.org/2000/svg"
+//               className="w-5 h-5"
+//               viewBox="0 0 576 512"
+//             >
+//               <path
+//                 d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6-11.4 42.9-11.4 132.3-11.4 132.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zm-317.5 213.5V175.2l142.7 81.2-142.7 81.2z"
+//                 fill="currentColor"
+//               />
+//             </svg>
+//           </a>
+//           <a
+//             href="#"
+//             className="text-sm font-semibold leading-6 text-gray-900 hover:text-[#1493A4]"
+//           >
+//             <svg
+//               xmlns="http://www.w3.org/2000/svg"
+//               className="w-5 h-5"
+//               viewBox="0 0 496 512"
+//             >
+//               <path
+//                 d="M496 256c0 137-111 248-248 248-25.6 0-50.2-3.9-73.4-11.1 10.1-16.5 25.2-43.5 30.8-65 3-11.6 15.4-59 15.4-59 8.1 15.4 31.7 28.5 56.8 28.5 74.8 0 128.7-68.8 128.7-154.3 0-81.9-66.9-143.2-152.9-143.2-107 0-163.9 71.8-163.9 150.1 0 36.4 19.4 81.7 50.3 96.1 4.7 2.2 7.2 1.2 8.3-3.3 .8-3.4 5-20.3 6.9-28.1 .6-2.5 .3-4.7-1.7-7.1-10.1-12.5-18.3-35.3-18.3-56.6 0-54.7 41.4-107.6 112-107.6 60.9 0 103.6 41.5 103.6 100.9 0 67.1-33.9 113.6-78 113.6-24.3 0-42.6-20.1-36.7-44.8 7-29.5 20.5-61.3 20.5-82.6 0-19-10.2-34.9-31.4-34.9-24.9 0-44.9 25.7-44.9 60.2 0 22 7.4 36.8 7.4 36.8s-24.5 103.8-29 123.2c-5 21.4-3 51.6-.9 71.2C65.4 450.9 0 361.1 0 256 0 119 111 8 248 8s248 111 248 248z"
+//                 fill="currentColor"
+//               />
+//             </svg>
+//           </a>
+//         </div>
+//       </nav>
+//       {/* Mobile Menu */}
+//       <Dialog
+//         as="div"
+//         className="lg:hidden z-50"
+//         open={mobileMenuOpen}
+//         onClose={setMobileMenuOpen}
+//       >
+//         <div className="fixed inset-0 z-10" />
+//         <Dialog.Panel className="fixed inset-y-0 right-0 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 z-[9999]">
+//           {/* Company Logo */}
+//           <div className="flex items-center justify-between">
+//             <a href="#" className="-m-1.5 p-1.5">
+//               <span className="sr-only">
+//                 {headerData?.companyLogo.data.attributes.caption ||
+//                   "Company Logo"}
+//               </span>
+//               <div className="relative w-[287px] h-[44px]">
+//                 <Image
+//                   src={`${strapiBaseURL}${headerData?.companyLogo.data.attributes.url}`}
+//                   alt={
+//                     headerData?.companyLogo.data.attributes.alternativeText ||
+//                     "Company Logo"
+//                   }
+//                   loading="eager"
+//                   layout="fill"
+//                   objectFit="cover"
+//                   sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 287px"
+//                 />
+//               </div>
+//             </a>
+//             <button
+//               type="button"
+//               className="-m-2.5 rounded-md p-2.5 text-gray-700"
+//               onClick={() => setMobileMenuOpen(false)}
+//             >
+//               <span className="sr-only">Close menu</span>
+//               <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+//             </button>
+//           </div>
+//           {/* Mobile Navigation - [Flyout Menu] */}
+//           <div className="mt-6 flow-root">
+//             <div className="-my-6 divide-y divide-gray-500/10">
+//               <div className="space-y-2 py-6">
+//                 {headerData?.navigation?.map((item: NavigationItem) => {
+//                   // Check if 'flyout' is an array before mapping over it and combine it with 'callsToAction'
+//                   const combinedItems = Array.isArray(item.flyout)
+//                     ? [...item.flyout, ...headerData.callsToAction]
+//                     : headerData.callsToAction;
+
+//                   return item.flyout &&
+//                     Array.isArray(item.flyout) &&
+//                     item.flyout.length > 0 ? (
+//                     <Disclosure as="div" className="-mx-3" key={item.name}>
+//                       {({ open }) => (
+//                         <>
+//                           <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+//                             {item.name}
+//                             <ChevronDownIcon
+//                               className={classNames(
+//                                 open ? "rotate-180" : "",
+//                                 "h-5 w-5 flex-none"
+//                               )}
+//                               aria-hidden="true"
+//                             />
+//                           </Disclosure.Button>
+//                           <Disclosure.Panel className="mt-2 space-y-2">
+//                             {combinedItems.map((subItem: NavigationItem) => (
+//                               <Disclosure.Button
+//                                 key={subItem.name}
+//                                 as="a"
+//                                 href={subItem.href}
+//                                 className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+//                               >
+//                                 {subItem.name}
+//                               </Disclosure.Button>
+//                             ))}
+//                           </Disclosure.Panel>
+//                         </>
+//                       )}
+//                     </Disclosure>
+//                   ) : (
+//                     <a
+//                       key={item.name}
+//                       href={item.href}
+//                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+//                     >
+//                       {item.name}
+//                     </a>
+//                   );
+//                 })}
+//               </div>
+//               <div className="py-6">
+//                 <a
+//                   href="#"
+//                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+//                 >
+//                   Log in
+//                 </a>
+//               </div>
+//             </div>
+//           </div>
+//         </Dialog.Panel>
+//       </Dialog>
+//     </header>
+//   );
+// };

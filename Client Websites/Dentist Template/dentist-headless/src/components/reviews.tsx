@@ -43,6 +43,14 @@ const testimonials = [
     headshot:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
   },
+  {
+    name: "Aldo P.",
+    rating: 4.8,
+    review:
+      "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.Exercitation veniam consequat sunt nostrud amet. Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.",
+    headshot:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  },
 
   // More people...
 ];
@@ -69,14 +77,15 @@ export default function Reviews() {
             loading="lazy"
             layout="fill"
             objectFit="cover"
+            sizes="(max-width: 768px) 80vw, (max-width: 1024px) 40vw, 1024px"
           />
         </div>
       </div>
       {/* Testimonials Section */}
-      <div className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-32">
+      <div className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-16">
         <div className="overflow-hidden py-10 w-full">
           <motion.div
-            className="flex flex-row items-center justify-between lg:pt-4"
+            className="flex flex-row items-center justify-between lg:pt-4 xl:px-16"
             ref={ref1}
             animate={isInView1 ? "animate" : "initial"}
             variants={staggeredAnimationFast}

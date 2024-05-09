@@ -127,7 +127,7 @@ export default function Footer() {
               </ul>
             </div>
           </div>
-          <Separator className="absolute mt-10 left-0 bg-white" />
+          <Separator className="absolute mt-10 left-0 bg-white/50" />
           <div className="relative flex flex-col md:flex-row mt-24 justify-between gap-4">
             <div className="flex flex-row gap-8">
               <svg
@@ -164,17 +164,17 @@ export default function Footer() {
                 </ul>
               </div>
             </div>
-            <Separator orientation="vertical" />
             <div className="flex flex-row gap-8">
+            <Separator orientation="vertical" className="mt-2 bg-white/50 h-auto" />
               <div className="flex flex-col">
                 <h2 className="text-[18px] sm:text-[26px] font-semibold italic tracking-wider text-white">
                   Love...Kindness...and Excellence.
                 </h2>
                 <p className="text-[11px] text-white italic mt-8">
-                  © 2023 Copyright{" "}
+                  © 2023 Copyright
                   <span className="underline">
                     <a href="">Trischuk Dental Clinic</a>
-                  </span>{" "}
+                  </span>
                   - Legal
                 </p>
               </div>

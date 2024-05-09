@@ -83,7 +83,7 @@ const posts = [
 ];
 
 interface ServicesProps {
-  className: string;
+  className?: string;
 }
 
 const Services: React.FC<ServicesProps> = ({ className }) => {
@@ -95,39 +95,10 @@ const Services: React.FC<ServicesProps> = ({ className }) => {
   const isInView3 = useInView(ref3);
   return (
     <div
-      className={`${className} relative flex flex-col items-center w-full bg-[#E5F6F9] overflow-x-clip py-24`}
+      className={`relative flex flex-col items-center w-full bg-[#E5F6F9] overflow-x-clip py-24`}
     >
-      {/* SVG Decorations */}
-      <div className="relative -top-80 ">
-        <svg
-          width="543"
-          height="608"
-          viewBox="0 0 543 608"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="hidden sm:inline absolute ml-[150px] mt-[50px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[#E5F6F9] z-[2] pointer-events-none"
-        >
-          <path
-            opacity="0.48"
-            d="M393.338 9.06055C381.544 24.9374 382.996 71.1164 483.156 128.817C608.356 200.944 445.726 338.666 260.325 277.581C47.9801 185.858 -74.1073 430.037 93.832 596.794"
-            stroke="currentColor"
-            stroke-width="30"
-          />
-        </svg>
-        <div className="absolute w-[1200px] -mt-[270px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-[10] pointer-events-none">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 200 200"
-            className="text-white w-full h-full"
-          >
-            <circle cx="100" cy="100" r="100" fill="currentColor" />
-          </svg>
-        </div>
-      </div>
-
       {/* Main Content */}
-      <div className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-32 z-10">
+      <div className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-16 z-10">
         {/* Section Heading */}
         <motion.div
           className="flex flex-col items-center"
@@ -178,6 +149,7 @@ const Services: React.FC<ServicesProps> = ({ className }) => {
                             loading="lazy"
                             layout="fill"
                             objectFit="contain"
+                            sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 50px"
                           />
                         </div>
                         <h2 className="text-[18px] font-semibold">

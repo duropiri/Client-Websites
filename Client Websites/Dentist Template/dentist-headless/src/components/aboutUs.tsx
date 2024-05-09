@@ -118,6 +118,7 @@ export default function AboutUs() {
                   loading="lazy"
                   objectFit="cover"
                   className="opacity-20 lg:opacity-100"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 207px"
                 />
               </div>
               <div className="relative w-[167px] h-[241px] rounded-xl overflow-hidden">
@@ -128,6 +129,7 @@ export default function AboutUs() {
                   loading="lazy"
                   objectFit="cover"
                   className="opacity-20 lg:opacity-100"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 167px"
                 />
               </div>
             </div>
@@ -140,6 +142,7 @@ export default function AboutUs() {
                   layout="fill"
                   objectFit="cover"
                   className="opacity-20 lg:opacity-100"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 206px"
                 />
               </div>
               <div className="relative w-[313px] h-[207px] max-w-none rounded-xl overflow-hidden">
@@ -150,6 +153,7 @@ export default function AboutUs() {
                   layout="fill"
                   objectFit="cover"
                   className="opacity-20 lg:opacity-100"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 313px"
                 />
               </div>
             </div>
@@ -427,6 +431,7 @@ export default function AboutUs() {
                   layout="fill"
                   objectFit="cover"
                   style={{ clipPath: "url(#hexagon-clip1)" }}
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 529px"
                 />
               </div>
               <svg
@@ -558,6 +563,7 @@ export default function AboutUs() {
                   layout="fill"
                   objectFit="cover"
                   style={{ clipPath: "url(#hexagon-clip2)" }}
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 490px"
                 />
               </div>
               <svg
@@ -677,6 +683,7 @@ export default function AboutUs() {
                   layout="fill"
                   objectFit="cover"
                   style={{ clipPath: "url(#hexagon-clip3)" }}
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 526px"
                 />
               </div>
               <svg
@@ -836,6 +843,70 @@ export default function AboutUs() {
             </g>
           </svg>
           <div className="absolute bg-gradient-to-r from-transparent to-white h-full w-[100px] top-0 -right-1"></div>
+        </div>
+        <div className="hidden sm:inline absolute bottom-72 left-0 pointer-events-none -z-10">
+          <svg
+            width="335"
+            height="490"
+            viewBox="0 0 335 490"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="text-[#1493A4]"
+          >
+            <g opacity="0.3">
+              <path
+                opacity="0.31"
+                d="M129.582 360.653L181.876 384.599L228.554 351.176L223.265 294.214L170.97 270.268L124.39 303.478L129.582 360.653Z"
+                fill="currentColor"
+              />
+              <path
+                opacity="0.31"
+                d="M172.541 268.401L224.835 292.347L271.513 258.924L266.224 201.962L213.929 178.016L167.349 211.226L172.541 268.401Z"
+                fill="currentColor"
+              />
+              <path
+                opacity="0.31"
+                d="M87.2195 453.165L139.514 477.111L186.191 443.688L180.902 386.726L128.608 362.78L82.0276 395.99L87.2195 453.165Z"
+                fill="currentColor"
+              />
+              <path
+                opacity="0.31"
+                d="M113.031 185.081L165.326 209.027L212.216 175.701L206.714 118.641L154.42 94.6951L107.839 127.906L113.031 185.081Z"
+                fill="currentColor"
+              />
+              <path
+                opacity="0.56"
+                d="M70.669 277.593L122.963 301.539L169.756 268.426L164.352 211.153L112.057 187.207L65.3798 220.631L70.669 277.593Z"
+                fill="currentColor"
+              />
+              <path
+                opacity="0.31"
+                d="M28.3067 370.105L80.6012 394.051L127.394 360.938L121.989 303.666L69.695 279.72L23.0175 313.143L28.3067 370.105Z"
+                fill="currentColor"
+              />
+              <path
+                opacity="0.31"
+                d="M11.8718 194.843L63.9537 218.691L110.844 185.365L105.342 128.306L53.2601 104.457L6.4674 137.57L11.8718 194.843Z"
+                fill="currentColor"
+              />
+              <path
+                opacity="0.31"
+                d="M-30.4905 287.355L21.5914 311.203L68.4815 277.877L62.9797 220.818L10.8978 196.969L-35.8949 230.083L-30.4905 287.355Z"
+                fill="currentColor"
+              />
+              <path
+                opacity="0.31"
+                d="M214.057 175.549L266.139 199.398L313.029 166.072L307.528 109.012L255.446 85.1636L208.653 118.277L214.057 175.549Z"
+                fill="currentColor"
+              />
+              <path
+                opacity="0.31"
+                d="M-72.8528 379.867L-20.7709 403.716L26.1192 370.39L20.6174 313.33L-31.4645 289.481L-78.2572 322.595L-72.8528 379.867Z"
+                fill="currentColor"
+              />
+            </g>
+          </svg>
+          <div className="absolute bg-gradient-to-r from-white to-transparent h-full w-[100px] top-0 -left-1"></div>
         </div>
       </div>
     </div>

@@ -117,10 +117,11 @@ export default function Team() {
                 layout="fill"
                 loading="lazy"
                 objectFit="cover"
+                sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 55.66px"
               />
             </motion.div>
             <motion.div
-              className="flex flex-col w-full text-white z-10"
+              className="flex flex-col w-full text-white z-20"
               variants={bounceAnimation}
             >
               <h1 className="text-3xl font-regular tracking-tight sm:text-[38px]">
@@ -141,7 +142,8 @@ export default function Team() {
               loading="lazy"
               layout="fill"
               objectFit="cover"
-              className="opacity-40 xl:opacity-100"
+              className="opacity-70 xl:opacity-100 z-10"
+              sizes="(max-width: 768px) 80vw, (max-width: 1024px) 40vw, 1024px"
             />
           </motion.div>
         </motion.div>
@@ -362,6 +364,7 @@ export default function Team() {
               loading="lazy"
               layout="fill"
               objectFit="cover"
+              sizes="(max-width: 768px) 80vw, (max-width: 1024px) 40vw, 1024px"
             />
           </div>
           {/* CTA Text */}
