@@ -23,19 +23,19 @@ const footer = [
   {
     title: "Useful Links",
     links: [
-      { name: "Covid-19 Pre-Screening Form", href: "/" },
-      { name: "Services", href: "/" },
-      { name: "Cosmetic Dentistry", href: "/" },
-      { name: "Dental Implants", href: "/" },
-      { name: "Dentures", href: "/" },
-      { name: "Sedation Dentistry", href: "/" },
+      { name: "Covid-19 Pre-Screening Form", href: "/covid-19-pre-screening-form" },
+      { name: "Services", href: "/services" },
+      { name: "Cosmetic Dentistry", href: "/services/cosmetic-dentistry" },
+      { name: "Dental Implants", href: "/services/dental-implants" },
+      { name: "Dentures", href: "/services/dentures" },
+      { name: "Sedation Dentistry", href: "/services/sedation-dentistry" },
     ],
   },
   {
     title: "Company & Appointments",
     links: [
-      { name: "About Us", href: "/" },
-      { name: "Contact Us", href: "/" },
+      { name: "About Us", href: "/about" },
+      { name: "Contact Us", href: "/contact" },
       { name: "Appointment", href: "/" },
     ],
   },
@@ -157,25 +157,28 @@ export default function Footer() {
                     Closed for lunch 12 PM - 1 PM
                   </li>
                   <li className="flex flex-row gap-2">
-                    <a href="">Map it</a>
+                    <a href="/contact/#map">Map it</a>
                     <Separator orientation="vertical" />
-                    <a href=""> Get Directions</a>
+                    <a href="/contact/#map"> Get Directions</a>
                   </li>
                 </ul>
               </div>
             </div>
             <div className="flex flex-row gap-8">
-            <Separator orientation="vertical" className="mt-2 bg-white/50 h-auto" />
-              <div className="flex flex-col">
+              <Separator
+                orientation="vertical"
+                className="hidden md:block mt-2 bg-white/50 h-auto"
+              />
+              <div className="flex flex-col mt-4 md:mt-0">
                 <h2 className="text-[18px] sm:text-[26px] font-semibold italic tracking-wider text-white">
                   Love...Kindness...and Excellence.
                 </h2>
                 <p className="text-[11px] text-white italic mt-8">
-                  © 2023 Copyright
+                  © 2023 Copyright{" "}
                   <span className="underline">
                     <a href="">Trischuk Dental Clinic</a>
                   </span>
-                  - Legal
+                  {" "}- Legal
                 </p>
               </div>
             </div>

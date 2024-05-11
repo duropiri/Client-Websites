@@ -7,15 +7,15 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 
 interface ComponentProps {
-  infoCard?: string;
   pageTitle?: string;
-  details?: string;
+  detailFactoid?: string;
+  detailInfo?: string;
 }
 
 const Details: React.FC<ComponentProps> = ({
-  infoCard,
   pageTitle,
-  details,
+  detailFactoid: factoid,
+  detailInfo: info,
 }) => {
   const ref1 = useRef(null);
   const ref2 = useRef(null);
@@ -55,7 +55,10 @@ const Details: React.FC<ComponentProps> = ({
   };
 
   return (
-    <div className="relative flex flex-col items-center w-full bg-[#E5F6F9] overflow-clip py-24">
+    <div
+      id="details"
+      className="relative flex flex-col items-center w-full bg-[#E5F6F9] overflow-clip py-24"
+    >
       {/* Main Content */}
       <div className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-32 z-10">
         <div className="overflow-hidden py-24 sm:py-32 w-full">
@@ -67,14 +70,23 @@ const Details: React.FC<ComponentProps> = ({
               animate={isInView1 ? "animate" : "initial"}
               variants={staggeredAnimationFast}
             >
-              <motion.h2
-                className="text-5xl tracking-[2.5%] text-[#4D4D4D] sm:text-[58px] font-thin text-center lg:text-right leading-relaxed"
-                variants={bounceAnimation}
-              >
-                Children typically start teething within their first six months.
-                It is highly beneficial to have us examine their teeth and
-                monitor their dental development.
-              </motion.h2>
+              {factoid ? (
+                <motion.h2
+                  className="text-5xl tracking-[2.5%] text-[#4D4D4D] sm:text-[58px] font-thin text-center lg:text-right leading-relaxed"
+                  variants={bounceAnimation}
+                >
+                  {factoid}
+                </motion.h2>
+              ) : (
+                <motion.h2
+                  className="text-5xl tracking-[2.5%] text-[#4D4D4D] sm:text-[58px] font-thin text-center lg:text-right leading-relaxed"
+                  variants={bounceAnimation}
+                >
+                  Children typically start teething within their first six
+                  months. It is highly beneficial to have us examine their teeth
+                  and monitor their dental development.
+                </motion.h2>
+              )}
             </motion.div>
             {/* Separator */}
             <Separator
@@ -93,7 +105,7 @@ const Details: React.FC<ComponentProps> = ({
               variants={staggeredAnimationFast}
             >
               <motion.div
-                className="mt-4 text-5xl tracking-[2.5%] text-black sm:text-[58px] font-semibold"
+                className="mt-4 text-5xl tracking-[2.5%] text-black sm:text-[58px] font-semibold capitalize"
                 ref={ref3}
                 animate={isInView3 ? "animate" : "initial"}
                 variants={staggeredAnimationFast}
@@ -114,8 +126,15 @@ const Details: React.FC<ComponentProps> = ({
                 animate={isInView4 ? "animate" : "initial"}
                 variants={staggeredAnimationFast}
               >
-                {details ? (
-                  <motion.p variants={bounceAnimation}>{details}</motion.p>
+                {info ? (
+                  <motion.p variants={bounceAnimation}>
+                    {info.split("\n").map((line, index) => (
+                      <React.Fragment key={index}>
+                        {line}
+                        <br />
+                      </React.Fragment>
+                    ))}
+                  </motion.p>
                 ) : (
                   <motion.p variants={bounceAnimation}>
                     Children's dentistry, also known as pediatric dentistry, is

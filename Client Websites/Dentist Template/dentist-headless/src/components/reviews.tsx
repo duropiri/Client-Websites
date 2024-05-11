@@ -66,9 +66,9 @@ export default function Reviews() {
   const isInView2 = useInView(ref2);
 
   return (
-    <div className="relative flex flex-col items-center w-full bg-[#E5F6F9] ">
+    <div id="reviews" className="relative flex flex-col items-center w-full bg-[#E5F6F9]">
       {/* Image Divider */}
-      <div className="relative w-full">
+      {/* <div className="relative w-full">
         <div className="absolute w-full h-[400px] bg-gradient-to-t from-transparent to-white -top-1 z-10"></div>
         <div className="relative w-full h-[702px] overflow-hidden">
           <Image
@@ -80,7 +80,7 @@ export default function Reviews() {
             sizes="(max-width: 768px) 80vw, (max-width: 1024px) 40vw, 1024px"
           />
         </div>
-      </div>
+      </div> */}
       {/* Testimonials Section */}
       <div className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-16">
         <div className="overflow-hidden py-10 w-full">

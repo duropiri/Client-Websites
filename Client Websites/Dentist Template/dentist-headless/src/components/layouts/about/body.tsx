@@ -5,12 +5,11 @@ import Image from "next/image";
 import { bounceAnimation, staggeredAnimationFast } from "@/utils/animations";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 
-import Hero from "@/components/layouts/hero";
-import Details from "@/components/layouts/details";
-import About from "@/components/layouts/about";
-import Contact from "@/components/layouts/contact";
-import Why from "@/components/layouts/why";
-import Connect from "@/components/layouts/connect";
+import Hero from "@/components/layouts/about/hero";
+import Video from "@/components/layouts/about/video";
+import Reviews from "@/components/reviews";
+import FAQ from "@/components/layouts/about/faq";
+import CTA from "@/components/layouts/about/cta";
 
 interface ComponentProps {
   pageTitle?: string;
@@ -29,7 +28,7 @@ const Body: React.FC<ComponentProps> = ({ pageTitle, pageDetails }) => {
       {/* SVG Decorations */}
       <div className="relative top-0 overflow-x-clip">
         {/* Line */}
-        <svg
+        {/* <svg
           width="543"
           height="608"
           viewBox="0 0 543 608"
@@ -43,9 +42,9 @@ const Body: React.FC<ComponentProps> = ({ pageTitle, pageDetails }) => {
             stroke="currentColor"
             stroke-width="30"
           />
-        </svg>
+        </svg> */}
         {/* Circle */}
-        <div className="absolute w-[1200px] mt-[75px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[1] pointer-events-none">
+        {/* <div className="absolute w-[1200px] mt-[75px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[1] pointer-events-none">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -54,26 +53,23 @@ const Body: React.FC<ComponentProps> = ({ pageTitle, pageDetails }) => {
           >
             <circle cx="100" cy="100" r="100" fill="currentColor" />
           </svg>
-        </div>
+        </div> */}
       </div>
 
       {/* Hero Section */}
-      <Hero pageTitle={pageTitle} />
+      <Hero />
 
-      {/* Details Section */}
-      <Details pageTitle={pageTitle} />
+      {/* Video Section */}
+      <Video />
 
-      {/* About Section */}
-      <About pageTitle={pageTitle} />
+      {/* CTA Section */}
+      <CTA />
 
-      {/* Contact Section */}
-      <Contact />
+      {/* FAQ Section */}
+      <FAQ />
 
-      {/* Why Section */}
-      <Why />
-
-      {/* Connect Section */}
-      <Connect />
+      {/* Reviews Section */}
+      <Reviews />
     </div>
   );
 };

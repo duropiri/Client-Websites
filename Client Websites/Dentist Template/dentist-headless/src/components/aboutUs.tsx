@@ -55,9 +55,12 @@ export default function AboutUs() {
   const isInView4 = useInView(ref4);
 
   return (
-    <div className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-32 py-24 overflow-hidden">
+    <div
+      id="about"
+      className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-32 py-24 overflow-hidden"
+    >
       {/* Features Section */}
-      <div className="overflow-hidden py-24 sm:py-32 w-full">
+      <div className="overflow-hidden sm:py-32 w-full">
         <motion.div
           className="mx-auto flex flex-col lg:flex-row justify-between"
           ref={ref1}
@@ -97,7 +100,7 @@ export default function AboutUs() {
             </div>
             <div className="mt-12 flex items-center justify-start gap-x-6">
               <a
-                href="#"
+                href="/about"
                 className="bg-[#1493A4] px-10 py-2.5 text-[16px] font-bold text-white shadow-sm hover:bg-[#1493A4]/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
               >
                 About Us

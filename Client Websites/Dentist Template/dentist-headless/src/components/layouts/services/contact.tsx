@@ -22,11 +22,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 
-interface ComponentProps {
-  infoCard?: string;
-  pageTitle?: string;
-  details?: string;
-}
+interface ComponentProps {}
 
 const formSchema = z.object({
   firstName: z.string().min(1, "Please enter your first name"),
@@ -114,11 +110,7 @@ export function ContactForm() {
   );
 }
 
-const Contact: React.FC<ComponentProps> = ({
-  infoCard,
-  pageTitle,
-  details,
-}) => {
+const Contact: React.FC<ComponentProps> = ({}) => {
   const ref1 = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
@@ -133,7 +125,10 @@ const Contact: React.FC<ComponentProps> = ({
   const isInView6 = useInView(ref6);
 
   return (
-    <div className="relative flex flex-col items-center w-full bg-white overflow-clip">
+    <div
+      id="contact"
+      className="relative flex flex-col items-center w-full bg-white overflow-clip"
+    >
       {/* Main Content */}
       <div className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-32 z-10">
         <div className="overflow-hidden py-24 sm:py-32 w-full">

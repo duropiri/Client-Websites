@@ -6,17 +6,9 @@ import { bounceAnimation, staggeredAnimationFast } from "@/utils/animations";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 
-interface ComponentProps {
-  infoCard?: string;
-  pageTitle?: string;
-  details?: string;
-}
+interface ComponentProps {}
 
-const Connect: React.FC<ComponentProps> = ({
-  infoCard,
-  pageTitle,
-  details,
-}) => {
+const Connect: React.FC<ComponentProps> = ({}) => {
   const ref1 = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
@@ -25,7 +17,10 @@ const Connect: React.FC<ComponentProps> = ({
   const isInView3 = useInView(ref3);
 
   return (
-    <div className="relative flex flex-col items-center w-full bg-white overflow-clip py-24">
+    <div
+      id="connect"
+      className="relative flex flex-col items-center w-full bg-white overflow-clip pt-0 pb-12 md:py-24"
+    >
       {/* Main Content */}
       <div className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-32 z-10">
         <div className="overflow-hidden w-full">

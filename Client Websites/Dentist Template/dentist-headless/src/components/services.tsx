@@ -26,56 +26,49 @@ const posts = [
   {
     icon: "/img/Rectangle 100 (3).png",
     title: "Dental Crowns, Bridges, and Implants",
-    href: "#",
+    href: "/services/dental-implants",
     description:
       "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. ",
   },
   {
     icon: "/img/Rectangle 100 (4).png",
     title: "Family and Children's dentistry",
-    href: "#",
+    href: "/services/pediatric-dentistry",
     description:
       "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. ",
   },
   {
     icon: "/img/download.png",
     title: "CEREC dentistry",
-    href: "#",
+    href: "/services/cosmetic-dentistry",
     description:
       "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. ",
   },
   {
     icon: "/img/Rectangle 100 (5).png",
     title: "Cosmetic dentistry",
-    href: "#",
+    href: "/services/cosmetic-dentistry",
     description:
       "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. ",
   },
   {
     icon: "/img/Rectangle 100 (3).png",
-    title: "Dental Crowns, Bridges, and Implants",
+    title: "Sedation dentistry",
     href: "#",
     description:
       "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. ",
   },
   {
     icon: "/img/Rectangle 100 (4).png",
-    title: "Family and Children's dentistry",
-    href: "#",
+    title: "Dentures",
+    href: "/services/dentures",
     description:
       "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. ",
   },
   {
     icon: "/img/download.png",
-    title: "CEREC dentistry",
-    href: "#",
-    description:
-      "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. ",
-  },
-  {
-    icon: "/img/Rectangle 100 (5).png",
-    title: "Cosmetic dentistry",
-    href: "#",
+    title: "Orthodontics",
+    href: "/services/orthodontics",
     description:
       "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. ",
   },
@@ -95,6 +88,7 @@ const Services: React.FC<ServicesProps> = ({ className }) => {
   const isInView3 = useInView(ref3);
   return (
     <div
+      id="services"
       className={`relative flex flex-col items-center w-full bg-[#E5F6F9] overflow-x-clip py-24`}
     >
       {/* Main Content */}
@@ -107,7 +101,7 @@ const Services: React.FC<ServicesProps> = ({ className }) => {
           variants={staggeredAnimationFast}
         >
           <motion.h1
-            className="text-[16px] leading-6 text-white uppercase font-extralight bg-[#1493A4] px-2"
+            className="text-[16px] leading-6 text-white uppercase font-extralight bg-[#1493A4] px-2 pointer-events-none"
             variants={bounceAnimation}
           >
             <span className="tracking-[0.4em]">Service</span>s
@@ -160,15 +154,17 @@ const Services: React.FC<ServicesProps> = ({ className }) => {
                         </p>
                         <a
                           href={item.href}
-                          className="flex flex-row items-center gap-2 text-[16px]"
+                          className="flex flex-row items-center gap-2 text-[16px] group"
                         >
-                          <p className="font-medium">Read More</p>
-                          <span className="flex rounded-full bg-[#C9C9C9] w-4 h-4 items-center justify-center">
+                          <p className="font-medium group-hover:text-[#1493A4]">
+                            Read More
+                          </p>
+                          <span className="flex rounded-full bg-[#C9C9C9] group-hover:bg-[#1493A4] w-4 h-4 items-center justify-center">
                             <svg
                               width="9"
                               height="9"
                               viewBox="0 0 9 9"
-                              fill="none"
+                              fill="currentColor"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path

@@ -1,15 +1,23 @@
 "use client";
-import Header from "@/components/header";
-import Banner from "@/components/banner";
-import Footer from "@/components/footer";
 import { SizeProvider } from "@/contexts/sizeContext";
-import Body from "@/components/layouts/body";
+import Body, { PageDetails } from "@/components/layouts/services/body";
+
+const pageDetails: PageDetails = {
+  pageTitle: "Cosmetic dentistry",
+  heroImageSrc: undefined,
+  detailFactoid: undefined,
+  detailInfo: undefined,
+  aboutInfo: undefined,
+  aboutPeople: undefined,
+  whyHeading: undefined,
+  whyInfo: undefined,
+};
 
 export default function Page() {
   return (
     <main className="flex flex-col min-w-screen">
       <SizeProvider>
-        <Body pageTitle="Cosmetic Dentistry" />
+        <Body pageDetails={pageDetails} />
       </SizeProvider>
     </main>
   );

@@ -6,13 +6,11 @@ import { bounceAnimation, staggeredAnimationFast } from "@/utils/animations";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 
 interface ComponentProps {
-  infoCard?: string;
-  pageTitle?: string;
-  details?: Details[];
-  people?: Person[];
+  aboutInfo?: Info[];
+  aboutPeople?: Person[];
 }
 
-interface Details {
+interface Info {
   title: string;
   content: string;
 }
@@ -24,10 +22,8 @@ interface Person {
 }
 
 const About: React.FC<ComponentProps> = ({
-  infoCard,
-  pageTitle,
-  details,
-  people,
+  aboutInfo: details,
+  aboutPeople: people,
 }) => {
   const ref1 = useRef(null);
   const ref2 = useRef(null);
@@ -42,8 +38,44 @@ const About: React.FC<ComponentProps> = ({
   const isInView5 = useInView(ref5);
   const isInView6 = useInView(ref6);
 
+  const renderContentAsList = (content: string) => {
+    // Split the content by newline
+    const lines = content.split("\n");
+    // Remove and store the first line separately if it exists
+    const header = lines.shift(); // This removes the first element and returns it
+
+    return (
+      <motion.div
+        className="text-[16px] leading-8"
+        ref={ref2}
+        animate={isInView2 ? "animate" : "initial"}
+        variants={staggeredAnimationFast}
+      >
+        <motion.p
+          variants={bounceAnimation}
+          className="text-white text-[16px] leading-8"
+        >
+          {header}
+        </motion.p>
+        <motion.ol className="list-decimal pl-8" variants={bounceAnimation}>
+          {lines.map(
+            (line, index) =>
+              line.trim() !== "" && (
+                <li key={index} className="text-white text-[16px] leading-8">
+                  {line}
+                </li>
+              )
+          )}
+        </motion.ol>
+      </motion.div>
+    );
+  };
+
   return (
-    <div className="relative flex flex-col items-center w-full bg-[#1493A4] overflow-x-clip">
+    <div
+      id="about"
+      className="relative flex flex-col items-center w-full bg-[#1493A4] overflow-x-clip"
+    >
       {/* Main Content */}
       <div className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-16 mb-56 ">
         {/* Info */}
@@ -61,16 +93,8 @@ const About: React.FC<ComponentProps> = ({
                     {detail.title}
                   </motion.h2>
                 </motion.div>
-                <motion.div
-                  className="text-[16px] leading-8"
-                  ref={ref2}
-                  animate={isInView2 ? "animate" : "initial"}
-                  variants={staggeredAnimationFast}
-                >
-                  <motion.p variants={bounceAnimation}>
-                    {detail.content}
-                  </motion.p>
-                </motion.div>
+
+                {renderContentAsList(detail.content)}
               </motion.div>
             ))
           ) : (
@@ -196,7 +220,7 @@ const About: React.FC<ComponentProps> = ({
                   variants={bounceAnimation}
                 >
                   <Image
-                    src={person.imageSrc}
+                    src={"/" + person.imageSrc}
                     alt={person.name}
                     layout="fill"
                     loading="lazy"

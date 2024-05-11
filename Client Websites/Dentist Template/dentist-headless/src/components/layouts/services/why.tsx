@@ -7,12 +7,14 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 
 interface ComponentProps {
-  infoCard?: string;
-  pageTitle?: string;
-  details?: string;
+  whyHeading?: string;
+  whyInfo?: string;
 }
 
-const Why: React.FC<ComponentProps> = ({ infoCard, pageTitle, details }) => {
+const Why: React.FC<ComponentProps> = ({
+  whyHeading: heading,
+  whyInfo: info,
+}) => {
   const ref1 = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
@@ -20,36 +22,11 @@ const Why: React.FC<ComponentProps> = ({ infoCard, pageTitle, details }) => {
   const isInView2 = useInView(ref2);
   const isInView3 = useInView(ref3);
 
-  const renderTitle = (title: string) => {
-    const words = title.split(" ");
-    // Map over words to apply conditional styling
-    const formattedWords = words.map((word, index) => {
-      // Check if the word is 'dentistry' or it is the second word (index 1)
-      if (word.toLowerCase() === "dentistry" || index === 1) {
-        return <span className="text-[#1493A4]">{word}</span>;
-      }
-      return word;
-    });
-
-    // Join the words with spaces to form the complete title
-    return (
-      <>
-        {formattedWords.reduce(
-          (prev, curr, index) => (
-            <>
-              {prev}
-              {index > 0 ? " " : ""}
-              {curr}
-            </>
-          ),
-          ""
-        )}
-      </>
-    );
-  };
-
   return (
-    <div className="relative flex flex-col items-center w-full bg-[#E5F6F9] overflow-clip py-24">
+    <div
+      id="why"
+      className="relative flex flex-col items-center w-full bg-[#E5F6F9] overflow-clip py-24"
+    >
       {/* SVG Decorations */}
       <div className="relative overflow-x-clip w-full h-full">
         {/* Circle */}
@@ -77,10 +54,8 @@ const Why: React.FC<ComponentProps> = ({ infoCard, pageTitle, details }) => {
                 animate={isInView1 ? "animate" : "initial"}
                 variants={staggeredAnimationFast}
               >
-                {pageTitle ? (
-                  <motion.h2 variants={bounceAnimation}>
-                    {renderTitle(pageTitle)}
-                  </motion.h2>
+                {heading ? (
+                  <motion.h2 variants={bounceAnimation}>{heading}</motion.h2>
                 ) : (
                   <motion.h2 variants={bounceAnimation}>
                     Why is Haimanot Trischuk dental clinic your perfect
@@ -94,8 +69,15 @@ const Why: React.FC<ComponentProps> = ({ infoCard, pageTitle, details }) => {
                 animate={isInView2 ? "animate" : "initial"}
                 variants={staggeredAnimationFast}
               >
-                {details ? (
-                  <motion.p variants={bounceAnimation}>{details}</motion.p>
+                {info ? (
+                  <motion.p variants={bounceAnimation}>
+                    {info.split("\n").map((line, index) => (
+                      <React.Fragment key={index}>
+                        {line}
+                        <br />
+                      </React.Fragment>
+                    ))}
+                  </motion.p>
                 ) : (
                   <motion.p variants={bounceAnimation}>
                     An essential aspect of pediatric dentistry is finding the

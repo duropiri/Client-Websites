@@ -10,6 +10,7 @@ import Services from "@/components/services";
 import Team from "@/components/team";
 import AboutUs from "@/components/aboutUs";
 import Reviews from "@/components/reviews";
+import CTA from "@/components/cta";
 
 export default function Body() {
   const ref = useRef(null);
@@ -20,11 +21,13 @@ export default function Body() {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "-25%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
 
+
+
   return (
     <div className="bg-white relative">
       {/* Image Decorations */}
       <div
-        className="absolute -top-36 left-0 grid grid-cols-2 grid-rows-1 justify-between w-full overflow-x-clip  mt-[150px] gap-[550px] pointer-events-none"
+        className="absolute -top-36 left-0 hidden sm:grid grid-cols-2 grid-rows-1 justify-between w-full overflow-x-clip z-[10] mt-[150px] gap-[30vw] lg:gap-[550px] pointer-events-none opacity-50 lg:opacity-100"
         ref={ref}
       >
         <motion.div
@@ -123,8 +126,26 @@ export default function Body() {
       {/* Team Section */}
       <Team />
 
+      {/* CTA Section */}
+      <CTA />
+
       {/* About Us Section */}
       <AboutUs />
+
+      {/* Image Divider */}
+      <div className="relative w-full">
+        <div className="absolute w-full h-[400px] bg-gradient-to-t from-transparent to-white -top-1 z-10"></div>
+        <div className="relative w-full h-[702px] overflow-hidden">
+          <Image
+            src="/img/image 71.png"
+            alt=""
+            loading="lazy"
+            layout="fill"
+            objectFit="cover"
+            sizes="(max-width: 768px) 80vw, (max-width: 1024px) 40vw, 1024px"
+          />
+        </div>
+      </div>
 
       {/* Reviews Section */}
       <Reviews />
