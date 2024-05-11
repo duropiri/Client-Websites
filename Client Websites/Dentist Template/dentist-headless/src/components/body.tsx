@@ -127,7 +127,7 @@ export default function Body() {
       <Team />
 
       {/* CTA Section */}
-      <CTA />
+      <CTA className="hidden sm:flex" />
 
       {/* About Us Section */}
       <AboutUs />

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { bounceAnimation, staggeredAnimationFast } from "@/utils/animations";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
+import CharByCharOnScroll from "@/components/animations/CharByCharOnScroll";
 
 interface ComponentProps {
   whyHeading?: string;
@@ -55,11 +56,37 @@ const Why: React.FC<ComponentProps> = ({
                 variants={staggeredAnimationFast}
               >
                 {heading ? (
-                  <motion.h2 variants={bounceAnimation}>{heading}</motion.h2>
+                  <motion.h2 variants={bounceAnimation}>
+                    <CharByCharOnScroll
+                      shadow={true}
+                      lineStyles={{
+                        marginTop: "1ch", // Custom line height
+                        marginBottom: "0.3ch", // Custom line height
+                        marginRight: "0.4ch", // Custom character spacing
+                        height: "1ch",
+                      }}
+                      start={90}
+                      end={60}
+                    >
+                      {heading}
+                    </CharByCharOnScroll>
+                  </motion.h2>
                 ) : (
                   <motion.h2 variants={bounceAnimation}>
-                    Why is Haimanot Trischuk dental clinic your perfect
-                    pediatric dentist?
+                    <CharByCharOnScroll
+                      shadow={true}
+                      lineStyles={{
+                        marginTop: "1ch", // Custom line height
+                        marginBottom: "0.3ch", // Custom line height
+                        marginRight: "0.4ch", // Custom character spacing
+                        height: "1ch",
+                      }}
+                      start={90}
+                      end={60}
+                    >
+                      Why is Haimanot Trischuk dental clinic your perfect
+                      pediatric dentist?
+                    </CharByCharOnScroll>
                   </motion.h2>
                 )}
               </motion.div>

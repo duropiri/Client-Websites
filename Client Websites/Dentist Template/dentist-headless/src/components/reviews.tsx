@@ -92,15 +92,15 @@ export default function Reviews() {
           >
             {/* About Us Info */}
             <motion.div className="lg:max-w-lg" variants={bounceAnimation}>
-              <motion.h1 className="text-[16px] leading-6 text-white uppercase font-extralight">
+              <h1 className="text-[16px] leading-6 text-white uppercase font-extralight">
                 <span className="bg-[#1493A4] px-6 py-1">
                   <span className="tracking-[0.4em]">Community Prais</span>e
                 </span>
-              </motion.h1>
-              <motion.h2 className="mt-4 text-[38px] font-medium tracking-tight text-[#1C1C1C] font-outfit">
+              </h1>
+              <h2 className="mt-4 text-[38px] font-medium tracking-tight text-[#1C1C1C] font-outfit">
                 What People think{" "}
                 <span className="text-[#1493A4]">about us</span>
-              </motion.h2>
+              </h2>
             </motion.div>
             {/* Google Review */}
             <motion.div

@@ -23,6 +23,9 @@ import {
 } from "@/components/ui/card";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import CharByCharOnScroll from "./animations/CharByCharOnScroll";
+import OpacityOnScroll from "./animations/OpacityOnScroll";
+import CTA from "./cta";
 
 const people = [
   {
@@ -102,7 +105,7 @@ export default function Team() {
       </svg>
 
       {/* Main Content */}
-      <div className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-32 mb-56 ">
+      <div className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-32 mb-12 sm:mb-56 ">
         <motion.div
           className="relative flex flex-col-reverse xl:flex-row w-full gap-y-10 xl:mb-40 mt-14"
           ref={ref1}
@@ -111,7 +114,7 @@ export default function Team() {
         >
           <div className="flex flex-row gap-3 -mt-24 xl:m-0">
             <motion.div
-              className="relative w-[55.66px] h-[54.8px] rounded-xl overflow-hidden z-10"
+              className="relative w-[55.66px] h-[54.8px] rounded-xl overflow-hidden z-20"
               variants={bounceAnimation}
             >
               <Image
@@ -128,11 +131,23 @@ export default function Team() {
               variants={bounceAnimation}
             >
               <h1 className="text-3xl font-regular tracking-tight sm:text-[38px]">
-                Top-rated primary care doctors
+                <CharByCharOnScroll
+                  shadow={true}
+                  lineStyles={{
+                    marginTop: "0.6ch", // Custom line height
+                    marginRight: "0.4ch", // Custom character spacing
+                  }}
+                  start={90}
+                  end={60}
+                >
+                  Top-rated primary care doctors
+                </CharByCharOnScroll>
               </h1>
-              <p className="mt-6 text-[16px] leading-8 ">
-                90% of patients gave these primary care doctors 5 stars
-              </p>
+              <div className="mt-6 text-[16px] leading-8 ">
+                <OpacityOnScroll start={90} end={60}>
+                  90% of patients gave these primary care doctors 5 stars
+                </OpacityOnScroll>
+              </div>
             </motion.div>
           </div>
           <motion.div
@@ -226,6 +241,8 @@ export default function Team() {
             </div>
           </Carousel>
         </motion.div>
+
+        
       </div>
     </div>
   );

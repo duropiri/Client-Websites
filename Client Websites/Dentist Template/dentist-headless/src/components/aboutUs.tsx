@@ -4,6 +4,9 @@ import Image from "next/image";
 
 import { bounceAnimation, staggeredAnimationFast } from "@/utils/animations";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import CharByCharOnScroll from "./animations/CharByCharOnScroll";
+import OpacityOnScroll from "./animations/OpacityOnScroll";
+import CTA from "./cta";
 
 const features = [
   {
@@ -57,10 +60,11 @@ export default function AboutUs() {
   return (
     <div
       id="about"
-      className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-32 py-24 overflow-hidden"
+      className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-32 pb-12 sm:py-24 overflow-hidden"
     >
       {/* Features Section */}
       <div className="overflow-hidden sm:py-32 w-full">
+        <CTA className="flex sm:hidden absolute" />
         <motion.div
           className="mx-auto flex flex-col lg:flex-row justify-between"
           ref={ref1}
@@ -76,16 +80,28 @@ export default function AboutUs() {
                 </span>
               </h1>
               <h2 className="mt-4 text-[30px] font-bold tracking-tight text-[#1C1C1C]">
-                Faster Treatment with CERC
+                <CharByCharOnScroll
+                  shadow={true}
+                  lineStyles={{
+                    marginTop: "0.6ch", // Custom line height
+                    marginRight: "0.4ch", // Custom character spacing
+                  }}
+                  start={90}
+                  end={60}
+                >
+                  Faster Treatment with CERC
+                </CharByCharOnScroll>
               </h2>
-              <p className="mt-6 text-[16px] leading-8 text-black">
-                At Trischuk Dental Clinic, we are proud to offer you more
-                efficient cosmetic treatment options through our CEREC systems.
-                CEREC can be a good option for patients in need of restoration
-                treatments such as bridges, inlays, onlays, veneers, and crowns,
-                and the materials used are designed to ensure a more natural
-                look.
-              </p>
+              <div className="mt-6 text-[16px] leading-8 text-black">
+                <OpacityOnScroll start={90} end={60}>
+                  At Trischuk Dental Clinic, we are proud to offer you more
+                  efficient cosmetic treatment options through our CEREC
+                  systems. CEREC can be a good option for patients in need of
+                  restoration treatments such as bridges, inlays, onlays,
+                  veneers, and crowns, and the materials used are designed to
+                  ensure a more natural look.
+                </OpacityOnScroll>
+              </div>
               <div className="mt-10 max-w-xl space-y-8 text-base leading-7 text-black lg:max-w-none">
                 {features.map((feature, index) => (
                   <div
@@ -93,7 +109,11 @@ export default function AboutUs() {
                     className="relative flex flex-row items-center gap-2"
                   >
                     {feature.svg}
-                    <p className="inline">{feature.description}</p>
+                    <div className="inline">
+                      <OpacityOnScroll start={90} end={60}>
+                        {feature.description}
+                      </OpacityOnScroll>
+                    </div>
                   </div>
                 ))}
               </div>

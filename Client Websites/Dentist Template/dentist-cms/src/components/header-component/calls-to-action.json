@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_header_component_calls_to_actions",
+  "info": {
+    "displayName": "CallsToAction",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "text",
+      "required": true,
+      "default": "Watch demo"
+    },
+    "href": {
+      "type": "text",
+      "default": "#"
+    },
+    "icon": {
+      "type": "customField",
+      "customField": "plugin::heroicons-field.icon-picker"
+    }
+  }
+}

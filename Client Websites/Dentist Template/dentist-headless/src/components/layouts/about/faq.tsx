@@ -12,6 +12,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import CharByCharOnScroll from "@/components/animations/CharByCharOnScroll";
 
 interface ComponentProps {
   infoCard?: string;
@@ -46,8 +47,18 @@ const FAQ: React.FC<ComponentProps> = ({ infoCard, pageTitle, details }) => {
               className="mt-4 mb-20 text-3xl tracking-[2.5%] text-black sm:text-[45px] font-light"
               variants={bounceAnimation}
             >
-              General and Cosmetic{" "}
-              <span className="text-[#1493A4]">Dentistry services</span>
+              <CharByCharOnScroll
+                shadow={true}
+                lineStyles={{
+                  marginTop: "0.6ch", // Custom line height
+                  marginRight: "0.4ch", // Custom character spacing
+                }}
+                start={90}
+                end={60}
+              >
+                General and Cosmetic{" "}
+                <span className="text-[#1493A4]">Dentistry services</span>
+              </CharByCharOnScroll>
             </motion.h2>
 
             <Accordion

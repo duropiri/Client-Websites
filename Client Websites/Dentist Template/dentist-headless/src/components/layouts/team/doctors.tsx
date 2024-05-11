@@ -5,6 +5,8 @@ import Image from "next/image";
 import { bounceAnimation, staggeredAnimationFast } from "@/utils/animations";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
+import CharByCharOnScroll from "@/components/animations/CharByCharOnScroll";
+import OpacityOnScroll from "@/components/animations/OpacityOnScroll";
 
 interface ComponentProps {
   doctors?: Person[];
@@ -18,9 +20,7 @@ interface Person {
 }
 
 const Doctors: React.FC<ComponentProps> = ({ doctors: people }) => {
-  const ref1 = useRef(null);
-  const isInView1 = useInView(ref1);
-
+  const refs = people ? people.map(() => useRef(null)) : [];
 
   return (
     <div className="relative flex flex-col items-center w-full bg-[#E5F6F9] pt-24 -mb-12">
@@ -46,46 +46,63 @@ const Doctors: React.FC<ComponentProps> = ({ doctors: people }) => {
             {/* People */}
             <motion.div className="flex flex-col sm:flex-col justify-between w-full z-10 text-black gap-x-8 gap-y-12">
               {people &&
-                people.map((person, index) => (
-                  <motion.div
-                    className={`flex ${
-                      index % 2 !== 0 ? "flex-row-reverse" : "flex-row"
-                    } items-center justify-center gap-12 sm:gap-24 w-full`}
-                    ref={ref1}
-                    animate={isInView1 ? "animate" : "initial"}
-                    variants={staggeredAnimationFast}
-                  >
-                    {/* Headshot */}
+                people.map((person, index) => {
+                  const isInView = useInView(refs[index]);
+                  return (
                     <motion.div
-                      className="relative w-full max-w-[419px] h-[494px] xl:h-[494px] rounded-[60px] overflow-hidden shadow-2xl"
-                      variants={bounceAnimation}
+                      className={`flex ${
+                        index % 2 !== 0 ? "flex-row-reverse" : "flex-row"
+                      } items-center justify-center gap-12 sm:gap-24 w-full`}
+                      ref={refs[index]}
+                      animate={isInView ? "animate" : "initial"}
+                      variants={staggeredAnimationFast}
                     >
-                      <Image
-                        src={"/" + person.imageSrc}
-                        alt={person.name}
-                        layout="fill"
-                        loading="lazy"
-                        objectFit="cover"
-                        sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 419px"
-                      />
+                      {/* Headshot */}
+                      <motion.div
+                        className="relative w-full max-w-[419px] h-[494px] xl:h-[494px] rounded-[60px] overflow-hidden shadow-2xl"
+                        variants={bounceAnimation}
+                      >
+                        <Image
+                          src={"/" + person.imageSrc}
+                          alt={person.name}
+                          layout="fill"
+                          loading="lazy"
+                          objectFit="cover"
+                          sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 419px"
+                        />
+                      </motion.div>
+                      {/* Name Card */}
+                      <motion.div
+                        className="flex flex-col items-start justify-start max-w-[50%]"
+                        variants={bounceAnimation}
+                      >
+                        <motion.h2 className="text-2xl font-semibold leading-snug sm:text-[40px] text-[#1493A4] mb-5">
+                          <CharByCharOnScroll
+                            shadow={true}
+                            lineStyles={{
+                              marginTop: "0.6ch", // Custom line height
+                              marginRight: "0.4ch", // Custom character spacing
+                            }}
+                            start={100}
+                            end={60}
+                          >
+                            {person.name}
+                          </CharByCharOnScroll>
+                        </motion.h2>
+                        <motion.h3 className="text-[16px] pt-1 leading-snug sm:text-[20px] text-start">
+                          <OpacityOnScroll start={100} end={60}>
+                            {person.jobTitle}
+                          </OpacityOnScroll>
+                        </motion.h3>
+                        <motion.div className="text-[12px] pt-4 leading-snug sm:text-[16px] text-start text-[#484848] max-w-[57ch]">
+                          <OpacityOnScroll start={100} end={60}>
+                            {person.intro}
+                          </OpacityOnScroll>
+                        </motion.div>
+                      </motion.div>
                     </motion.div>
-                    {/* Name Card */}
-                    <motion.div
-                      className="flex flex-col items-start justify-start max-w-[50%]"
-                      variants={bounceAnimation}
-                    >
-                      <motion.h2 className="text-2xl font-semibold leading-snug sm:text-[40px] text-[#1493A4]">
-                        {person.name}
-                      </motion.h2>
-                      <motion.h3 className="text-[16px] pt-1 leading-snug sm:text-[20px] text-start">
-                        {person.jobTitle}
-                      </motion.h3>
-                      <motion.p className="text-[12px] pt-4 leading-snug sm:text-[16px] text-start text-[#484848] max-w-[57ch]">
-                        {person.intro}
-                      </motion.p>
-                    </motion.div>
-                  </motion.div>
-                ))}
+                  );
+                })}
             </motion.div>
           </div>
         </div>

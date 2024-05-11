@@ -18,18 +18,7 @@ interface Person {
 }
 
 const Team: React.FC<ComponentProps> = ({ team: people }) => {
-  // Create an array of refs
-  const refs = useRef([]);
-
-  // Ensure refs array has exactly three refs
-  if (refs.current.length !== 3) {
-    refs.current = Array(3)
-      .fill(null)
-      .map((_, i) => refs.current[i] || createRef());
-  }
-
-  // Map refs to their respective isInView hooks
-  const isInViewStates = refs.current.map((ref) => useInView(ref));
+  const refs = people ? people.map(() => useRef(null)) : [];
 
   return (
     <div className="relative flex flex-col items-center w-full bg-white overflow-clip">
@@ -43,35 +32,41 @@ const Team: React.FC<ComponentProps> = ({ team: people }) => {
             {/* People */}
             <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 w-full pt-8 xl:pt-12 z-10 text-black">
               {people &&
-                people.map((person, index) => (
-                  <motion.div
-                    className="flex flex-col items-center gap-2"
-                    ref={refs.current[index % 3]} // Assign ref based on column
-                    animate={isInViewStates[index % 3] ? "animate" : "initial"}
-                    variants={staggeredAnimationFast}
-                  >
-                    {/* Headshot */}
-                    <motion.div className="relative w-full max-w-[323px] h-[292px] rounded-3xl shadow-2xl overflow-hidden">
-                      <Image
-                        src={"/" + person.imageSrc}
-                        alt={person.name}
-                        layout="fill"
-                        loading="lazy"
-                        objectFit="cover"
-                        sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 323px"
-                      />
+                people.map((person, index) => {
+                  const isInView = useInView(refs[index]);
+                  return (
+                    <motion.div
+                      className="flex flex-col items-center gap-2"
+                      ref={refs[index]}
+                      animate={isInView ? "animate" : "initial"}
+                      variants={staggeredAnimationFast}
+                    >
+                      {/* Headshot */}
+                      <motion.div
+                        className="relative w-full max-w-[323px] h-[292px] rounded-3xl shadow-2xl overflow-hidden"
+                        variants={bounceAnimation}
+                      >
+                        <Image
+                          src={"/" + person.imageSrc}
+                          alt={person.name}
+                          layout="fill"
+                          loading="lazy"
+                          objectFit="cover"
+                          sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 323px"
+                        />
+                      </motion.div>
+                      {/* Name Card */}
+                      <motion.div className="flex flex-col items-center justify-center">
+                        <motion.h2 className="text-xl font-semibold leading-snug sm:text-[26px] text-[#1493A4]">
+                          {person.name}
+                        </motion.h2>
+                        <motion.h3 className="text-[12px] pt-2 leading-snug sm:text-[16px] text-center text-black">
+                          {person.jobTitle}
+                        </motion.h3>
+                      </motion.div>
                     </motion.div>
-                    {/* Name Card */}
-                    <motion.div className="flex flex-col items-center justify-center">
-                      <motion.h2 className="text-xl font-semibold leading-snug sm:text-[26px] text-[#1493A4]">
-                        {person.name}
-                      </motion.h2>
-                      <motion.h3 className="text-[12px] pt-2 leading-snug sm:text-[16px] text-center text-black">
-                        {person.jobTitle}
-                      </motion.h3>
-                    </motion.div>
-                  </motion.div>
-                ))}
+                  );
+                })}
             </motion.div>
           </div>
         </div>

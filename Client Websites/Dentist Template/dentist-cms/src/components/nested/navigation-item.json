@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_nested_navigation_items",
+  "info": {
+    "displayName": "NavigationItem",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "text",
+      "default": "Analytics"
+    },
+    "description": {
+      "type": "richtext",
+      "default": "Get a better understanding of your traffic"
+    },
+    "href": {
+      "type": "text",
+      "default": "#"
+    },
+    "icon": {
+      "type": "customField",
+      "customField": "plugin::heroicons-field.icon-picker"
+    }
+  }
+}

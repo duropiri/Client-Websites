@@ -5,6 +5,7 @@ import Image from "next/image";
 import { bounceAnimation, staggeredAnimationFast } from "@/utils/animations";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
+import CharByCharOnScroll from "@/components/animations/CharByCharOnScroll";
 
 interface ComponentProps {
   pageTitle?: string;
@@ -75,16 +76,42 @@ const Details: React.FC<ComponentProps> = ({
                   className="text-5xl tracking-[2.5%] text-[#4D4D4D] sm:text-[58px] font-thin text-center lg:text-right leading-relaxed"
                   variants={bounceAnimation}
                 >
-                  {factoid}
+                  <CharByCharOnScroll
+                    className="justify-end"
+                    shadow={true}
+                    lineStyles={{
+                      marginTop: "1ch", // Custom line height
+                      marginBottom: "1ch", // Custom line height
+                      marginRight: "0.4ch", // Custom character spacing
+                      height:"1ch",
+                    }}
+                    start={90}
+                    end={10}
+                  >
+                    {factoid}
+                  </CharByCharOnScroll>
                 </motion.h2>
               ) : (
                 <motion.h2
                   className="text-5xl tracking-[2.5%] text-[#4D4D4D] sm:text-[58px] font-thin text-center lg:text-right leading-relaxed"
                   variants={bounceAnimation}
                 >
-                  Children typically start teething within their first six
-                  months. It is highly beneficial to have us examine their teeth
-                  and monitor their dental development.
+                  <CharByCharOnScroll
+                    className="justify-end"
+                    shadow={true}
+                    lineStyles={{
+                      marginTop: "1ch", // Custom line height
+                      marginBottom: "0.8ch", // Custom line height
+                      marginRight: "0.4ch", // Custom character spacing
+                      height:"1ch",
+                    }}
+                    start={90}
+                    end={10}
+                  >
+                    Children typically start teething within their first six
+                    months. It is highly beneficial to have us examine their
+                    teeth and monitor their dental development.
+                  </CharByCharOnScroll>
                 </motion.h2>
               )}
             </motion.div>

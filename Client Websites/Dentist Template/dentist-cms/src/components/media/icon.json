@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_media_icons",
+  "info": {
+    "displayName": "Icon",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "iconName": {
+      "type": "text",
+      "default": "icon"
+    },
+    "iconFile": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "heroIcon": {
+      "type": "customField",
+      "customField": "plugin::heroicons-field.icon-picker"
+    }
+  }
+}
