@@ -22,55 +22,71 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-const posts = [
+interface Service {
+  icon?: string | SVGAElement;
+  title: string;
+  description: string;
+  href: string;
+}
+
+const services: Service[] = [
   {
-    icon: "/img/Rectangle 100 (3).png",
-    title: "Dental Crowns, Bridges, and Implants",
-    href: "/services/dental-implants",
-    description:
-      "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. ",
-  },
-  {
-    icon: "/img/Rectangle 100 (4).png",
-    title: "Family and Children's dentistry",
-    href: "/services/pediatric-dentistry",
-    description:
-      "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. ",
-  },
-  {
-    icon: "/img/download.png",
-    title: "CEREC dentistry",
-    href: "/services/cosmetic-dentistry",
-    description:
-      "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. ",
-  },
-  {
-    icon: "/img/Rectangle 100 (5).png",
+    icon: "/img/image 73.png",
     title: "Cosmetic dentistry",
     href: "/services/cosmetic-dentistry",
     description:
-      "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. ",
+      "At Trischuk Dental Clinic, we provide a variety of cosmetic dentistry options for people looking to enhance their smile or for people that need restorative measures taken to improve their oral health.",
   },
   {
-    icon: "/img/Rectangle 100 (3).png",
-    title: "Sedation dentistry",
-    href: "#",
+    icon: "/img/image 73 (2).png",
+    title: "Dental Implants",
+    href: "/services/dental-implants",
     description:
-      "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. ",
+      "Dental implants can be an ideal way for you to restore you smile and missing teeth in Yorkton. As an alternative to bridges and dentures,",
   },
   {
     icon: "/img/Rectangle 100 (4).png",
     title: "Dentures",
     href: "/services/dentures",
     description:
-      "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. ",
+      "If you are missing some or most of your teeth, dentures can replace these gaps and will also help prevent your jaw from shrinking.",
   },
   {
     icon: "/img/download.png",
-    title: "Orthodontics",
+    title: "General & Family Dentistry",
     href: "/services/orthodontics",
     description:
-      "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. ",
+      "If you are missing some or most of your teeth, dentures can replace these gaps and will also help prevent your jaw from shrinking.",
+  },
+  {
+    icon: "/img/Rectangle 100 (4).png",
+    title: "Kid-Friendly Dental Excellence",
+    href: "/services/pediatric-dentistry",
+    description:
+      "Introduce your child to a world of positive dental experiences. Our pediatric expertise ensures a fun, stress-free environment where your little ones learn to love taking care of their teeth.",
+  },
+  {
+    icon: "/img/download.png",
+    title: "Ongoing Offers for Affordability",
+    href: "/services/cosmetic-dentistry",
+    description:
+      "Quality dental care is within reach. Explore our ongoing offers designed to make dental treatments more accessible and affordable, so you can invest in your oral health without breaking the bank.",
+  },
+
+  {
+    icon: "/img/Rectangle 100 (3).png",
+    title: "Holistic Dental Solutions",
+    href: "#",
+    description:
+      "Experience a new level of oral health care. Our holistic approach considers your dental needs in connection with your overall health, ensuring a revitalized smile and improved well-being.",
+  },
+
+  {
+    icon: "/img/download.png",
+    title: "Pain-Free Dentistry Experience",
+    href: "/services/orthodontics",
+    description:
+      "Say goodbye to dental anxiety. Our gentle techniques and focus on patient comfort guarantee a pain-free and relaxed dental experience, allowing you to maintain your oral health with confidence.",
   },
   // More posts...
 ];
@@ -106,17 +122,17 @@ const Services: React.FC<ServicesProps> = ({ className }) => {
           >
             <span className="tracking-[0.4em]">Service</span>s
           </motion.h1>
-          <motion.h2
+          {/* <motion.h2
             className="font-medium text-gray-900 text-[38px] mt-2 tracking-tight text-center"
             variants={bounceAnimation}
           >
             Feel Like Home in Our Spa-like Atmosphere
-          </motion.h2>
+          </motion.h2> */}
         </motion.div>
 
         {/* Carousel */}
         <motion.div
-          className="flex flex-col items-center w-full overflow-hidden my-16"
+          className="flex flex-col items-center w-full overflow-hidden my-8"
           ref={ref2}
           animate={isInView2 ? "animate" : "initial"}
           variants={staggeredAnimationFast}
@@ -128,38 +144,73 @@ const Services: React.FC<ServicesProps> = ({ className }) => {
             className="w-full xl:w-[85%] mt-10 flex flex-row justify-between xl:gap-5"
           >
             <CarouselContent className="flex flex-row ml-1">
-              {posts.map((item, index) => (
+              {services.map((service, index) => (
                 <CarouselItem
                   key={index}
-                  className="sm:max-w-[285px] pl-0 pr-3 flex flex-row justify-center"
+                  className="sm:max-w-[50%] md:max-w-[33.33%] lg:max-w-[25%] pl-0 pr-3 flex flex-row justify-center"
                 >
                   <motion.div className="p-1" variants={bounceAnimation}>
-                    <Card className="shadow-none bg-white rounded-xl sm:max-w-[285px] h-[320px] border-none">
-                      <CardContent className="flex flex-col items-start justify-between h-full w-full py-10 gap-y-3">
-                        <div className="relative w-[50px] h-[50px] overflow-hidden">
-                          <Image
-                            src={item.icon}
-                            alt={item.title}
-                            loading="lazy"
-                            layout="fill"
-                            objectFit="contain"
-                            sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 50px"
-                          />
+                    <Card
+                      className={`shadow-none ${
+                        index % 2 === 0 ? "bg-[#1493A4]" : "bg-white"
+                      } rounded-[45px] sm:max-w-[285px] h-full min-h-[320px] border-none`}
+                    >
+                      <CardContent className="flex flex-col items-start justify-start h-full w-full py-10 gap-y-3">
+                        <div
+                          className={`${
+                            index % 2 == 0 ? "bg-[#0C8393]" : "bg-[#F8F8F8]"
+                          } relative flex justify-center items-center w-[88px] h-[88px] overflow-hidden rounded-full`}
+                        >
+                          <div
+                            className={`${
+                              index % 2 == 0 ? "text-white" : "text-[#1493A4]"
+                            } relative w-[50px] h-[50px]`}
+                          >
+                            {/* <Image
+                              src={service.icon}
+                              alt={service.title}
+                              loading="lazy"
+                              layout="fill"
+                              objectFit="contain"
+                              sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 50px"
+                            /> */}
+                            <div
+                              style={{
+                                width: "50px",
+                                height: "50px",
+                                mask: `url(${service.icon}) no-repeat center / contain`,
+                                WebkitMask: `url(${service.icon}) no-repeat center / contain`,
+                                backgroundColor: "currentColor",
+                              }}
+                            />
+                          </div>
                         </div>
-                        <h2 className="text-[18px] font-semibold">
-                          {item.title}
+                        <h2
+                          className={`${
+                            index % 2 == 0 ? "text-white" : "text-[#1493A4]"
+                          } text-[18px] font-semibold`}
+                        >
+                          {service.title}
                         </h2>
-                        <p className="text-[16px] font-regular">
-                          {item.description}
+                        <p
+                          className={`${
+                            index % 2 == 0 ? "text-white" : "text-black"
+                          } text-[16px] font-regular`}
+                        >
+                          {service.description}
                         </p>
                         <a
-                          href={item.href}
-                          className="flex flex-row items-center gap-2 text-[16px] group"
+                          href={service.href}
+                          className="flex flex-row items-center gap-2 text-[16px] group mt-auto"
                         >
-                          <p className="font-medium group-hover:text-[#1493A4]">
-                            Read More
+                          <p
+                            className={`${
+                              index % 2 == 0 ? "text-white" : "text-[#1493A4]"
+                            } font-bold`}
+                          >
+                            Learn More
                           </p>
-                          <span className="flex rounded-full bg-[#C9C9C9] group-hover:bg-[#1493A4] w-4 h-4 items-center justify-center">
+                          {/* <span className="flex rounded-full bg-[#C9C9C9] group-hover:bg-[#1493A4] w-4 h-4 items-center justify-center">
                             <svg
                               width="9"
                               height="9"
@@ -172,7 +223,7 @@ const Services: React.FC<ServicesProps> = ({ className }) => {
                                 fill="white"
                               />
                             </svg>
-                          </span>
+                          </span> */}
                         </a>
                       </CardContent>
                     </Card>
@@ -180,13 +231,13 @@ const Services: React.FC<ServicesProps> = ({ className }) => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="hidden xl:inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input absolute h-10 w-10 -right-12 top-1/2 -translate-y-1/2 bg-[#1493A4] rounded-none text-white hover:bg-[#1493A4]/80 hover:text-white border-none" />
-            <CarouselNext className="hidden xl:inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input absolute h-10 w-10 -right-12 top-1/2 -translate-y-1/2 bg-[#1493A4] rounded-none text-white hover:bg-[#1493A4]/80 hover:text-white border-none" />
+            <CarouselPrevious className="hidden xl:inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input absolute h-10 w-10 -right-12 top-1/2 -translate-y-1/2 bg-transparent rounded-none text-[#1493A4] hover:text-[#1493A4]/60 border-none" />
+            <CarouselNext className="hidden xl:inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input absolute h-10 w-10 -right-12 top-1/2 -translate-y-1/2 bg-transparent rounded-none text-[#1493A4] hover:text-[#1493A4]/60 border-none" />
           </Carousel>
         </motion.div>
 
         {/* More Button */}
-        <motion.div
+        {/* <motion.div
           className="flex items-center justify-center gap-x-6"
           ref={ref3}
           animate={isInView3 ? "animate" : "initial"}
@@ -199,7 +250,7 @@ const Services: React.FC<ServicesProps> = ({ className }) => {
           >
             View Details
           </motion.a>
-        </motion.div>
+        </motion.div> */}
       </div>
     </div>
   );

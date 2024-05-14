@@ -183,10 +183,10 @@ export default function Team() {
               {people.map((person, index) => (
                 <CarouselItem
                   key={index}
-                  className="sm:max-w-[334px] h-[379px] pl-0 pr-4 xl:pr-8 flex flex-row justify-center items-end"
+                  className="md:max-w-[50%] lg:max-w-[33.33%] h-[379px] pl-0 pr-4 xl:pr-8 flex flex-row justify-center items-end"
                 >
-                  <motion.div className="p-1" variants={bounceAnimation}>
-                    <Card className="flex flex-col items-center text-center rounded-3xl max-h-[333px]">
+                  <motion.div className="p-1 flex-grow" variants={bounceAnimation}>
+                    <Card className="flex flex-col items-center text-center rounded-3xl h-[333px]">
                       <CardHeader className="items-center">
                         <Avatar className="w-[70px] h-[70px] -mt-16 border-2 border-white">
                           <AvatarImage
@@ -226,7 +226,7 @@ export default function Team() {
                         </div>
                       </CardContent>
                       <CardFooter className="px-4">
-                        <CardDescription className="text-black text-[16px] leading-tight">
+                        <CardDescription className="text-black text-[16px] leading-tight max-w-[30ch]">
                           {person.description}
                         </CardDescription>
                       </CardFooter>

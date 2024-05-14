@@ -5,51 +5,15 @@ import Image from "next/image";
 import { bounceAnimation, staggeredAnimationFast } from "@/utils/animations";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
+import CTA from "@/components/layouts/about/cta";
 
 interface ComponentProps {
-  infoCard?: string;
-  pageTitle?: string;
-  details?: string;
+  className?: string;
 }
 
-const Video: React.FC<ComponentProps> = ({ infoCard, pageTitle, details }) => {
-  const ref1 = useRef(null);
-  const ref2 = useRef(null);
-  const ref3 = useRef(null);
-  const isInView1 = useInView(ref1);
-  const isInView2 = useInView(ref2);
-  const isInView3 = useInView(ref3);
-
-  const renderTitle = (title: string) => {
-    const words = title.split(" ");
-    // Map over words to apply conditional styling
-    const formattedWords = words.map((word, index) => {
-      // Check if the word is 'dentistry' or it is the second word (index 1)
-      if (word.toLowerCase() === "dentistry" || index === 1) {
-        return <span className="text-[#1493A4]">{word}</span>;
-      }
-      return word;
-    });
-
-    // Join the words with spaces to form the complete title
-    return (
-      <>
-        {formattedWords.reduce(
-          (prev, curr, index) => (
-            <>
-              {prev}
-              {index > 0 ? " " : ""}
-              {curr}
-            </>
-          ),
-          ""
-        )}
-      </>
-    );
-  };
-
+const Video: React.FC<ComponentProps> = ({ className }) => {
   return (
-    <div className="relative flex flex-col items-center w-full bg-[#1493A4] py-24">
+    <div className="relative flex flex-col items-center w-full bg-[#1493A4] pt-24 sm:py-24">
       {/* SVG Decorations */}
       <div className="relative overflow-x-clip w-full h-full">
         {/* Circle */}
@@ -101,11 +65,11 @@ const Video: React.FC<ComponentProps> = ({ infoCard, pageTitle, details }) => {
                 </p>
               </div>
             </div>
+
+            <CTA className="flex sm:hidden"/>
           </div>
         </div>
       </div>
-
-     
 
       {/* SVG Decorations */}
       <div className="relative overflow-x-clip w-full h-full">

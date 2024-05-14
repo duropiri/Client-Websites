@@ -63,7 +63,7 @@ const Body: React.FC<ComponentProps> = ({ pageTitle, pageDetails }) => {
       <Video />
 
       {/* CTA Section */}
-      <CTA />
+      <CTA className="hidden sm:flex"/>
 
       {/* FAQ Section */}
       <FAQ />

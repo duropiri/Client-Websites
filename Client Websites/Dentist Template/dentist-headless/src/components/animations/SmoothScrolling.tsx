@@ -1,16 +1,14 @@
 "use client";
 import { ReactLenis } from "@studio-freight/react-lenis";
 
-interface SmoothScrollingProps {
+interface AnimationProps {
   children: React.ReactNode;
 }
 
-function SmoothScrolling({ children }: SmoothScrollingProps) {
+export default function SmoothScrolling({ children }: AnimationProps) {
   return (
     <ReactLenis root options={{ lerp: 0.2, duration: 5 }}>
       {children}
     </ReactLenis>
   );
 }
-
-export default SmoothScrolling;

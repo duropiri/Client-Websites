@@ -140,7 +140,7 @@ export default function Reviews() {
                 {testimonials.map((person, index) => (
                   <CarouselItem
                     key={index}
-                    className="max-h-[363px] sm:max-w-[527px] pl-0 pr-3 flex flex-row justify-center"
+                    className="max-h-[363px] sm:max-w-[50%] pl-0 pr-3 flex flex-row justify-center"
                   >
                     <motion.div className="p-1" variants={bounceAnimation}>
                       <Card className="flex flex-col items-start text-start rounded-3xl max-h-[333px]">

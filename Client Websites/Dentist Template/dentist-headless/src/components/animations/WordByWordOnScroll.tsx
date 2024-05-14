@@ -12,8 +12,12 @@ interface AnimationProps {
 }
 
 interface lineStyles {
-  lineHeight: string | number;
-  whitespace: string | number;
+  marginTop?: string | number;
+  marginRight?: string | number;
+  height?: string | number;
+  width?: string | number;
+  marginBottom?: string | number;
+  marginLeft?: string | number;
 }
 
 export default function WordByWordOnScroll({
@@ -68,8 +72,12 @@ const Word = ({ children, range, progress, shadow, lineStyles }: any) => {
       <span
         className={!lineStyles ? styles.word : ""}
         style={{
-          marginTop: lineStyles?.lineHeight,
-          marginRight: lineStyles?.whitespace,
+          marginTop: lineStyles?.marginTop,
+          marginBottom: lineStyles?.marginBottom,
+          marginRight: lineStyles?.marginRight,
+          marginLeft: lineStyles?.marginLeft,
+          height: lineStyles?.height,
+          width: lineStyles?.width,
         }}
       >
         <span className={styles.shadow}>{children}</span>

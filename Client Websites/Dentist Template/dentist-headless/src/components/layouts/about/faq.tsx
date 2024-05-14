@@ -15,29 +15,44 @@ import {
 import CharByCharOnScroll from "@/components/animations/CharByCharOnScroll";
 
 interface ComponentProps {
-  infoCard?: string;
-  pageTitle?: string;
-  details?: string;
+  className?: string;
 }
 
-const FAQ: React.FC<ComponentProps> = ({ infoCard, pageTitle, details }) => {
-  const ref1 = useRef(null);
-  const ref2 = useRef(null);
-  const ref3 = useRef(null);
-  const ref4 = useRef(null);
-  const ref5 = useRef(null);
-  const ref6 = useRef(null);
-  const isInView1 = useInView(ref1);
-  const isInView2 = useInView(ref2);
-  const isInView3 = useInView(ref3);
-  const isInView4 = useInView(ref4);
-  const isInView5 = useInView(ref5);
-  const isInView6 = useInView(ref6);
+interface Question {
+  question: string | React.ReactElement;
+  answer: string | React.ReactElement;
+}
+
+const questions: Question[] = [
+  {
+    question: "General dentistry for all ages",
+    answer:
+      "Here at Haimanot Trischuk Dental clinic, our goal is to help you minimize the fear and tension associated with your dental care needs. Sedation dentistry can even be used for routine procedures such as teeth cleaning and check-ups.",
+  },
+  {
+    question: "Sedation dentistry",
+    answer:
+      "Here at Haimanot Trischuk Dental clinic, our goal is to help you minimize the fear and tension associated with your dental care needs. Sedation dentistry can even be used for routine procedures such as teeth cleaning and check-ups.",
+  },
+  {
+    question: "Cosmetic dentistry",
+    answer:
+      "Here at Haimanot Trischuk Dental clinic, our goal is to help you minimize the fear and tension associated with your dental care needs. Sedation dentistry can even be used for routine procedures such as teeth cleaning and check-ups.",
+  },
+  {
+    question: "Dental Implants",
+    answer:
+      "Here at Haimanot Trischuk Dental clinic, our goal is to help you minimize the fear and tension associated with your dental care needs. Sedation dentistry can even be used for routine procedures such as teeth cleaning and check-ups.",
+  },
+];
+
+const FAQ: React.FC<ComponentProps> = ({ className }) => {
+  const refs = questions ? questions.map(() => useRef(null)) : [];
 
   return (
     <div
       id="faq"
-      className="relative flex flex-col items-center w-full bg-white overflow-clip"
+      className={`${className} relative flex flex-col items-center w-full bg-white overflow-clip`}
     >
       {/* Main Content */}
       <div className="relative isolate px-5 w-full max-w-screen-2xl mx-auto flex flex-col items-center xl:px-32 z-10">
@@ -66,44 +81,29 @@ const FAQ: React.FC<ComponentProps> = ({ infoCard, pageTitle, details }) => {
               collapsible
               className="flex flex-col gap-y-4 w-full"
             >
-              <AccordionItem value="item-1" className="rounded-xl">
-                <AccordionTrigger>
-                  General dentistry for all ages
-                </AccordionTrigger>
-                <AccordionContent>
-                  Here at Haimanot Trischuk Dental clinic, our goal is to help
-                  you minimize the fear and tension associated with your dental
-                  care needs. Sedation dentistry can even be used for routine
-                  procedures such as teeth cleaning and check-ups.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2" className="rounded-xl">
-                <AccordionTrigger>Sedation dentistry</AccordionTrigger>
-                <AccordionContent>
-                  Here at Haimanot Trischuk Dental clinic, our goal is to help
-                  you minimize the fear and tension associated with your dental
-                  care needs. Sedation dentistry can even be used for routine
-                  procedures such as teeth cleaning and check-ups.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-3" className="rounded-xl">
-                <AccordionTrigger>Cosmetic dentistry</AccordionTrigger>
-                <AccordionContent>
-                  Here at Haimanot Trischuk Dental clinic, our goal is to help
-                  you minimize the fear and tension associated with your dental
-                  care needs. Sedation dentistry can even be used for routine
-                  procedures such as teeth cleaning and check-ups.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-4" className="rounded-xl">
-                <AccordionTrigger>Dental Implants</AccordionTrigger>
-                <AccordionContent>
-                  Here at Haimanot Trischuk Dental clinic, our goal is to help
-                  you minimize the fear and tension associated with your dental
-                  care needs. Sedation dentistry can even be used for routine
-                  procedures such as teeth cleaning and check-ups.
-                </AccordionContent>
-              </AccordionItem>
+              {questions &&
+                questions.map((question, index) => {
+                  const isInView = useInView(refs[index]);
+                  return (
+                    <motion.div
+                      ref={refs[index]}
+                      animate={isInView ? "animate" : "initial"}
+                      variants={staggeredAnimationFast}
+                    >
+                      <motion.div variants={bounceAnimation}>
+                        <AccordionItem
+                          value={`item-${index}`}
+                          className="rounded-xl"
+                        >
+                          <AccordionTrigger className="text-[18px] sm:text-[25px] text-start text-nowrap px-4 sm:px-12">
+                            {question.question}
+                          </AccordionTrigger>
+                          <AccordionContent>{question.answer}</AccordionContent>
+                        </AccordionItem>
+                      </motion.div>
+                    </motion.div>
+                  );
+                })}
             </Accordion>
           </div>
         </div>

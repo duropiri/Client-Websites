@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef } from "react";
 import Image from "next/image";
+import Script from "next/script";
 
 import { bounceAnimation, staggeredAnimationFast } from "@/utils/animations";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
@@ -11,6 +12,7 @@ import Team from "@/components/team";
 import AboutUs from "@/components/aboutUs";
 import Reviews from "@/components/reviews";
 import CTA from "@/components/cta";
+import HorizontalScroll from "./animations/HorizontalScroll";
 
 export default function Body() {
   const ref = useRef(null);
@@ -20,8 +22,6 @@ export default function Body() {
   });
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "-25%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
-
-
 
   return (
     <div className="bg-white relative">
@@ -117,6 +117,11 @@ export default function Body() {
         </div>
       </div>
 
+      {/* <Script
+        src="https://api.cronbot.ai/v1/widgets/app/app_8ylapbkm5snz"
+        strategy="afterInteractive" // Loads the script immediately after the page becomes interactive
+        async
+      /> */}
       {/* Hero Section */}
       <Hero />
 
