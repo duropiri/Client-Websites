@@ -1,114 +1,15 @@
 "use client";
 import React, { useRef } from "react";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 
 import { bounceAnimation, staggeredAnimationFast } from "@/utils/animations";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
 
-import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import { ContactForm } from "@/components/contactForm";
 
 interface ComponentProps {}
-
-const formSchema = z.object({
-  firstName: z.string().min(1, "Please enter your first name"),
-  lastName: z.string().min(1, "Please enter your last name"),
-  email: z.string().email("Please enter a valid email address"),
-  telephone: z.string().min(1, "Please enter your telephone number"),
-  message: z.string().min(1, "Please enter a message"),
-});
-
-export function ContactForm() {
-  // 1. Define your form.
-  const form = useForm({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      telephone: "",
-      message: "",
-    },
-  });
-
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
-  }
-
-  return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 my-4">
-        <div className="flex flex-col gap-4 justify-between w-full">
-          <div className="grid grid-cols-2 w-full gap-4">
-            <div className="w-full">
-              <input
-                {...form.register("firstName")}
-                className="flex h-10 w-full border bg-background px-3 py-2 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 rounded-none text-[12px] text-[#3E3E3E] border-[#1493A4]"
-                placeholder="First Name"
-                name="firstName"
-              />
-            </div>
-            <div className="w-full">
-              <input
-                {...form.register("firstName")}
-                className="flex h-10 w-full border bg-background px-3 py-2 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 rounded-none text-[12px] text-[#3E3E3E] border-[#1493A4]"
-                placeholder="Last Name"
-                name="lastName"
-              />
-            </div>
-            <div className="w-full">
-              <input
-                {...form.register("email")}
-                className="flex h-10 w-full border bg-background px-3 py-2 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 rounded-none text-[12px] text-[#3E3E3E] border-[#1493A4]"
-                placeholder="Email"
-                name="email"
-              />
-            </div>
-            <div className="w-full">
-              <input
-                {...form.register("telephone")}
-                className="flex h-10 w-full border bg-background px-3 py-2 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 rounded-none text-[12px] text-[#3E3E3E] border-[#1493A4]"
-                placeholder="Telephone number"
-                name="telephone"
-              />
-            </div>
-          </div>
-          <div className="w-full">
-            <textarea
-              {...form.register("message")}
-              placeholder="Message To Haimanot Trischuk Dental Team"
-              className="w-full h-32 p-3 border ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 rounded-none text-[12px] text-[#3E3E3E] border-[#1493A4]"
-            />
-          </div>
-        </div>
-        <Button
-          className="rounded-none uppercase text-[14px] font-bold px-4 py-3 leading-none h-auto w-full bg-[#1493A4]"
-          type="submit"
-        >
-          Submit
-        </Button>
-        <FormMessage />
-      </form>
-    </Form>
-  );
-}
 
 const Contact: React.FC<ComponentProps> = ({}) => {
   const ref1 = useRef(null);

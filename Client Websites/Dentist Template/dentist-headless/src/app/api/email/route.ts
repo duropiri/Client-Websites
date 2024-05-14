@@ -1,49 +1,41 @@
-import {type NextRequest, NextResponse} from "next/server";
-import nodemailer from "nodemailer";
-import Mail from "nodemailer/lib/mailer";
+import { NextRequest, NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
+
+const transport = nodemailer.createTransport({
+  host: process.env.EMAIL_HOST,
+  port: Number(process.env.EMAIL_PORT),
+  secure: false, // true for 465, false for other ports
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  }
+});
 
 export async function POST(request: NextRequest) {
-  const {email, name, phone, message} = await request.json();
+  const { firstName, lastName, email, telephone, message } = await request.json();
 
-  // Create a transport
-  const transport = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.MY_EMAIL,
-      pass: process.env.MY_PASSWORD,
-    },
-  });
-
-  // Mail options
-  const mailOptions: Mail.Options = {
-    from: process.env.MY_EMAIL,
-    to: process.env.MY_EMAIL,
-
-    subject: `Portfolio Contact From ${name} (${email})`,
-    text: `
-    Name: ${name}
-    Email: ${email}
-    Phone: ${phone} 
-    Message: ${message}
-    `,
+  const mailOptions = {
+    from: process.env.EMAIL_FROM,
+    to: process.env.EMAIL_TO,
+    subject: 'New Contact Form Submission',
+    text: `First Name: ${firstName}\nLast Name: ${lastName}\nEmail: ${email}\nTelephone: ${telephone}\nMessage: ${message}`
   };
 
-  // Send Email Promise Function
   const sendMailPromise = () =>
     new Promise<string>((resolve, reject) => {
-      transport.sendMail(mailOptions, function (err: Error) {
+      transport.sendMail(mailOptions, function (err: Error | null, info: nodemailer.SentMessageInfo) {
         if (!err) {
           resolve("Email sent");
         } else {
-          reject(err.message);
+          reject(err);
         }
       });
     });
 
   try {
     await sendMailPromise();
-    return NextResponse.json({message: "Email sent"});
-  } catch (err) {
-    return NextResponse.json({error: err}, {status: 500});
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    return NextResponse.json({ success: false, error: (error as Error).message });
   }
 }
