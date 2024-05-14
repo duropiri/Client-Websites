@@ -25,10 +25,10 @@ const footer = [
     links: [
       { name: "Covid-19 Pre-Screening Form", href: "/covid-19-pre-screening-form" },
       { name: "Services", href: "/services" },
-      { name: "Cosmetic Dentistry", href: "/services/cosmetic-dentistry" },
-      { name: "Dental Implants", href: "/services/dental-implants" },
+      { name: "Cosmetic Dentistry", href: "/services/cosmetic" },
+      { name: "Dental Implants", href: "/services/implants" },
       { name: "Dentures", href: "/services/dentures" },
-      { name: "Sedation Dentistry", href: "/services/sedation-dentistry" },
+      { name: "Sedation Dentistry", href: "/services/sedation" },
     ],
   },
   {

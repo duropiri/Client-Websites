@@ -33,14 +33,14 @@ const services: Service[] = [
   {
     icon: "/img/image 73.png",
     title: "Cosmetic dentistry",
-    href: "/services/cosmetic-dentistry",
+    href: "/services/cosmetic",
     description:
       "At Trischuk Dental Clinic, we provide a variety of cosmetic dentistry options for people looking to enhance their smile or for people that need restorative measures taken to improve their oral health.",
   },
   {
     icon: "/img/image 73 (2).png",
     title: "Dental Implants",
-    href: "/services/dental-implants",
+    href: "/services/implants",
     description:
       "Dental implants can be an ideal way for you to restore you smile and missing teeth in Yorkton. As an alternative to bridges and dentures,",
   },
@@ -61,14 +61,14 @@ const services: Service[] = [
   {
     icon: "/img/Rectangle 100 (4).png",
     title: "Kid-Friendly Dental Excellence",
-    href: "/services/pediatric-dentistry",
+    href: "/services/pediatric",
     description:
       "Introduce your child to a world of positive dental experiences. Our pediatric expertise ensures a fun, stress-free environment where your little ones learn to love taking care of their teeth.",
   },
   {
     icon: "/img/download.png",
     title: "Ongoing Offers for Affordability",
-    href: "/services/cosmetic-dentistry",
+    href: "/services/cosmetic",
     description:
       "Quality dental care is within reach. Explore our ongoing offers designed to make dental treatments more accessible and affordable, so you can invest in your oral health without breaking the bank.",
   },

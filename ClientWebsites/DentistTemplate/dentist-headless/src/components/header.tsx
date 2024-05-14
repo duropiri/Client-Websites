@@ -91,13 +91,13 @@ const navigation: NavigationItem[] = [
         name: "Pediatric Dentistry",
         description:
           "Specialized dental care for children, ensuring a friendly and comforting experience",
-        href: "/services/pediatric-dentistry",
+        href: "/services/pediatric",
       },
       {
         name: "Sedation Dentistry",
         description:
           "Experience stress-free dental procedures with our sedation options",
-        href: "/services/sedation-dentistry",
+        href: "/services/sedation",
       },
       {
         name: "Orthodontics",
@@ -108,19 +108,19 @@ const navigation: NavigationItem[] = [
         name: "General & Family Dentistry",
         description:
           "Comprehensive dental care for the entire family in one convenient location",
-        href: "/services/general-family-dentistry",
+        href: "/services/family",
       },
     ],
   },
   {
     name: "Cosmetic Dentistry",
     description: "Cosmetic Dentistry page",
-    href: "/services/cosmetic-dentistry",
+    href: "/services/cosmetic",
   },
   {
     name: "Dental Implants",
     description: "Dental Implants page",
-    href: "/services/dental-implants",
+    href: "/services/implants",
   },
   {
     name: "Dentures",
