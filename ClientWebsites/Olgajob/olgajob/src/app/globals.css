@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+@font-face {
+  font-family: 'Gamata';
+  src: url('/fonts/gamata-font/GamataDEMO.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-primary {
+  font-family: 'Gamata', sans-serif;
+}
