@@ -30,7 +30,7 @@ const Header: React.FC<HeaderProps> = ({ logo, navItems, callToAction }) => {
               )}
             </div>
           </div>
-          <div className="flex">
+          <div className="lg:flex hidden">
             <nav className="flex items-center">
               {navItems.map((item, index) => (
                 <div key={index} className="relative group">
@@ -59,7 +59,7 @@ const Header: React.FC<HeaderProps> = ({ logo, navItems, callToAction }) => {
             {callToAction && (
               <a
                 href={callToAction.href}
-                className="ml-3 px-4 py-2 text-white rounded-md bg-gradient-to-r from-[#C502FC] via-[#2A87F8] to-[#02BB63] hover:opacity-90"
+                className="ml-3 px-4 py-2 text-white rounded-md bg-[#2A87F8] hover:opacity-90"
               >
                 {callToAction.text}
               </a>

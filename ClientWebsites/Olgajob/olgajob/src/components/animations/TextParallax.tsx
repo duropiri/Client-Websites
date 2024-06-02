@@ -108,7 +108,7 @@ interface PhraseProps {
 const Phrase: React.FC<PhraseProps> = ({ text, src }) => {
   return (
     <div className="flex px-2 gap-5 items-center">
-      <p className="text-[4vw] lowercase font-semibold font-primary">{text}</p>
+      <p className="text-[4vw] lowercase font-medium font-primary">{text}</p>
       <span className="relative h-[4vw] w-[4vw] aspect-[4/2] rounded-full overflow-hidden">
         <Image
           style={{ objectFit: "cover" }}

@@ -4,12 +4,31 @@ import { motion, useTransform, useScroll } from "framer-motion";
 
 interface AnimationProps {
   children: React.ReactNode;
+  className?: string;
+  innerClassName?: string;
+  height?: string;
 }
 
-const HorizontalScroll: React.FC<AnimationProps> = ({ children }) => {
+const HorizontalScroll: React.FC<AnimationProps> = ({
+  children,
+  className,
+  innerClassName = "sticky top-0 flex items-center overflow-hidden h-[100vh]",
+  height
+}) => {
   const targetRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [totalWidth, setTotalWidth] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  // Set the window width on mount and on window resize
+  useEffect(() => {
+    const updateWindowWidth = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    updateWindowWidth();
+    window.addEventListener("resize", updateWindowWidth);
+    return () => window.removeEventListener("resize", updateWindowWidth);
+  }, []);
 
   // Use the useScroll hook with a specific target
   const { scrollYProgress } = useScroll({
@@ -21,7 +40,7 @@ const HorizontalScroll: React.FC<AnimationProps> = ({ children }) => {
   const x = useTransform(
     scrollYProgress,
     [0, 1],
-    ["0px", `-${totalWidth - window.innerWidth}px`]
+    ["0px", `-${totalWidth - windowWidth}px`]
   );
 
   // Effect to calculate the total width of all children dynamically and adjust the height
@@ -29,7 +48,7 @@ const HorizontalScroll: React.FC<AnimationProps> = ({ children }) => {
     if (containerRef.current) {
       const childrenArray = Array.from(containerRef.current.children);
       const width = childrenArray.reduce(
-        (acc, child) => acc + child.clientWidth,
+        (acc, child) => acc + (child as HTMLElement).clientWidth,
         0
       );
       setTotalWidth(width);
@@ -37,18 +56,17 @@ const HorizontalScroll: React.FC<AnimationProps> = ({ children }) => {
   }, [children]);
 
   // Calculate dynamic height based on the number of children and their total width
-  const dynamicHeight = (totalWidth / window.innerWidth) * 100; // Example conversion factor, adjust as needed
+  const dynamicHeight = (totalWidth / windowWidth) * 100; // Example conversion factor, adjust as needed
 
   return (
     <div
       ref={targetRef}
-      className="relative"
-      style={{ height: `${Math.max(100, dynamicHeight)}vh` }}
+      className={`relative ${className}`}
+      style={{ height: height || `${Math.max(100, dynamicHeight)}vh` }}
       id="horizontal-scroll"
     >
       <div
-        className="sticky top-0 flex items-center overflow-hidden"
-        style={{ height: "100vh" }}
+        className={`${innerClassName}`}
       >
         <motion.div
           ref={containerRef}
@@ -72,7 +90,7 @@ const HorizontalScroll: React.FC<AnimationProps> = ({ children }) => {
 
 export default HorizontalScroll;
 
-// Usage example:
+// Usage example
 <HorizontalScroll>
   <div style={{ width: "100vw", height: "100vh", backgroundColor: "red" }}>
     Item 1
@@ -87,4 +105,3 @@ export default HorizontalScroll;
     Item 4
   </div>
 </HorizontalScroll>;
-
