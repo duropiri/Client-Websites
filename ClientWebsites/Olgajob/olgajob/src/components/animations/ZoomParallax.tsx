@@ -32,8 +32,8 @@ export default function ZoomParallax({
     offset: ["start start", "end end"],
   });
 
-  // Create a list of scale transforms based on provided scaleFactors
-  const scales = media.map((item, index) =>
+  // Create arrays for scales and blurs outside the map
+  const scales = media.map((item) =>
     useTransform(scrollYProgress, [0, 1], [1, item.scale])
   );
 
@@ -111,7 +111,7 @@ const styles = {
   imageContainer: "relative",
 };
 
-//Example media array
+// Example media array
 const media = [
   {
     src: "/img/logo-red-black.png",

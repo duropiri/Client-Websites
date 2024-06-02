@@ -233,7 +233,7 @@ export default function CardsSection() {
           >
             {cards.map((card, index) => {
               return (
-                <div className="flex flex-row items-center justify-between gap-4 lg:gap-12 border border-black px-4 lg:px-10 py-2 lg:py-4 max-h-[200px]">
+                <div key={index} className="flex flex-row items-center justify-between gap-4 lg:gap-12 border border-black px-4 lg:px-10 py-2 lg:py-4 max-h-[200px]">
                   <div className="cards__content flex flex-col gap-1 lg:gap-2">
                     <div className="text-[20px]">
                       <div className="block text-start relative">
@@ -312,7 +312,7 @@ export default function CardsSection() {
               <HorizontalScroll>
                 {cards.map((card, index) => {
                   return (
-                    <div className="flex flex-col-reverse items-start justify-between border border-black px-4 py-2 h-full mx-12">
+                    <div key={index} className="flex flex-col-reverse items-start justify-between border border-black px-4 py-2 h-full mx-12">
                       <div className="cards__content flex flex-col gap-1 lg:gap-2">
                         <div className="text-[20px]">
                           <div className="block text-start relative">
