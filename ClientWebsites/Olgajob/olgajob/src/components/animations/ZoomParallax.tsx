@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { MotionValue, motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 interface AnimationProps {
@@ -21,6 +21,18 @@ interface Media {
   fit?: string;
 }
 
+function useZoomParallaxTransforms(scrollYProgress: MotionValue, media: Media[]) {
+  const scales = media.map((item) =>
+    useTransform(scrollYProgress, [0, 1], [1, item.scale])
+  );
+
+  const blurs = media.map((item, index) =>
+    index !== 0 ? useTransform(scrollYProgress, [0, 1], [0, 50]) : 0
+  );
+
+  return { scales, blurs };
+}
+
 export default function ZoomParallax({
   children,
   className,
@@ -33,13 +45,7 @@ export default function ZoomParallax({
   });
 
   // Create arrays for scales and blurs outside the map
-  const scales = media.map((item) =>
-    useTransform(scrollYProgress, [0, 1], [1, item.scale])
-  );
-
-  const blurs = media.map((item, index) =>
-    index !== 0 ? useTransform(scrollYProgress, [0, 1], [0, 50]) : 0
-  );
+  const { scales, blurs } = useZoomParallaxTransforms(scrollYProgress, media);
 
   return (
     <div ref={container} className={styles.container}>
