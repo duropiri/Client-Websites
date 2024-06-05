@@ -7,6 +7,7 @@ import HorizontalSection from "@/components/old/horizontalSection";
 import GallerySection from "@/components/old/gallerySection";
 import Navbar from "@/components/significo/navbar";
 import Header from "@/components/animations/NavigationMenu";
+import CarouselSection from "@/components/old/carouselSection";
 
 export const navItems = [
   { name: "My Story", href: "/story" },
@@ -58,6 +59,8 @@ export default function Body() {
 
         {/* Gallery Section */}
         <GallerySection />
+        
+        <CarouselSection />
       </div>
     </div>
   );
