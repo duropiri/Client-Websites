@@ -12,7 +12,7 @@ interface AnimationProps {
 const HorizontalScroll: React.FC<AnimationProps> = ({
   children,
   className,
-  innerClassName = "sticky top-0 flex items-center overflow-hidden h-[100vh]",
+  innerClassName = "sticky top-0 flex items-center overflow-x-clip h-[100vh]",
   height
 }) => {
   const targetRef = useRef<HTMLDivElement>(null);

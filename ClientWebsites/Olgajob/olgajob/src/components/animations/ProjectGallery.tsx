@@ -288,7 +288,7 @@ function Modal({
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [cursorXModal, cursorYModal, cursorXCursor, cursorYCursor]);
+  }, [active, controlsModal, controlsCursor, controlsCursorLabel, cursorXModal, cursorYModal, cursorXCursor, cursorYCursor]);
 
   useEffect(() => {
     if (active) {
@@ -309,7 +309,7 @@ function Modal({
         style={{ left: cursorXModal, top: cursorYModal }}
         initial={{ opacity: 0, scale: 0 }}
         animate={controlsModal}
-        className="h-[300px] w-[300px] absolute overflow-hidden pointer-events-none flex items-center justify-center"
+        className="h-[300px] w-[300px] absolute overflow-hidden pointer-events-none flex items-center justify-center rounded-full"
       >
         <div style={{ ...styles.modalSlider, top: `${index * -100}%` }}>
           {projects.map((project, i) => (
