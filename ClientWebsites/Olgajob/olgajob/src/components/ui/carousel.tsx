@@ -278,7 +278,7 @@ const CarouselDots = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        "flex flex-row items-center justify-center space-x-2",
+        "flex flex-row items-center justify-center space-x-4",
         className
       )}
       {...props}
@@ -288,7 +288,7 @@ const CarouselDots = React.forwardRef<
           key={index}
           onClick={() => scrollTo(index)}
           className={cn(
-            "w-6 h-6 rounded-full",
+            "w-4 h-4 rounded-full",
             selectedIndex === index ? "bg-black" : "bg-black/10"
           )}
           aria-label={`Go to slide ${index + 1}`}

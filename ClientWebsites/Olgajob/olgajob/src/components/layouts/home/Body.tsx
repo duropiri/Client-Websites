@@ -8,6 +8,10 @@ import GallerySection from "@/components/old/gallerySection";
 import Navbar from "@/components/significo/navbar";
 import Header from "@/components/animations/NavigationMenu";
 import CarouselSection from "@/components/old/carouselSection";
+import CaseStudy from "@/components/old/caseStudy";
+import ArticleSection from "@/components/old/articleSection";
+import Cta from "@/components/old/cta";
+import Footer from "@/components/old/footer";
 
 export const navItems = [
   { name: "My Story", href: "/story" },
@@ -27,13 +31,21 @@ export const navItems = [
 
 export default function Body() {
   const navigationLinks = [
-    { title: 'Home', href: '/', src: '' },
-    { title: 'Story', href: '/story', src: 'service4-768x526.jpg' },
-    { title: 'Programs', href: '/programs', src: 'Web-photo-A-JPEG-1024x791.jpg' },
-    { title: 'Services', href: '/services', src: 'service2-768x526.jpg' },
-    { title: 'Events', href: '/events', src: 'IMG_4488-2048x1224.jpg' },
-    { title: 'Testimonials', href: '/testimonials', src: '7EA67384-0315-4E66-BEF7-283CDDCB2CCF-2-1956x2048.jpg' },
-    { title: 'Blog', href: '/blog', src: 'IMG_4912-2-1024x1024.png' },
+    { title: "Home", href: "/", src: "" },
+    { title: "Story", href: "/story", src: "service4-768x526.jpg" },
+    {
+      title: "Programs",
+      href: "/programs",
+      src: "Web-photo-A-JPEG-1024x791.jpg",
+    },
+    { title: "Services", href: "/services", src: "service2-768x526.jpg" },
+    { title: "Events", href: "/events", src: "IMG_4488-2048x1224.jpg" },
+    {
+      title: "Testimonials",
+      href: "/testimonials",
+      src: "7EA67384-0315-4E66-BEF7-283CDDCB2CCF-2-1956x2048.jpg",
+    },
+    { title: "Blog", href: "/blog", src: "IMG_4912-2-1024x1024.png" },
   ];
   return (
     <div className="flex flex-col w-full">
@@ -45,7 +57,6 @@ export default function Body() {
         /> */}
         <Header navigation={navigationLinks} />
         {/* <Navbar /> */}
-
       </div>
       <div className="relative">
         {/* Hero Section */}
@@ -59,8 +70,21 @@ export default function Body() {
 
         {/* Gallery Section */}
         <GallerySection />
-        
+
+        {/* Carousel Section */}
         <CarouselSection />
+
+        {/* Case Study Section */}
+        <CaseStudy />
+
+        {/* Article Section */}
+        <ArticleSection />
+
+        {/* CTA Section */}
+        <Cta />
+
+        {/* Footer Section */}
+        <Footer />
       </div>
     </div>
   );
