@@ -88,7 +88,7 @@ const Bottom = React.forwardRef<
                   <p>
                     Don&apos;t miss out on our exclusive Black Friday deals! For one
                     week only, enjoy incredible discounts on our best-selling
-                    furniture pieces. Whether you're looking to refresh your
+                    furniture pieces. Whether you&apos;re looking to refresh your
                     living room, add functionality to your bedroom, or create a
                     cozy outdoor space, we have something for everyone.
                   </p>

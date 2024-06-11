@@ -10,7 +10,7 @@ const Testimonials = React.forwardRef<
       <div className="flex flex-col xl:flex-row items-center justify-center mx-auto h-full w-full p-4 gap-5">
         <div className="flex flex-col-reverse xl:flex-row items-center justify-center gap-5">
           <p className="mt-[5px] text-center xl:text-start">
-            &quot;This is the best furniture I've ever purchased! Exceptional
+            &quot;This is the best furniture I&apos;ve ever purchased! Exceptional
             quality and fast delivery. ❤️&quot;
           </p>
 
