@@ -11,6 +11,39 @@ import {
   CarouselDots,
 } from "@/components/ui/carousel";
 
+const PlayIcon = () => (
+  <svg
+    width="50"
+    height="50"
+    viewBox="0 0 24 24"
+    fill="white"
+    stroke="currentColor"
+    strokeWidth="0"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="feather feather-play"
+  >
+    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+  </svg>
+);
+
+const PauseIcon = () => (
+  <svg
+    width="50"
+    height="50"
+    viewBox="0 0 24 24"
+    fill="white"
+    stroke="currentColor"
+    strokeWidth="0"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="feather feather-pause"
+  >
+    <rect x="6" y="4" width="4" height="16"></rect>
+    <rect x="14" y="4" width="4" height="16"></rect>
+  </svg>
+);
+
 // VideoCard component to handle each video
 const VideoCard: React.FC<{ videoSrc: string }> = ({ videoSrc }) => {
   const [isPlaying, setIsPlaying] = React.useState(false);
@@ -54,10 +87,10 @@ const VideoCard: React.FC<{ videoSrc: string }> = ({ videoSrc }) => {
         onClick={handleVideoClick}
       />
       <button
-        className="absolute bottom-4 right-4  p-2 rounded-full shadow-md"
+        className="absolute inset-0 flex items-center justify-center"
         onClick={togglePlayPause}
       >
-        {isPlaying ? "Pause" : "Play"}
+        {isPlaying ? <PauseIcon /> : <PlayIcon />}
       </button>
     </div>
   );
