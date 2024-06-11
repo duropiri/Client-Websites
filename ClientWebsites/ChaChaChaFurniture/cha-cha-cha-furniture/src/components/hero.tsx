@@ -77,8 +77,7 @@ const Hero = React.forwardRef<
           />
         </svg>
       ),
-      description:
-        "sed adipiscing diam donec adipiscing tristique",
+      description: "Exceptional Quality: Furniture crafted with precision and premium materials.",
     },
     {
       svg: (
@@ -158,8 +157,7 @@ const Hero = React.forwardRef<
           />
         </svg>
       ),
-      description:
-        "sed adipiscing diam donec adipiscing tristique",
+      description: "Stylish Designs: Modern and classic styles to suit any home decor.",
     },
     {
       svg: (
@@ -207,8 +205,7 @@ const Hero = React.forwardRef<
           />
         </svg>
       ),
-      description:
-        "sed adipiscing diam donec adipiscing tristique",
+      description: "Affordable Prices: Luxury furniture without the hefty price tag.",
     },
     {
       svg: (
@@ -295,8 +292,7 @@ const Hero = React.forwardRef<
           />
         </svg>
       ),
-      description:
-        "sed adipiscing diam donec adipiscing tristique",
+      description: "Fast Delivery: Quick and reliable delivery to your doorstep.",
     },
   ];
   return (
@@ -337,12 +333,14 @@ const Hero = React.forwardRef<
           </div>
           <div className="flex flex-col items-center justify-center w-full h-full gap-10 py-6 px-16">
             <h2 className="text-4xl text-center max-w-[20ch]">
-              sed adipiscing diam donec adipiscing tristique risus nec feugiat
-              in
+              Revitalize Your Home with Elegant Furniture
             </h2>
             <ul className="flex flex-col items-center justify-center gap-6 max-w-[36ch]">
               {heroItems.map((heroItem, index) => (
-                <li key={index} className="flex flex-row items-center justify-start gap-10">
+                <li
+                  key={index}
+                  className="flex flex-row items-center justify-start gap-10"
+                >
                   <div className="flex flex-col w-[50px]">{heroItem.svg}</div>
                   <p>{heroItem.description}</p>
                 </li>
@@ -367,7 +365,7 @@ const Hero = React.forwardRef<
                 </svg>
 
                 <div className="flex flex-col z-10">
-                  <p className="text-white">Lorem ipsum dolor sit amet</p>
+                  <p className="text-white">Explore Our Collection</p>
                 </div>
               </a>
             </ul>
@@ -392,7 +390,7 @@ const Hero = React.forwardRef<
                     stroke-width="2"
                   />
                 </svg>
-                <p>Lorem ipsum dolor sit amet</p>
+                <p>Trusted by Thousands of Happy Customers</p>
               </div>
 
               <div className="flex flex-row items-center justify-center gap-3">
@@ -437,7 +435,7 @@ const Hero = React.forwardRef<
                     fill="#152139"
                   />
                 </svg>
-                <p>Lorem ipsum dolor sit amet</p>
+                <p>Proudly Made in the USA</p>
               </div>
             </div>
           </div>

@@ -16,30 +16,30 @@ const SlideshowTestimonials = React.forwardRef<
 >(({ className, ...props }, ref) => {
   const CarouselItems = [
     {
-      title: "Lorem ipsum",
+      title: "Transformational Quality and Style",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquet eget sit amet tellus.",
+        "Absolutely love the quality and style! This storage unit has transformed my living room and provided much-needed organization. The sleek design fits perfectly with my decor. Perfect addition to my home.",
       name: "Ellie",
       status: "Verified Customer",
     },
     {
-      title: "Lorem ipsum",
+      title: "Exceeded My Expectations!",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquet eget sit amet tellus.",
+        "Exceeded my expectations! The craftsmanship is outstanding, and the materials used are top-notch. Fantastic service and fast delivery. I was able to assemble it in no time, and it looks amazing.",
       name: "Sherlyn",
       status: "Verified Customer",
     },
     {
-      title: "Lorem ipsum",
+      title: "Best Purchase Ever!",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquet eget sit amet tellus. ❤️",
+        "This is the best purchase I've ever made. The storage unit is not only functional but also adds a touch of elegance to my space. Highly recommend to anyone looking for quality furniture! ❤️",
       name: "Sarah",
       status: "Verified Customer",
     },
     {
-      title: "Lorem ipsum",
+      title: "Amazing Value and Versatility",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquet eget sit amet tellus. ...",
+        "Amazing products and great value for the price. The versatility of this unit has made it a staple in my home. Will definitely shop here again. It's perfect for storing everything from books to clothes.",
       name: "Elyse",
       status: "Verified Customer",
     },
@@ -60,7 +60,7 @@ const SlideshowTestimonials = React.forwardRef<
           />
         </div>
         <h2 className="text-4xl text-center max-w-[20ch]">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit
+          What Our Customers Are Saying
         </h2>
         <Carousel className="w-full overflow-hidden">
           <CarouselContent className="-ml-1 md:pl-20 lg:pl-40">

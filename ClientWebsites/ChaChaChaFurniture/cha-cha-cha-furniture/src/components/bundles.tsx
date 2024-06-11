@@ -64,10 +64,10 @@ const Bundles = React.forwardRef<
             <h3 className="uppercase text-xl font-bold text-center mt-12 mb-6 xl:hidden flex">
               Lorem ipsum
             </h3>
-            <div className="flex flex-row items-center justify-center w-full h-full max-w-[100vw]">
+            <div className="flex flex-row items-center justify-center w-full h-full max-w-[100vw] gap-2">
               <ul className="flex flex-col items-center justify-center w-full h-full gap-6">
                 {firstBundle.items.map((item, index) => (
-                  <li key={index} className="flex flex-row items-center justify-center gap-6">
+                  <li key={index} className="flex flex-row-reverse items-center justify-center gap-6">
                     <div className="relative flex flex-col items-center justify-center rounded-full min-w-[20vw] min-h-[20vw] md:min-w-[110px] md:min-h-[110px] overflow-hidden">
                       <Image
                         src={item.src}
@@ -103,7 +103,7 @@ const Bundles = React.forwardRef<
             <h3 className="uppercase text-xl font-bold text-center mt-12 mb-6 xl:hidden flex">
               Lorem ipsum
             </h3>
-            <div className="flex flex-row-reverse items-center justify-center w-full h-full  max-w-[100vw]">
+            <div className="flex flex-row-reverse items-center justify-center w-full h-full  max-w-[100vw] gap-2">
               <ul className="flex flex-col items-center justify-center w-full h-full gap-6">
               {secondBundle.items.map((item, index) => (
                   <li key={index} className="flex flex-row items-center justify-center gap-6">

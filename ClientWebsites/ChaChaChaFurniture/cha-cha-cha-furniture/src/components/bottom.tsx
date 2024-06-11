@@ -7,19 +7,19 @@ const Bottom = React.forwardRef<
 >(({ className, ...props }, ref) => {
   const cards = [
     {
-      title: "Lorem ipsum dolor sit amet",
+      title: "Versatile Bookcases",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquet eget sit amet tellus.",
+        "Our versatile bookcases offer the perfect blend of functionality and style. Organize your books and display decor items beautifully.",
     },
     {
-      title: "Lorem ipsum dolor sit amet",
+      title: "Elegant Shelving Units",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquet eget sit amet tellus.",
+        "Discover our elegant shelving units, combining modern design with practicality. Perfect for showcasing your favorite items.",
     },
     {
-      title: "Lorem ipsum dolor sit amet",
+      title: "Innovative Storage Solutions",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquet eget sit amet tellus.",
+        "Our innovative storage solutions maximize space and style. Ideal for organizing any room without compromising on aesthetics.",
     },
   ];
   return (
@@ -43,11 +43,14 @@ const Bottom = React.forwardRef<
           <div className="relative flex flex-col items-center justify-center w-full xl:min-w-[50vw] min-h-[738px] overflow-hidden">
             <div className="flex flex-col items-start justify-start w-full h-full gap-5 py-6 m-auto xl:max-w-[35vw]">
               <h2 className="text-4xl text-center xl:text-start w-full">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                Enhance Your Home with Our Stylish Storage Solutions
               </h2>
               <ul className="flex flex-col items-start justify-between w-full h-full gap-5">
                 {cards.map((card, index) => (
-                  <li key={index} className="flex flex-col items-start justify-start gap-2 border rounded-lg px-8 py-6 min-h-[166px]">
+                  <li
+                    key={index}
+                    className="flex flex-col items-start justify-start gap-2 border rounded-lg px-8 py-6 min-h-[166px]"
+                  >
                     <h3 className="capitalize text-2xl font-bold text-start">
                       {card.title}
                     </h3>
@@ -78,27 +81,35 @@ const Bottom = React.forwardRef<
           <div className="relative flex flex-col items-start xl:items-center justify-start xl:justify-center xl:min-w-[50vw] min-h-[738px] overflow-hidden">
             <div className="flex flex-col items-start xl:items-center justify-start xl:justify-center h-full gap-5 py-6 my-8 xl:my-auto xl:mx-auto xl:max-w-[35vw]">
               <h2 className="text-4xl text-center xl:text-start w-full">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                Upgrade Your Home with Exceptional Savings
               </h2>
               <ul className="flex flex-col items-start justify-start w-full gap-6 xl:max-h-[40ch] overflow-y-scroll xl:text-start text-center">
                 <li className="flex flex-col items-start justify-start gap-5 text-lg">
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Sollicitudin ac orci phasellus egestas tellus rutrum
-                    tellus. Eros in cursus turpis massa tincidunt.
+                    Don't miss out on our exclusive Black Friday deals! For one
+                    week only, enjoy incredible discounts on our best-selling
+                    furniture pieces. Whether you're looking to refresh your
+                    living room, add functionality to your bedroom, or create a
+                    cozy outdoor space, we have something for everyone.
                   </p>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Sollicitudin ac orci phasellus egestas tellus rutrum
-                    tellus. Eros in cursus turpis massa tincidunt.
+                    Our Porch Set is perfect for relaxing outdoors, offering
+                    both comfort and durability. The versatile Sofa Bed provides
+                    a stylish solution for maximizing space, easily transforming
+                    from a sofa to a bed. And our elegant Bedroom Set brings a
+                    touch of luxury to any bedroom, crafted with high-quality
+                    materials for a timeless appeal.
                   </p>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Sollicitudin ac orci phasellus egestas tellus rutrum
-                    tellus. Eros in cursus turpis massa tincidunt.
+                    Shop now and save 20% to 50% on selected items. Hurry, these
+                    deals won't last long! Experience the perfect blend of
+                    style, comfort, and affordability with our Black Friday
+                    Sale.
+                  </p>
+                  <p>
+                    Upgrade your home today and take advantage of these
+                    unbeatable offers. Enjoy fast delivery and exceptional
+                    customer service on every purchase.
                   </p>
                 </li>
               </ul>

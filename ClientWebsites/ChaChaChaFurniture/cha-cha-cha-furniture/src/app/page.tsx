@@ -33,7 +33,7 @@ export default function Home() {
       {/*Video Testimonials Section */}
       <VideoTestimonials />
 
-      <Bundles />
+      {/* <Bundles /> */}
 
       <Products />
 

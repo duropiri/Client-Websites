@@ -29,54 +29,6 @@ const Slideshow = React.forwardRef<
             cx="32.5"
             cy="33"
             r="31"
-            fill="#EFDA8B"
-            stroke="white"
-            stroke-width="3"
-          />
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M47.5891 23.4461C47.5891 23.4461 51.2172 30.5161 46.7283 38.0906C44.5315 41.7958 41.6263 44.5297 38.993 45.766C36.8491 46.771 34.831 46.8165 33.2819 45.9461C31.7328 45.0737 30.7644 43.3487 30.5857 41.0362C30.3685 38.1975 31.345 34.3776 33.5398 30.6724C38.0286 23.0979 46.1273 22.6231 46.1273 22.6231C46.7405 22.5836 47.3171 22.908 47.5891 23.4461Z"
-            fill="white"
-          />
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M25.3802 45.9461C23.695 45.4832 21.9165 44.7591 20.1624 43.774C12.689 39.5684 12.2221 31.984 12.2221 31.984C12.1815 31.3846 12.5144 30.8228 13.0667 30.5577C13.0667 30.5577 14.5447 29.8534 16.8734 29.4835C16.7922 32.2629 17.3343 35.6258 19.3828 39.0797C21.1044 41.9877 23.2423 44.3378 25.3802 45.9461ZM50.9918 29.4341C53.4484 29.7882 55.0198 30.5577 55.0198 30.5577C55.5721 30.8228 55.905 31.3846 55.8644 31.984C55.8644 31.984 55.3975 39.5684 47.9241 43.774C46.0522 44.8264 44.1519 45.5801 42.3673 46.0371C44.5437 44.4248 46.7303 42.0431 48.4865 39.0797C50.5452 35.604 51.0811 32.2233 50.9918 29.4341Z"
-            fill="white"
-          />
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M29.6153 23.2186C31.3714 20.8606 33.1987 19.6875 33.1987 19.6875C33.7103 19.3551 34.3762 19.3551 34.8878 19.6875C34.8878 19.6875 36.6704 20.8309 38.4042 23.1295C36.8998 23.998 35.3487 25.1691 33.9336 26.7457C32.5673 25.2225 31.073 24.0771 29.6153 23.2186Z"
-            fill="white"
-          />
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M30.6568 46.3892C30.0782 46.2586 29.4813 46.0509 28.8742 45.766C26.241 44.5297 23.3357 41.7958 21.141 38.0906C16.6521 30.5161 20.2781 23.4461 20.2781 23.4461C20.5502 22.908 21.1268 22.5836 21.7419 22.6231C21.7419 22.6231 28.0885 22.995 32.6586 28.3381C32.3561 28.7615 32.0617 29.2105 31.7815 29.6833C29.3493 33.79 28.32 38.0372 28.5616 41.1845C28.7301 43.3724 29.4894 45.137 30.6568 46.3892Z"
-            fill="white"
-          />
-        </svg>
-      ),
-      title: "sed adipiscing",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      src: "/images/chachacha/carousel2.jpg",
-      svg: (
-        <svg
-          width="65"
-          height="66"
-          viewBox="0 0 65 66"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle
-            cx="32.5"
-            cy="33"
-            r="31"
             fill="#FF7777"
             stroke="white"
             stroke-width="3"
@@ -87,12 +39,12 @@ const Slideshow = React.forwardRef<
           />
         </svg>
       ),
-      title: "sed adipiscing",
+      title: "Kitchen Collection",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Create the kitchen of your dreams with our stylish and functional furniture. From cabinets to dining sets, we have everything you need to make your kitchen the heart of your home.",
     },
     {
-      src: "/images/chachacha/carousel3.jpg",
+      src: "/images/chachacha/carousel2.jpg",
       svg: (
         <svg
           width="65"
@@ -133,12 +85,12 @@ const Slideshow = React.forwardRef<
           />
         </svg>
       ),
-      title: "sed adipiscing",
+      title: "Living Room Collection",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Transform your living space with our comfortable and stylish sofas, entertainment centers, and coffee tables. Make your living room a place where everyone wants to gather.",
     },
     {
-      src: "/images/chachacha/carousel4.jpg",
+      src: "/images/chachacha/carousel3.jpg",
       svg: (
         <svg
           width="65"
@@ -181,16 +133,64 @@ const Slideshow = React.forwardRef<
           </defs>
         </svg>
       ),
-      title: "sed adipiscing",
+      title: "Entryway Collection",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Make a great first impression with our beautifully crafted entryway furniture. Our range includes stylish storage solutions and welcoming decor that enhance the look and functionality of your home.",
+    },
+    {
+      src: "/images/chachacha/carousel4.jpg",
+      svg: (
+        <svg
+          width="65"
+          height="66"
+          viewBox="0 0 65 66"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="32.5"
+            cy="33"
+            r="31"
+            fill="#EFDA8B"
+            stroke="white"
+            stroke-width="3"
+          />
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M47.5891 23.4461C47.5891 23.4461 51.2172 30.5161 46.7283 38.0906C44.5315 41.7958 41.6263 44.5297 38.993 45.766C36.8491 46.771 34.831 46.8165 33.2819 45.9461C31.7328 45.0737 30.7644 43.3487 30.5857 41.0362C30.3685 38.1975 31.345 34.3776 33.5398 30.6724C38.0286 23.0979 46.1273 22.6231 46.1273 22.6231C46.7405 22.5836 47.3171 22.908 47.5891 23.4461Z"
+            fill="white"
+          />
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M25.3802 45.9461C23.695 45.4832 21.9165 44.7591 20.1624 43.774C12.689 39.5684 12.2221 31.984 12.2221 31.984C12.1815 31.3846 12.5144 30.8228 13.0667 30.5577C13.0667 30.5577 14.5447 29.8534 16.8734 29.4835C16.7922 32.2629 17.3343 35.6258 19.3828 39.0797C21.1044 41.9877 23.2423 44.3378 25.3802 45.9461ZM50.9918 29.4341C53.4484 29.7882 55.0198 30.5577 55.0198 30.5577C55.5721 30.8228 55.905 31.3846 55.8644 31.984C55.8644 31.984 55.3975 39.5684 47.9241 43.774C46.0522 44.8264 44.1519 45.5801 42.3673 46.0371C44.5437 44.4248 46.7303 42.0431 48.4865 39.0797C50.5452 35.604 51.0811 32.2233 50.9918 29.4341Z"
+            fill="white"
+          />
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M29.6153 23.2186C31.3714 20.8606 33.1987 19.6875 33.1987 19.6875C33.7103 19.3551 34.3762 19.3551 34.8878 19.6875C34.8878 19.6875 36.6704 20.8309 38.4042 23.1295C36.8998 23.998 35.3487 25.1691 33.9336 26.7457C32.5673 25.2225 31.073 24.0771 29.6153 23.2186Z"
+            fill="white"
+          />
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M30.6568 46.3892C30.0782 46.2586 29.4813 46.0509 28.8742 45.766C26.241 44.5297 23.3357 41.7958 21.141 38.0906C16.6521 30.5161 20.2781 23.4461 20.2781 23.4461C20.5502 22.908 21.1268 22.5836 21.7419 22.6231C21.7419 22.6231 28.0885 22.995 32.6586 28.3381C32.3561 28.7615 32.0617 29.2105 31.7815 29.6833C29.3493 33.79 28.32 38.0372 28.5616 41.1845C28.7301 43.3724 29.4894 45.137 30.6568 46.3892Z"
+            fill="white"
+          />
+        </svg>
+      ),
+      title: "Bathroom Collection",
+      description:
+        "Turn your bathroom into a relaxing retreat with our high-quality vanities, storage cabinets, and accessories. Enjoy a spa-like experience every day with our elegant and durable bathroom furniture.",
     },
   ];
   return (
     <section className="flex flex-col items-center justify-center w-full h-auto ">
       <div className="flex flex-col items-center justify-center mx-auto h-full w-full py-12 gap-10">
         <h2 className="text-4xl text-center max-w-[20ch]">
-          sed adipiscing diam donec adipiscing tristique risus nec feugiat in
+          Revamp Your Home with Our Exclusive Furniture Collections
         </h2>
         <Carousel className="w-full overflow-hidden">
           <CarouselContent className="-ml-1">

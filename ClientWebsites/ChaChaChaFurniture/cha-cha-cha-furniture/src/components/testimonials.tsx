@@ -10,8 +10,8 @@ const Testimonials = React.forwardRef<
       <div className="flex flex-col xl:flex-row items-center justify-center mx-auto h-full w-full p-4 gap-5">
         <div className="flex flex-col-reverse xl:flex-row items-center justify-center gap-5">
           <p className="mt-[5px] text-center xl:text-start">
-            sed adipiscing diam donec adipiscing tristique risus nec feugiat in
-            ❤️
+            "This is the best furniture I've ever purchased! Exceptional quality
+            and fast delivery. ❤️"
           </p>
 
           <div className="relative flex flex-col items-center justify-center rounded-full w-[40px] h-[40px] overflow-hidden">

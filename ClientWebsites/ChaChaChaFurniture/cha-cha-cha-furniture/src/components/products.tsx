@@ -64,7 +64,7 @@ const Products = React.forwardRef<
         <div className="flex flex-col items-start justify-center max-w-[100vw] xl:w-[555px] h-full py-6 xl:px-0 px-8 w-full xl:mx-12 mx-auto">
           <div className="flex flex-col items-center xl:items-start justify-center w-full">
             <h2 className="text-4xl text-center xl:text-start max-w-[18ch] xl:max-w-[20ch] font-bold">
-              Lorem ipsum dolor sit amet
+              Organize with Style: Multi-Function Storage Unit
             </h2>
             <div className="flex flex-col sm:flex-row items-center sm:items-start xl:justify-start justify-center w-full h-full gap-4 mt-6">
               <div className="flex flex-row">
@@ -161,7 +161,7 @@ const Products = React.forwardRef<
             </div>
           </div>
           <div className="flex flex-col items-center justify-center w-full h-full gap-4 mt-6">
-            <div className="flex flex-row items-center justify-between w-full xl:gap-0 rounded-xl border-[1.5px] border-[#8FC3CD]  py-4 xl:px-4 px-12">
+            <div className="flex flex-row items-center justify-between w-full xl:gap-2 rounded-xl border-[1.5px] border-[#8FC3CD]  py-4 xl:px-4 px-12">
               <div className="flex flex-col xl:flex-row items-center justify-center gap-4">
                 <div className="relative flex flex-col items-center justify-center min-w-[65px] min-h-[65px] overflow-hidden">
                   <Image
@@ -173,7 +173,9 @@ const Products = React.forwardRef<
                   />
                 </div>
                 <div className="flex flex-col items-center xl:items-start justify-center">
-                  <p className="text-lg font-bold">Lorem ipsum</p>
+                  <p className="text-lg font-bold">
+                    Multi-Function Storage Unit
+                  </p>
                   <div className="flex flex-row items-center justify-center gap-2">
                     <p className="line-through">$75.00</p>
                     <p className="font-semibold">$49.99</p>
@@ -201,7 +203,7 @@ const Products = React.forwardRef<
                 />
               </svg>
               <div className="flex flex-col xl:flex-row items-center justify-center gap-4">
-                <div className="relative flex flex-col items-center justify-center min-w-[85px] min-h-[31px] overflow-hidden">
+                <div className="relative flex flex-col items-center justify-center min-w-[65px] min-h-[65px] overflow-hidden">
                   <Image
                     src="/images/chachacha/item21.jpg"
                     alt="profile image"
@@ -212,7 +214,7 @@ const Products = React.forwardRef<
                 </div>
                 <div className="flex flex-col items-center xl:items-start justify-center">
                   <p className="text-lg text-center xl:text-start font-bold max-w-[10ch] leading-tight">
-                    Lorem ipsum
+                    Premium Shelf Set
                   </p>
                   <div className="flex flex-row items-center justify-center gap-2">
                     <p className="line-through">$200.00</p>
@@ -233,9 +235,7 @@ const Products = React.forwardRef<
                   />
                 </div>
                 <div className="flex flex-col items-center md:items-start justify-center">
-                  <p className="text-lg font-bold">
-                    Lorem ipsum dolor sit amet
-                  </p>
+                  <p className="text-lg font-bold">Small Storage Box</p>
                   <div className="flex flex-row items-center justify-center gap-2">
                     <p className="line-through">$30.00</p>
                     <p className="font-semibold">$00</p>
@@ -329,7 +329,7 @@ const Products = React.forwardRef<
             </svg>
 
             <div className="flex flex-col z-10">
-              <p className="text-white text-2xl">Lorem ipsum dolor sit amet</p>
+              <p className="text-white text-2xl">Add to Cart</p>
             </div>
           </a>
           <ul className="flex flex-col items-start justify-center w-full gap-6 mt-6">
@@ -358,7 +358,7 @@ const Products = React.forwardRef<
                   </svg>
                 </div>
                 <p className="max-w-[18ch] font-semibold">
-                  Lorem ipsum dolor sit amet
+                  Top Quality Materials: Made to Last
                 </p>
               </li>
               <li className="flex flex-row items-center justify-start gap-5 w-1/2">
@@ -401,7 +401,7 @@ const Products = React.forwardRef<
                   </svg>
                 </div>
                 <p className="max-w-[15ch] font-semibold">
-                  Lorem ipsum dolor sit amet
+                  Proudly Made in the USA
                 </p>
               </li>
             </div>
@@ -432,7 +432,7 @@ const Products = React.forwardRef<
                   </svg>
                 </div>
                 <p className="max-w-[18ch] font-semibold">
-                  Lorem ipsum dolor sit amet
+                  Modern Design: Fits Any Decor
                 </p>
               </li>
               <li className="flex flex-row items-center justify-start gap-5 w-1/2">
@@ -467,7 +467,7 @@ const Products = React.forwardRef<
                   </svg>
                 </div>
                 <p className="max-w-[20ch] font-semibold">
-                  Lorem ipsum dolor sit amet
+                  Easy Assembly: No Tools Required
                 </p>
               </li>
             </div>
@@ -475,12 +475,9 @@ const Products = React.forwardRef<
           </ul>
           <div className="flex flex-col items-start justify-start w-full gap-2 mt-6">
             <h3 className="capitalize text-xl font-bold text-start">
-            Lorem ipsum dolor sit amet
+              Create a Clutter-Free Home with Our Innovative Storage Solutions
             </h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
+            <p>Order now and transform your space with ease.</p>
           </div>
         </div>
       </div>

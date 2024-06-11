@@ -122,7 +122,7 @@ const VideoTestimonials = React.forwardRef<
     <section className="flex flex-col items-center justify-center w-full h-auto ">
       <div className="flex flex-col items-center justify-center mx-auto h-full w-full py-12 gap-10">
         <h2 className="text-4xl text-center max-w-[20ch]">
-          Lorem ipsum dolor sit amet
+          Discover Our Showroom
         </h2>
         <Carousel className="flex flex-col items-center justify-center w-full overflow-hidden">
           <div className="flex flex-col xl:flex-row items-center justify-center mt-12 w-[90vw]">

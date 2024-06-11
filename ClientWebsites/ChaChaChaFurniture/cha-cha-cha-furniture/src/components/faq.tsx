@@ -12,46 +12,47 @@ const FAQ = React.forwardRef<
 >(({ className, ...props }, ref) => {
   const faqs = [
     {
-      question: "Q: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+      question: "Q: How do I choose the right furniture for my home?",
       answer:
-        "A: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sollicitudin ac orci phasellus egestas tellus rutrum tellus. Eros in cursus turpis massa tincidunt.",
+        "A: Our design experts are here to help. Contact us for a personalized consultation to find pieces that match your style and needs.",
     },
     {
-      question: "Q: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+      question: "Q: What is your return policy?",
       answer:
-        "A: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sollicitudin ac orci phasellus egestas tellus rutrum tellus. Eros in cursus turpis massa tincidunt.",
+        "A: We offer a hassle-free return policy. If you're not satisfied with your purchase, you can return it within 30 days for a full refund.",
     },
     {
-      question: "Q: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+      question: "Q: Do you offer customization?",
       answer:
-        "A: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sollicitudin ac orci phasellus egestas tellus rutrum tellus. Eros in cursus turpis massa tincidunt.",
+        "A: Yes, we provide custom design services to create furniture that perfectly fits your space and style preferences.",
     },
     {
-      question: "Q: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+      question: "Q: How long does delivery take?",
       answer:
-        "A: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sollicitudin ac orci phasellus egestas tellus rutrum tellus. Eros in cursus turpis massa tincidunt.",
+        "A: Delivery times vary depending on the piece and customization options. Typically, it takes 2-4 weeks for delivery.",
     },
     {
-      question: "Q: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+      question: "Q: What materials do you use?",
       answer:
-        "A: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sollicitudin ac orci phasellus egestas tellus rutrum tellus. Eros in cursus turpis massa tincidunt.",
+        "A: We use only the finest materials, including solid wood, premium fabrics, and durable metals, ensuring each piece is built to last.",
     },
     {
-      question: "Q: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+      question: "Q: Do you offer financing options?",
       answer:
-        "A: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sollicitudin ac orci phasellus egestas tellus rutrum tellus. Eros in cursus turpis massa tincidunt.",
+        "A: Yes, we offer flexible financing options to help you bring home the furniture you love without breaking the bank.",
     },
     {
-      question: "Q: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+      question: "Q: Can I track my order?",
       answer:
-        "A: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sollicitudin ac orci phasellus egestas tellus rutrum tellus. Eros in cursus turpis massa tincidunt.",
+        "A: Absolutely! Once your order is shipped, we provide tracking information so you can monitor the delivery progress.",
     },
     {
-      question: "Q: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+      question: "Q: How do I care for my furniture?",
       answer:
-        "A: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sollicitudin ac orci phasellus egestas tellus rutrum tellus. Eros in cursus turpis massa tincidunt.",
+        "A: Each piece comes with care instructions. Generally, we recommend regular dusting, avoiding direct sunlight, and using protective pads under heavy objects.",
     },
   ];
+
   return (
     <section
       id="faq"
