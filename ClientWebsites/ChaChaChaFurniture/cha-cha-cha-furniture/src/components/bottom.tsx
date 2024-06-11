@@ -86,11 +86,12 @@ const Bottom = React.forwardRef<
               <ul className="flex flex-col items-start justify-start w-full gap-6 xl:max-h-[40ch] overflow-y-scroll xl:text-start text-center">
                 <li className="flex flex-col items-start justify-start gap-5 text-lg">
                   <p>
-                    Don&apos;t miss out on our exclusive Black Friday deals! For one
-                    week only, enjoy incredible discounts on our best-selling
-                    furniture pieces. Whether you&apos;re looking to refresh your
-                    living room, add functionality to your bedroom, or create a
-                    cozy outdoor space, we have something for everyone.
+                    Don&apos;t miss out on our exclusive Black Friday deals! For
+                    one week only, enjoy incredible discounts on our
+                    best-selling furniture pieces. Whether you&apos;re looking
+                    to refresh your living room, add functionality to your
+                    bedroom, or create a cozy outdoor space, we have something
+                    for everyone.
                   </p>
                   <p>
                     Our Porch Set is perfect for relaxing outdoors, offering
@@ -107,9 +108,16 @@ const Bottom = React.forwardRef<
                     Sale.
                   </p>
                   <p>
-                    Upgrade your home today and take advantage of these
-                    unbeatable offers. Enjoy fast delivery and exceptional
-                    customer service on every purchase...
+                    Upgrade your home today with our new Buy on Credit offer.
+                    Enjoy the furniture you love now and pay over time with
+                    flexible payment plans. Visit us in-store to apply for
+                    credit and start enjoying your new furniture immediately.
+                  </p>
+                  <p>
+                    Take advantage of these unbeatable offers and enjoy fast
+                    delivery and exceptional customer service on every purchase.
+                    Transform your space with ease and convenience, thanks to
+                    our exclusive Black Friday deals and Buy on Credit option.
                   </p>
                 </li>
               </ul>
