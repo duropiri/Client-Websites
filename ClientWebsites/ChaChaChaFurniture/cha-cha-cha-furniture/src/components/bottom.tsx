@@ -86,7 +86,7 @@ const Bottom = React.forwardRef<
               <ul className="flex flex-col items-start justify-start w-full gap-6 xl:max-h-[40ch] overflow-y-scroll xl:text-start text-center">
                 <li className="flex flex-col items-start justify-start gap-5 text-lg">
                   <p>
-                    Don't miss out on our exclusive Black Friday deals! For one
+                    Don&apos;t miss out on our exclusive Black Friday deals! For one
                     week only, enjoy incredible discounts on our best-selling
                     furniture pieces. Whether you're looking to refresh your
                     living room, add functionality to your bedroom, or create a
@@ -102,7 +102,7 @@ const Bottom = React.forwardRef<
                   </p>
                   <p>
                     Shop now and save 20% to 50% on selected items. Hurry, these
-                    deals won't last long! Experience the perfect blend of
+                    deals won&apos;t last long! Experience the perfect blend of
                     style, comfort, and affordability with our Black Friday
                     Sale.
                   </p>
