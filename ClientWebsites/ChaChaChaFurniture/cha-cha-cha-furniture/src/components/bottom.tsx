@@ -109,7 +109,7 @@ const Bottom = React.forwardRef<
                   <p>
                     Upgrade your home today and take advantage of these
                     unbeatable offers. Enjoy fast delivery and exceptional
-                    customer service on every purchase.
+                    customer service on every purchase...
                   </p>
                 </li>
               </ul>
