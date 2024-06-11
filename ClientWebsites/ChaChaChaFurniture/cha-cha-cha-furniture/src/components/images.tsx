@@ -26,7 +26,7 @@ const Images = React.forwardRef<
     Autoplay({ delay: 2000, stopOnInteraction: true })
   );
   return (
-    <section className="flex flex-row items-start justify-start w-full h-auto ">
+    <section className="flex flex-row items-start justify-start w-full h-auto">
       <Carousel
         plugins={[plugin.current]}
         className="flex flex-col items-center justify-center w-full overflow-hidden p-4"

@@ -322,18 +322,18 @@ const Hero = React.forwardRef<
       {/* Right Content */}
       <div className="relative flex flex-col items-center justify-center xl:w-[50vw] w-full h-full">
         <div className="relative flex flex-col items-center justify-center w-full min-w-[100vw] xl:min-w-[50vw] min-h-[738px] overflow-hidden">
-          <div className="flex flex-col items-center justify-center w-[100vw] xl:w-[50vw] h-full absolute xl:pointer-events-none">
+          <div className="flex flex-col items-center justify-center w-[100vw] xl:w-[50vw] h-full absolute pointer-events-none">
             <Image
               alt="hero-content"
               src="/images/hero-right.png"
               layout="fill"
               objectFit="cover"
-              className="w-full h-full"
+              className="w-full h-full pointer-events-none"
             />
           </div>
           <div className="flex flex-col items-center justify-center w-full h-full gap-10 py-6 px-16">
             <h2 className="text-4xl text-center max-w-[20ch]">
-              Revitalize Your Home with Elegant Furniture
+            Announcing Our New Buy on Credit Offer
             </h2>
             <ul className="flex flex-col items-center justify-center gap-6 max-w-[36ch]">
               {heroItems.map((heroItem, index) => (
@@ -370,7 +370,7 @@ const Hero = React.forwardRef<
               </a>
             </ul>
             <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-8">
-              <div className="flex flex-row items-center justify-center gap-3">
+              <div className="flex flex-row items-center justify-center gap-3 m-auto">
                 <svg
                   width="25"
                   height="25"
@@ -393,7 +393,7 @@ const Hero = React.forwardRef<
                 <p>Trusted by Thousands of Happy Customers</p>
               </div>
 
-              <div className="flex flex-row items-center justify-center gap-3">
+              {/* <div className="flex flex-row items-center justify-center gap-3">
                 <svg
                   width="25"
                   height="25"
@@ -436,7 +436,7 @@ const Hero = React.forwardRef<
                   />
                 </svg>
                 <p>Proudly Made in the USA</p>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

@@ -188,11 +188,15 @@ const Slideshow = React.forwardRef<
   ];
   return (
     <section className="flex flex-col items-center justify-center w-full h-auto ">
-      <div className="flex flex-col items-center justify-center mx-auto h-full w-full py-12 gap-10">
+      <div className="flex flex-col items-center justify-center mx-auto h-full w-full py-12">
         <h2 className="text-4xl text-center max-w-[20ch]">
-          Revamp Your Home with Our Exclusive Furniture Collections
+          Transform Your Home Today with Our Exclusive Furniture Collections
         </h2>
-        <Carousel className="w-full overflow-hidden">
+        <h3 className="text-xl text-center max-w-[40ch] mt-4">
+          Introducing Our New Buy on Credit Offer - Visit Us In-Store to Apply
+          Now
+        </h3>
+        <Carousel className="w-full overflow-hidden mt-10">
           <CarouselContent className="-ml-1">
             {CarouselItems.map((item, index) => (
               <CarouselItem

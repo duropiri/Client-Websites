@@ -66,6 +66,9 @@ const Products = React.forwardRef<
             <h2 className="text-4xl text-center xl:text-start max-w-[18ch] xl:max-w-[20ch] font-bold">
               Organize with Style: Multi-Function Storage Unit
             </h2>
+            <h3 className="text-xl text-center max-w-[40ch] mt-4">
+              Buy Now, Pay Later with Our New Credit Offer
+            </h3>
             <div className="flex flex-col sm:flex-row items-center sm:items-start xl:justify-start justify-center w-full h-full gap-4 mt-6">
               <div className="flex flex-row">
                 <div className="relative flex flex-col items-center justify-center rounded-full min-w-[50px] min-h-[50px] overflow-hidden">
