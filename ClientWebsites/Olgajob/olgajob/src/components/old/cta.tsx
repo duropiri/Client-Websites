@@ -21,7 +21,7 @@ function cta() {
           </div>
           <div className="self-end w-108 pr-12">
             <div className="text-center lg:text-left">
-              <p
+              <div
                 className="text-lg"
                 style={{
                   display: "block",
@@ -30,7 +30,7 @@ function cta() {
                   opacity: 1,
                 }}
               >
-                <div
+                <p
                   style={{
                     display: "block",
                     textAlign: "start",
@@ -38,13 +38,13 @@ function cta() {
                     opacity: 1,
                   }}
                 >
-                  Find out how Significo’s healthcare
+                  Find out how Significo&apos;s healthcare
                   <br />
                   technology expertise can take your digital
                   <br />
                   experience to the next level.
-                </div>
-              </p>
+                </p>
+              </div>
             </div>
           </div>
           <div className="cta__scroll--parent">

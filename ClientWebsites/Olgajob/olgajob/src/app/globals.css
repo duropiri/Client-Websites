@@ -75,6 +75,17 @@
     }
   }
 
+  @font-face {
+    font-family: 'Gamata';
+    src: url('/fonts/GamataDEMO.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  .font-primary {
+    font-family: 'Gamata', sans-serif;
+  }
+
   :root {
     --cw: 1440;
     --to-rem: var(--cw) * 100rem;

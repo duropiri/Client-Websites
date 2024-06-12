@@ -47,7 +47,7 @@ function HorizontalStats() {
                   <div className="f-40">Real people — real lives — we have built products and solutions for.</div>
                 </div>
                 <div className="horizontal__descr">
-                  <p className="f-18">We’re on a mission to impact as many lives as possible and build a better company while we do it. Here’s our progress.</p>
+                  <p className="f-18">We&apos;re on a mission to impact as many lives as possible and build a better company while we do it. Here&apos;s our progress.</p>
                 </div>
                 <div data-pointless="" className="horizontal__imgs">
                   <div className="horizontal__img is--2" style={{ transform: 'translate3d(0px, 0px, 0px)', opacity: 1 }}>

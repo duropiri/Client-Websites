@@ -67,12 +67,12 @@ const phrases = [
 
 export default function HeroSection() {
   const { scrollYProgress } = useScroll();
-  const scale = useTransform(scrollYProgress, [0, 0.25], [10, 1]);
-  const radius = useTransform(scrollYProgress, [0, 0.25], [70, 2]);
-  const opacity = useTransform(scrollYProgress, [0.2495, 0.25], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.05], [10, 1]);
+  const radius = useTransform(scrollYProgress, [0, 0.05], [70, 2]);
+  const opacity = useTransform(scrollYProgress, [0.04995, 0.05], [1, 0]);
 
   return (
-    <div id="hero" className="relative h-[500vh] ">
+    <div id="hero" className="relative h-full">
       <div
         id="hero_media"
         className="sticky top-0 h-[100vh] z-20 pointer-events-none"
@@ -106,7 +106,7 @@ export default function HeroSection() {
         </motion.svg>
       </div>
       <div id="hero_rows" className="relative z-10">
-        <div className="relative h-[500vh] bg-transparent -mt-[100vh]">
+        <div className="relative h-[300vh] bg-transparent -mt-[100vh]">
           <div className="sticky top-0 h-[100vh] flex items-center overflow-clip">
             <motion.div
               style={{ scale }}
@@ -118,7 +118,7 @@ export default function HeroSection() {
         </div>
       </div>
       <div id="hero_bottom" className="relative z-30 pointer-events-none">
-        <div className="relative h-[500vh] bg-transparent -mt-[500vh]">
+        <div className="relative h-[300vh] bg-transparent -mt-[300vh]">
           <div className="sticky top-0 h-[100vh] flex flex-col justify-between items-start overflow-clip p-12 pt-[72px]">
             <div className="flex w-full justify-center mt-4">
               <h1 className="text-black font-semibold text-lg max-w-[24ch]">

@@ -2,7 +2,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import React, { useEffect, useRef } from "react";
-import Lenis from "lenis";
+// import Lenis from "lenis";
 
 interface AnimationProps {
   className?: string;
@@ -30,20 +30,20 @@ export default function TextParallax({
   //   offset: ["start end", "end start"],
   // });
   const { scrollYProgress } = useScroll(); //Scroll effect immediately
-  const adjustedProgress = useTransform(scrollYProgress, [0, 0.25, 1], [0, 0, 1]); // Adjusts progress to start after 100vh
+  const adjustedProgress = useTransform(scrollYProgress, [0, 0.05, 1], [0, 0, 1]); // Adjusts progress to start after 100vh
 
 
 
-  useEffect(() => {
-    const lenis = new Lenis();
+  // useEffect(() => {
+  //   const lenis = new Lenis();
 
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+  //   function raf(time: number) {
+  //     lenis.raf(time);
+  //     requestAnimationFrame(raf);
+  //   }
 
-    requestAnimationFrame(raf);
-  }, []);
+  //   requestAnimationFrame(raf);
+  // }, []);
 
   return (
     <main className={`overflow-hidden ${className}`}>

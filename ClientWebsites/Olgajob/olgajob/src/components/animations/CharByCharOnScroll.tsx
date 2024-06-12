@@ -42,7 +42,7 @@ export default function CharByCharOnScroll({
   const { scrollYProgress } = useScroll();
 
   // Adjust the progress to start the animation after scrolling 100vh and finish it at 200vh
-  const adjustedProgress = useTransform(scrollYProgress, [0.25, 1], [0, 10]);
+  const adjustedProgress = useTransform(scrollYProgress, [0.05, 0.5], [0, 10]);
 
   // useEffect(() => {
   //   scrollYProgress.on("change", (e) => console.log(e));

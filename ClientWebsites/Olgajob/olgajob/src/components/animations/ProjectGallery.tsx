@@ -114,140 +114,6 @@ function Project({
   );
 }
 
-// function Modal({
-//   modal,
-//   projects,
-// }: {
-//   modal: { active: boolean; index: number };
-//   projects: ProjectDetails[];
-// }) {
-//   const scaleAnimation = {
-//     initial: { scale: 0, x: "-50%", y: "-50%" },
-//     enter: {
-//       scale: 1,
-//       x: "-50%",
-//       y: "-50%",
-//       transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] },
-//     },
-//     closed: {
-//       scale: 0,
-//       x: "-50%",
-//       y: "-50%",
-//       transition: { duration: 0.4, ease: [0.32, 0, 0.67, 0] },
-//     },
-//   };
-
-//   const { active, index } = modal;
-//   const modalContainer = useRef<HTMLDivElement>(null);
-//   const cursor = useRef<HTMLDivElement>(null);
-//   const cursorLabel = useRef<HTMLDivElement>(null);
-
-//   useEffect(() => {
-//     // Move Container
-//     let xMoveContainer = gsap.quickTo(modalContainer.current, "left", {
-//       duration: 0.8,
-//       ease: "power3",
-//     });
-//     let yMoveContainer = gsap.quickTo(modalContainer.current, "top", {
-//       duration: 0.8,
-//       ease: "power3",
-//     });
-//     // Move cursor
-//     let xMoveCursor = gsap.quickTo(cursor.current, "left", {
-//       duration: 0.5,
-//       ease: "power3",
-//     });
-//     let yMoveCursor = gsap.quickTo(cursor.current, "top", {
-//       duration: 0.5,
-//       ease: "power3",
-//     });
-//     // Move cursor label
-//     let xMoveCursorLabel = gsap.quickTo(cursorLabel.current, "left", {
-//       duration: 0.45,
-//       ease: "power3",
-//     });
-//     let yMoveCursorLabel = gsap.quickTo(cursorLabel.current, "top", {
-//       duration: 0.45,
-//       ease: "power3",
-//     });
-
-//     const handleMouseMove = (e: MouseEvent) => {
-//       const { pageX, pageY } = e;
-
-//       if (modalContainer.current) {
-//         const modalWidth = modalContainer.current.offsetWidth;
-//         const modalHeight = modalContainer.current.offsetHeight;
-//         xMoveContainer(pageX - modalWidth / 2);
-//         yMoveContainer(pageY - modalHeight / 2);
-//       }
-//       if (cursor.current) {
-//         const cursorWidth = cursor.current.offsetWidth;
-//         const cursorHeight = cursor.current.offsetHeight;
-//         xMoveCursor(pageX - cursorWidth / 2);
-//         yMoveCursor(pageY - cursorHeight / 2);
-//       }
-//       if (cursorLabel.current) {
-//         const cursorLabelWidth = cursorLabel.current.offsetWidth;
-//         const cursorLabelHeight = cursorLabel.current.offsetHeight;
-//         xMoveCursorLabel(pageX - cursorLabelWidth / 2);
-//         yMoveCursorLabel(pageY - cursorLabelHeight / 2);
-//       }
-//     };
-
-//     window.addEventListener("mousemove", handleMouseMove);
-
-//     return () => {
-//       window.removeEventListener("mousemove", handleMouseMove);
-//     };
-//   }, []);
-
-//   return (
-//     <>
-//       <motion.div
-//         ref={modalContainer}
-//         variants={scaleAnimation}
-//         initial="initial"
-//         animate={active ? "enter" : "closed"}
-//         className="h-[350px] w-[400px] absolute bg-white overflow-hidden pointer-events-none flex items-center justify-center"
-//       >
-//         <div style={{ ...styles.modalSlider, top: `${index * -100}%` }}>
-//           {projects.map((project, i) => (
-//             <div
-//               className="h-full w-full flex items-center justify-center"
-//               style={{ backgroundColor: project.modalColor }}
-//               key={`modal_${i}`}
-//             >
-//               <Image
-//                 src={`/images/${project.src}`}
-//                 width={300}
-//                 height={0}
-//                 alt={project.title || "image"}
-//               />
-//             </div>
-//           ))}
-//         </div>
-//       </motion.div>
-//       <motion.div
-//         ref={cursor}
-//         className={`bg-black w-[80px] h-[80px] rounded-full text-white absolute z-2 flex items-center justify-center text-[14px] font-normal pointer-events-none`}
-//         style={{ backgroundColor: projects[modal.index]?.cursorColor }}
-//         variants={scaleAnimation}
-//         initial="initial"
-//         animate={active ? "enter" : "closed"}
-//       >
-//         <motion.div
-//           ref={cursorLabel}
-//           className="absolute text-center bg-transparent top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-//           variants={scaleAnimation}
-//           initial="initial"
-//           animate={active ? "enter" : "closed"}
-//         >
-//           {projects[modal.index]?.cursorText || "View"}
-//         </motion.div>
-//       </motion.div>
-//     </>
-//   );
-// }
 
 function Modal({
   modal,
@@ -283,14 +149,6 @@ function Modal({
       setCursorYCursor(e.clientY - cursorHeight / 2);
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, [active, controlsModal, controlsCursor, controlsCursorLabel, cursorXModal, cursorYModal, cursorXCursor, cursorYCursor]);
-
-  useEffect(() => {
     if (active) {
       controlsModal.start({ opacity: 1, scale: 1 });
       controlsCursor.start({ opacity: 1, scale: 1 });
@@ -300,7 +158,14 @@ function Modal({
       controlsCursor.start({ opacity: 0, scale: 0 });
       controlsCursorLabel.start({ opacity: 0, scale: 0 });
     }
-  }, [active, controlsModal, controlsCursor, controlsCursorLabel]);
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [active, controlsModal]);
+
 
   return (
     <>

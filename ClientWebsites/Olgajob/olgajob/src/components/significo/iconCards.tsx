@@ -18,7 +18,7 @@ function IconCards() {
               className="section-heading"
             >
               <div className="section-descr">
-                <p data-text-descr="" className="f-18">
+                <div data-text-descr="" className="f-18">
                   <div style={{ display: 'block', textAlign: 'start', position: 'relative', opacity: 1 }}>
                     Significo is a custom health software developer founded on the belief
                   </div>
@@ -31,7 +31,7 @@ function IconCards() {
                   <div style={{ display: 'block', textAlign: 'start', position: 'relative', opacity: 1 }}>
                     simplifies complexity, accelerates capacity, and improves outcomes.
                   </div>
-                </p>
+                </div>
               </div>
               <div className="section-title">
                 <h3 data-balance="" data-text-title="" className="f-64">
@@ -133,7 +133,7 @@ function IconCards() {
                 <div data-text-descr="" className="f-20">
                   <div style={{ display: 'block', textAlign: 'start', position: 'relative', opacity: 1 }}>Driven by Purpose </div>
                 </div>
-                <p data-text-descr="" className="f-14">
+                <div data-text-descr="" className="f-14">
                   <div style={{ display: 'block', textAlign: 'start', position: 'relative', opacity: 1 }}>
                     We believe technology can dramatically
                   </div>
@@ -149,7 +149,7 @@ function IconCards() {
                   <div style={{ display: 'block', textAlign: 'start', position: 'relative', opacity: 1 }}>
                     scale.
                   </div>
-                </p>
+                </div>
               </div>
               <div className="cards__icon">
                 <div className="svg w-embed">
@@ -195,7 +195,7 @@ function IconCards() {
                 <div data-text-descr="" className="f-20">
                   <div style={{ display: 'block', textAlign: 'start', position: 'relative', opacity: 1 }}>Custom Products </div>
                 </div>
-                <p data-text-descr="" className="f-14">
+                <div data-text-descr="" className="f-14">
                   <div style={{ display: 'block', textAlign: 'start', position: 'relative', opacity: 1 }}>
                     We build mobile and web-based apps,
                   </div>
@@ -211,7 +211,7 @@ function IconCards() {
                   <div style={{ display: 'block', textAlign: 'start', position: 'relative', opacity: 1 }}>
                     not the other way around.
                   </div>
-                </p>
+                </div>
               </div>
               <div className="cards__icon">
                 <div className="svg w-embed">
@@ -283,7 +283,7 @@ function IconCards() {
                 <div data-text-descr="" className="f-20">
                   <div style={{ display: 'block', textAlign: 'start', position: 'relative', opacity: 1 }}>Partnerships </div>
                 </div>
-                <p data-text-descr="" className="f-14">
+                <div data-text-descr="" className="f-14">
                   <div style={{ display: 'block', textAlign: 'start', position: 'relative', opacity: 1 }}>
                     We work with payers, providers, and
                   </div>
@@ -296,7 +296,7 @@ function IconCards() {
                   <div style={{ display: 'block', textAlign: 'start', position: 'relative', opacity: 1 }}>
                     and streamlining data/analytics.
                   </div>
-                </p>
+                </div>
               </div>
               <div className="cards__icon">
                 <div className="svg w-embed">
@@ -363,7 +363,7 @@ function IconCards() {
                 <div data-text-descr="" className="f-20">
                   <div style={{ display: 'block', textAlign: 'start', position: 'relative', opacity: 1 }}>Security & Compliance</div>
                 </div>
-                <p data-text-descr="" className="f-14">
+                <div data-text-descr="" className="f-14">
                   <div style={{ display: 'block', textAlign: 'start', position: 'relative', opacity: 1 }}>
                     Not just technology experts. Health
                   </div>
@@ -376,7 +376,7 @@ function IconCards() {
                   <div style={{ display: 'block', textAlign: 'start', position: 'relative', opacity: 1 }}>
                     complexities of technology and data.
                   </div>
-                </p>
+                </div>
               </div>
               <div className="cards__icon">
                 <div className="svg w-embed">

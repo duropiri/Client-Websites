@@ -50,40 +50,25 @@ export default function Body() {
   return (
     <div className="flex flex-col w-full">
       <div id="header" className="sticky top-0 z-[999]">
-        {/* <Header
-          logo="/img/logo.png"
-          navItems={navItems}
-          callToAction={{ text: "Connect", href: "/connect" }}
-        /> */}
         <Header navigation={navigationLinks} />
-        {/* <Navbar /> */}
       </div>
       <div className="relative">
-        {/* Hero Section */}
         <HeroSection />
 
-        {/* Cards Section */}
         <CardsSection />
 
-        {/* Horizontal Scroll Section */}
         <HorizontalSection />
 
-        {/* Gallery Section */}
         <GallerySection />
 
-        {/* Carousel Section */}
         <CarouselSection />
 
-        {/* Case Study Section */}
         <CaseStudy />
 
-        {/* Article Section */}
         <ArticleSection />
 
-        {/* CTA Section */}
         <Cta />
 
-        {/* Footer Section */}
         <Footer />
       </div>
     </div>

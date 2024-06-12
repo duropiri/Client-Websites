@@ -13,7 +13,7 @@ function Testimonials() {
                 </div>
                 <div className="testimonials__descr">
                   <p className="f-18">
-                    Working with Significo and their recommendation service has been a game-changer for our occupational prevention efforts. Our customers are extremely satisfied with the tool's impressive technical capabilities and data-driven approach. But what truly sets it apart is the intuitive and modern user experience it offers, making it a breeze for our clients to navigate. By leveraging this service, our customers have successfully tackled presenteeism and absenteeism.
+                    Working with Significo and their recommendation service has been a game-changer for our occupational prevention efforts. Our customers are extremely satisfied with the tool&apos;s impressive technical capabilities and data-driven approach. But what truly sets it apart is the intuitive and modern user experience it offers, making it a breeze for our clients to navigate. By leveraging this service, our customers have successfully tackled presenteeism and absenteeism.
                   </p>
                 </div>
                 <div className="testimonials__bottom">
@@ -59,7 +59,7 @@ function Testimonials() {
                 </div>
                 <div className="testimonials__descr">
                   <p className="f-18">
-                    They tackled the complexities of our requirements with ease, ensuring the final product was not just functional but also fully compliant with relevant regulations. Significo's contribution has fast-tracked our timeline and had a positive ripple effect on HelloTeam's growth and innovation. Their&nbsp;partnership has been fundamental, securing a promising pathway for our future initiatives.
+                    They tackled the complexities of our requirements with ease, ensuring the final product was not just functional but also fully compliant with relevant regulations. Significo&apos;s contribution has fast-tracked our timeline and had a positive ripple effect on HelloTeam&apos;s growth and innovation. Their&nbsp;partnership has been fundamental, securing a promising pathway for our future initiatives.
                   </p>
                 </div>
                 <div className="testimonials__bottom">

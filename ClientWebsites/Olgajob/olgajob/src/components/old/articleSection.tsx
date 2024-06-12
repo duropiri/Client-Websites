@@ -30,8 +30,8 @@ const ArticleSection: React.FC = () => {
             <div className="article__subtitle">
               <div className="section-heading" mob-reverse="">
                 <div className="section-descr">
-                  <p text-descr="" className="f-18">
-                    <div
+                  <div text-descr="" className="f-18">
+                    <p
                       style={{
                         display: "block",
                         textAlign: "start",
@@ -41,8 +41,8 @@ const ArticleSection: React.FC = () => {
                     >
                       Stay up-to-date on the latest healthcare innovations and
                       thought leadership.
-                    </div>
-                  </p>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
