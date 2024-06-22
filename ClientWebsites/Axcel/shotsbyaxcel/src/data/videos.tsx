@@ -3,5 +3,4 @@ export const Videos = [
     { title: "New Balance x Axcel", src: "/videos/video2.mp4" },
     { title: "Usports x Axcel", src: "/videos/video3.mp4" },
     { title: "Montreal x Axcel", src: "/videos/video4.mp4" },
-    { title: "Kidjvck x Axcel", src: "/videos/video5.mp4" },
   ];
