@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
@@ -10,7 +11,15 @@ interface Video {
   src: string;
 }
 
-export default function HeroVideo({ videos }: ComponentProps) {
+export const Videos = [
+  { title: "Asake x Axcel", src: "/videos/video1.mp4" },
+  { title: "New Balance x Axcel", src: "/videos/video2.mp4" },
+  { title: "Usports x Axcel", src: "/videos/video3.mp4" },
+  { title: "Montreal x Axcel", src: "/videos/video4.mp4" },
+  { title: "Kidjvck x Axcel", src: "/videos/video5.mp4" },
+];
+
+export default function Custom404({ videos = Videos }: ComponentProps) {
   const videoRef = useRef<HTMLVideoElement>(null); // Reference to the main video element
   const secondaryVideoRef = useRef<HTMLVideoElement>(null); // Reference to the secondary video element
   const audioCtxRef = useRef<AudioContext | null>(null); // Reference to the AudioContext
@@ -189,10 +198,33 @@ export default function HeroVideo({ videos }: ComponentProps) {
   }, []);
 
   return (
-    <section className="relative flex flex-col items-center justify-center w-[100vw] h-[100vh] overflow-hidden bg-black">
-      <h1 className="absolute text-white bottom-1/2 left-0 text-2xl medium-text ml-4 sm:ml-10 mix-blend-difference uppercase max-w-[10ch] pointer-events-none z-10 leading-none">
-        {videos[currentIndex % videos.length].title}
-      </h1>
+    <section className="relative flex flex-col items-center justify-center h-[100vh] overflow-hidden bg-black">
+      <div className="absolute flex flex-col items-start justify-center text-white left-0 bottom-1/2  text-2xl large-text font-black ml-4 sm:ml-10 mix-blend-difference uppercase max-w-[10ch] z-10 leading-none">
+        404
+
+        <a
+          href="/"
+          className="group mt-1 sm:mt-0 -mr-[2vw] flex flex-row medium-text"
+          aria-label="Visit Contact Page"
+        >
+          <div className="flex flex-row w-full h-full items-start">
+            <svg
+              className="rotate-90 w-6 group-hover:-rotate-0 duration-300"
+              fill="none"
+              viewBox="0 0 9 14"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m8.31628 7.1891-8.31628 4.8014.00000042-9.6028z"
+                fill="currentColor"
+              ></path>
+            </svg>
+            <span className="md:group-hover:translate-x-2 duration-300 md:font-semibold">
+              Go Back
+            </span>
+          </div>
+        </a>
+      </div>
       <motion.div
         className="relative flex w-[100vh] sm:w-[100vw] h-[100vw] sm:h-[100vh] rotate-90 sm:rotate-0 overflow-hidden"
         // style={{ y: positiveY }}
@@ -239,22 +271,7 @@ export default function HeroVideo({ videos }: ComponentProps) {
           </p>
         </div>
       </button>
-      <div className="flex flex-row items-end justify-end absolute right-0 bottom-0 mr-4 sm:mr-10 mb-3 sm:mb-6 pointer-events-auto text-white text-center medium-text uppercase mix-blend-difference leading-none">
-        <div className="relative flex flex-row items-center gap-2">
-          Scroll
-          <svg
-            fill="currentColor"
-            className="animate-bounce w-[2vw] md:w-[1vw] h-full"
-            viewBox="0 0 12 28"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="m6 28 5.7735-10h-11.547002zm-1-27.99999996v18.99999996h2v-19.00000004z"
-              fill="currentColor"
-            ></path>
-          </svg>
-        </div>
-      </div>
+
       <button
         onClick={handleMuteToggle}
         className="absolute mr-4 right-0 bottom-1/2 sm:translate-y-0 sm:mr-0 sm:right-auto sm:bottom-0 flex items-center justify-center rounded-full mix-blend-difference mb-3 sm:mb-6"

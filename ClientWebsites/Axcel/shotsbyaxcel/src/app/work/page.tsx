@@ -19,30 +19,8 @@ export default function Home() {
   const negativeY = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
   const positiveY = useTransform(scrollYProgress, [0, 1], ["0%", "190%"]);
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-start overflow-hidden">
-      <div
-        className="fixed top-0 left-0 w-full h-[150vh] pointer-events-none -z-10  translate-y-[50vh] "
-      >
-        <motion.div
-          className="w-full h-[150vh] pointer-events-none"
-          style={{
-            y: negativeY,
-          }}
-        >
-          <Image
-            alt=""
-            src="/images/image1.jpg"
-            layout="fill"
-            loading="lazy"
-            objectFit="cover"
-            className=""
-          />
-        </motion.div>
-      </div>
-      <HeroVideo videos={Videos} />
-      <LatestSection projects={Projects} />
-      <AboutSection />
-      <ContactSection />
+    <main className="relative flex min-h-screen flex-col items-center bg-white justify-start overflow-hidden">
+
     </main>
   );
 }

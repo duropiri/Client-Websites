@@ -36,15 +36,14 @@ export default function AboutSection({ className }: ComponentProps) {
             Interested in all things creative
           </CharByCharOnScroll>
 
-          <div className="hidden sm:flex flex-col items-center justify-center w-full">
+          <a href="/about" className="hidden sm:flex flex-col items-center justify-center w-auto">
             <FlipLink
-              href="/about"
               inside="30"
               className="flex flex-col items-center justify-center bg-black px-4 py-2 rounded-full overflow-hidden small-text text-white h-full uppercase"
             >
               More About Axcel
             </FlipLink>
-          </div>
+          </a>
         </div>
 
         <div className="sm:absolute top-1/2 flex flex-col items-center justify-between w-full gap-y-10 sm:flex-row sm:px-10 sm:-mx-10 text-white mix-blend-difference font-medium sm:font-medium mb-6 sm:mb-[4vw] z-10">

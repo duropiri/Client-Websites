@@ -51,7 +51,7 @@ export default function CharByCharOnScroll({
         // console.log([start, end]);
         return (
           <Word
-            key={i}
+            key={"word:" + i}
             range={[start, end]}
             progress={scrollYProgress}
             shadow={shadow}
@@ -87,7 +87,7 @@ const Word = ({ children, range, progress, shadow, lineStyles }: any) => {
         const end = range[0] + step * (i + 1);
         return (
           <Character
-            key={i}
+            key={"character" + i}
             range={[start, end]}
             progress={progress}
             shadow={shadow}

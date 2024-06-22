@@ -81,7 +81,7 @@ export default function LatestSection({ className, projects }: ComponentProps) {
             href="/work"
             className="mt-1 sm:mt-0 -mr-[2vw] medium-text h-full uppercase"
           >
-            <span className="md:font-semibold">
+            <a href="/work" className="md:font-semibold">
               <CharByCharOnScroll
                 className="-translate-y-[1vw]"
                 shadow
@@ -89,7 +89,7 @@ export default function LatestSection({ className, projects }: ComponentProps) {
               >
                 All Work
               </CharByCharOnScroll>
-            </span>
+            </a>
           </FlipLink>
         </div>
       </header>
