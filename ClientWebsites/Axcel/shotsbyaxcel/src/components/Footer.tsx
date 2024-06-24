@@ -34,7 +34,7 @@ const CurrentTime = () => {
 
 export default function Footer({ className }: ComponentProps) {
   return (
-    <footer className="relative flex flex-col items-start justify-between w-full bg-white overflow-hidden">
+    <footer className={`${className} relative flex flex-col items-start justify-between w-full bg-white overflow-hidden`}>
       {/* Header */}
       <header className="flex flex-col items-start justify-start w-full pt-4 sm:pt-10 px-4 sm:px-10 font-medium sm:font-medium z-20 text-white mix-blend-difference">
         {/* <div className="flex flex-row items-start justify-between w-full uppercase small-text mb-6 sm:mb-[4vw] z-10">

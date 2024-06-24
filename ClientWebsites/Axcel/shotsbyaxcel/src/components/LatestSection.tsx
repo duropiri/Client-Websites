@@ -54,7 +54,7 @@ export default function LatestSection({ className, projects }: ComponentProps) {
   };
 
   return (
-    <section className="relative flex flex-col items-start justify-start w-full h-full bg-white">
+    <section className={`${className} relative flex flex-col items-start justify-start w-full h-full bg-white`}>
       {/* Header */}
       <header className="flex flex-col items-start justify-start w-full h-full p-4 sm:p-10 font-medium sm:font-semibold">
         <div className="flex flex-row items-start justify-between w-full uppercase small-text mb-6 sm:mb-[4vw]">

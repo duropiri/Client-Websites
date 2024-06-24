@@ -1,13 +1,25 @@
 import React from "react";
 import CharByCharOnScroll from "./animations/CharByCharOnScroll";
+import Image from "next/image";
+
+import { motion, useScroll, useTransform } from "framer-motion";
 
 interface ComponentProps {
   className?: string;
 }
 
 export default function ContactSection({ className }: ComponentProps) {
+  const ref = React.useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const negativeY = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
+  const positiveY = useTransform(scrollYProgress, [0, 1], ["0%", "190%"]);
   return (
-    <section className="relative flex flex-col items-start justify-start w-full min-h-screen bg-transparent overflow-hidden">
+    <section
+      className={`${className} relative flex flex-col items-start justify-start w-full min-h-screen bg-transparent overflow-hidden`}
+    >
       {/* Header */}
       <header className="flex flex-col items-start justify-start w-full pt-4 sm:pt-10 px-4 sm:px-10 font-medium sm:font-medium z-20 text-white mix-blend-difference">
         <div className="flex flex-row items-start justify-between w-full uppercase small-text mb-6 sm:mb-[4vw] z-10">
@@ -24,8 +36,7 @@ export default function ContactSection({ className }: ComponentProps) {
           shadow
           end={80}
         >
-          Keep up with the latest campaigns from Inkfish, or contact us to make
-          your own.
+          Not afraid of the next chapter, I&apos;m the author ✨ - Axcel
         </CharByCharOnScroll>
         <a
           href="/contact"
@@ -49,6 +60,24 @@ export default function ContactSection({ className }: ComponentProps) {
             </span>
           </div>
         </a>
+      </div>
+      {/* Image Parallax */}
+      <div className="absolute top-0 left-0 w-full h-[150vh] translate-y-[25vh] z-[1]">
+        <motion.div
+          className="w-full h-[150vh] pointer-events-none"
+          style={{
+            y: negativeY,
+          }}
+        >
+          <Image
+            alt=""
+            src="/images/image1.jpg"
+            layout="fill"
+            loading="lazy"
+            objectFit="cover"
+            className=""
+          />
+        </motion.div>
       </div>
     </section>
   );

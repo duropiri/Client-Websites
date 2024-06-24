@@ -73,7 +73,7 @@ interface HeaderProps {
   navigation: LinkDetails[];
 }
 
-const getChars = (word: string) => {
+export const getChars = (word: string) => {
   let chars: JSX.Element[] = [];
   word.split("").forEach((char, i) => {
     chars.push(
@@ -109,7 +109,7 @@ const Nav: React.FC<NavProps> = ({ links }) => {
       <div className="flex flex-col items-end justify-between w-full h-full">
         <div className="flex flex-wrap mt-10 justify-end">
           {links.map((link, index) => (
-            <Link key={`l_${index}`} href={link.href}>
+            <Link key={`l_${index}`} href={link.href} passHref>
               <motion.p
                 onMouseOver={() => setSelectedLink({ isActive: true, index })}
                 onMouseLeave={() => setSelectedLink({ isActive: false, index })}
@@ -156,31 +156,6 @@ const Footer: React.FC<FooterProps> = () => {
           @relaydigitalmktg
         </motion.li>
       </ul>
-      {/* <ul className="w-full md:w-auto mt-2 list-none p-0">
-        <motion.li
-          custom={[0.3, 0]}
-          variants={translate}
-          initial="initial"
-          animate="enter"
-          exit="exit"
-          className="flex items-end justify-end"
-        >
-          <span className="font-extrabold">Typography:</span> Google Fonts
-        </motion.li>
-      </ul> */}
-      {/* <ul className="w-full md:w-auto mt-2 list-none p-0">
-        <motion.li
-          custom={[0.3, 0]}
-          variants={translate}
-          initial="initial"
-          animate="enter"
-          exit="exit"
-          className="flex items-end"
-        >
-          <span className="text-black font-extrabold">Images:</span> Freepik,
-          Envato
-        </motion.li>
-      </ul> */}
       <ul className="w-full md:w-auto mt-2 list-none p-0">
         <motion.li
           custom={[0.3, 0]}
@@ -190,9 +165,9 @@ const Footer: React.FC<FooterProps> = () => {
           exit="exit"
           className="flex items-end justify-end"
         >
-          <a href="/privacy-policy" aria-label="Visit Privacy Policy Page">
+          <Link href="/privacy-policy" aria-label="Visit Privacy Policy Page" passHref>
             Privacy Policy
-          </a>
+          </Link>
         </motion.li>
         <motion.li
           custom={[0.3, 0]}
@@ -202,9 +177,9 @@ const Footer: React.FC<FooterProps> = () => {
           exit="exit"
           className="flex items-end justify-end"
         >
-          <a href="/terms" aria-label="Visit Terms and Conditions Page">
+          <Link href="/terms" aria-label="Visit Terms and Conditions Page" passHref>
             Terms & Conditions
-          </a>
+          </Link>
         </motion.li>
       </ul>
     </div>
@@ -247,7 +222,7 @@ const Header: React.FC<HeaderProps> = ({ navigation }) => {
         }`}
       >
         <div className="relative flex justify-between text-xs uppercase font-bold">
-          <div className="relative text-6xl font-extrabold">
+          <div className="relative text-6xl uppercase font-extrabold">
             Axcel
             <AnimatePresence>
               <span className="text-sm">{getChars("Raul")}</span>
@@ -259,7 +234,7 @@ const Header: React.FC<HeaderProps> = ({ navigation }) => {
           </div>
           <div
             onClick={() => setIsActive(!isActive)}
-            className="group flex items-center justify-center gap-2 cursor-pointer mr-12"
+            className="group flex items-center justify-end gap-2 cursor-pointer"
           >
             <div className="relative flex flex-col items-center justify-center">
               <div
@@ -285,7 +260,7 @@ const Header: React.FC<HeaderProps> = ({ navigation }) => {
               <motion.p
                 variants={opacity}
                 animate={isActive ? "open" : "closed"}
-                className="absolute m-0"
+                className=" m-0"
               >
                 Close
               </motion.p>

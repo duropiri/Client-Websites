@@ -1,3 +1,4 @@
+// RootLayout.tsx
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -6,13 +7,10 @@ import CustomCursor from "@/components/animations/CustomCursor";
 import Header from "@/components/animations/NavigationMenu";
 import { NavLinks } from "@/data/navLinks";
 import Footer from "@/components/Footer";
+import { SplashScreenProvider } from "@/contexts/SplashScreenContext";
+import PageAnimatePresence from "@/components/HOC/PageAnimatePresence";
 
 const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "Axcel Raul | @shotsbyaxcel",
-  description: "Photgraphy | Videography",
-};
 
 export default function RootLayout({
   children,
@@ -25,9 +23,13 @@ export default function RootLayout({
         <div className="hidden md:block z-[999]">
           <CustomCursor />
         </div>
-        <Header navigation={NavLinks} />
-        <SmoothScrolling>{children}</SmoothScrolling>
-        <Footer />
+        <SplashScreenProvider>
+          {/* <Header navigation={NavLinks} /> */}
+          <SmoothScrolling>
+            <PageAnimatePresence>{children}</PageAnimatePresence>
+          </SmoothScrolling>
+          {/* <Footer /> */}
+        </SplashScreenProvider>
       </body>
     </html>
   );

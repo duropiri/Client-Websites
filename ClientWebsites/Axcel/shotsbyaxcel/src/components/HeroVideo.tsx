@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 interface ComponentProps {
+  className?: string;
   videos: Video[];
 }
 
@@ -10,7 +11,7 @@ interface Video {
   src: string;
 }
 
-export default function HeroVideo({ videos }: ComponentProps) {
+export default function HeroVideo({ className, videos }: ComponentProps) {
   const videoRef = useRef<HTMLVideoElement>(null); // Reference to the main video element
   const secondaryVideoRef = useRef<HTMLVideoElement>(null); // Reference to the secondary video element
   const audioCtxRef = useRef<AudioContext | null>(null); // Reference to the AudioContext
@@ -189,7 +190,7 @@ export default function HeroVideo({ videos }: ComponentProps) {
   }, []);
 
   return (
-    <section className="relative flex flex-col items-center justify-center w-[100vw] h-[100vh] overflow-hidden bg-black">
+    <section className={`${className} relative flex flex-col items-center justify-center w-[100vw] h-[100vh] overflow-hidden bg-black`}>
       <h1 className="absolute text-white bottom-1/2 left-0 text-2xl medium-text ml-4 sm:ml-10 mix-blend-difference uppercase max-w-[10ch] pointer-events-none z-10 leading-none">
         {videos[currentIndex % videos.length].title}
       </h1>
