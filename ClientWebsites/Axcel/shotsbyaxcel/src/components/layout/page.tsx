@@ -1,4 +1,3 @@
-// page.tsx
 "use client";
 import React, { ReactNode, useEffect } from "react";
 import {
@@ -23,9 +22,7 @@ const Page = ({ children }: PageProps) => {
 
   return (
     <SplashScreenProvider>
-      <div
-        className="relative flex w-full min-h-screen flex-col items-center justify-start overflow-hidden"
-      >
+      <div className="relative flex w-full min-h-screen flex-col items-center justify-start overflow-hidden">
         {/* Splash Screen Overlay */}
         {(!isLoaded || isAnimating) && (
           <SuspenseFallback

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useSplashScreen } from "@/contexts/SplashScreenContext";
 
@@ -13,46 +13,61 @@ const SuspenseFallback: React.FC<SuspenseFallbackProps> = ({
   finishAnimation,
 }) => {
   const [loadingPercentage, setLoadingPercentage] = useState(0);
-  const { isLoaded, isAnimating } = useSplashScreen();
+  const { isAnimating } = useSplashScreen();
 
   useEffect(() => {
-    if (!isLoaded) {
-      const updateLoadingPercentage = (percentage: number) => {
-        setLoadingPercentage(percentage);
-      };
+    const updateLoadingPercentage = (percentage: number) => {
+      setLoadingPercentage(percentage);
+      // console.log(`Loading percentage updated to: ${percentage}`);
+    };
 
-      const handleWindowLoad = () => {
-        updateLoadingPercentage(100);
-        finishLoading();
-      };
+    const handleWindowLoad = () => {
+      // console.log("Window loaded, updating loading percentage to 100");
+      updateLoadingPercentage(100);
+      finishLoading();
+    };
 
+    // Check if the window is already loaded
+    if (document.readyState === "complete") {
+      // console.log("Document ready state is complete, handling window load immediately");
+      handleWindowLoad();
+    } else {
+      // console.log("Adding load event listener");
       window.addEventListener("load", handleWindowLoad);
-
-      // Simulate loading progress
-      const interval = setInterval(() => {
-        setLoadingPercentage((prev) => {
-          if (prev < 99) return prev + 1; // Increase percentage up to 99%
-          return prev;
-        });
-      }, 20); // Increase percentage every 20ms
-
-      return () => {
-        window.removeEventListener("load", handleWindowLoad);
-        clearInterval(interval);
-        updateLoadingPercentage(100);
-      };
     }
-  }, [isLoaded, finishLoading]);
+
+    // Simulate loading progress
+    const interval = setInterval(() => {
+      setLoadingPercentage((prev) => {
+        if (prev < 99) {
+          // console.log(`Incrementing loading percentage to: ${prev + 1}`);
+          return prev + 1; // Increase percentage up to 99%
+        }
+        return prev;
+      });
+    }, 20); // Increase percentage every 20ms
+
+    return () => {
+      // console.log("Cleaning up load event listener and interval");
+      window.removeEventListener("load", handleWindowLoad);
+      clearInterval(interval);
+    };
+  }, [finishLoading]);
 
   useEffect(() => {
-    if (loadingPercentage === 100 && isLoaded) {
-      setTimeout(() => {
+    if (loadingPercentage === 100) {
+      // console.log("Loading complete, starting exit animation");
+      const timer = setTimeout(() => {
+        // console.log("Exit animation complete, finishing animation");
         finishAnimation();
       }, 1200); // Delay to match animation duration
-    }
-  }, [loadingPercentage, isLoaded, finishAnimation]);
 
-  if (isLoaded && !isAnimating) {
+      return () => clearTimeout(timer); // Clean up timer if component unmounts
+    }
+  }, [loadingPercentage, finishAnimation]);
+
+  if (!isAnimating) {
+    // console.log("Splash screen animation complete, removing splash screen");
     return null;
   }
 
@@ -62,13 +77,14 @@ const SuspenseFallback: React.FC<SuspenseFallbackProps> = ({
       initial={{ clipPath: "inset(0% 0% 0% 0%)" }}
       animate={{
         clipPath:
-          loadingPercentage === 100 && isLoaded
+          loadingPercentage === 100
             ? "inset(0% 0% 100% 0%)"
             : "inset(0% 0% 0% 0%)",
       }}
       transition={{ duration: 1.2, ease: [0.84, 0, 0.42, 1] }}
       onAnimationComplete={() => {
-        if (loadingPercentage === 100 && isLoaded) {
+        if (loadingPercentage === 100) {
+          // console.log("Animation complete, calling finishAnimation");
           setTimeout(() => {
             finishAnimation();
           }, 1200); // Delay to match animation duration
@@ -77,7 +93,7 @@ const SuspenseFallback: React.FC<SuspenseFallbackProps> = ({
     >
       <motion.div
         className="z-10 select-none pointer-events-none flex flex-col"
-        initial={{ scale: "1" }}
+        initial={{ scale: 1 }}
         animate={{ scale: [1, 1.1, 1] }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
       >
@@ -87,8 +103,8 @@ const SuspenseFallback: React.FC<SuspenseFallbackProps> = ({
           <span className="text-lg sm:text-3xl font-light">®</span>
         </div>
         <div className="flex flex-row w-full items-center justify-between text-white text-lg mix-blend-difference uppercase">
-          <div className="">Loading</div>
-          <div className="">[{loadingPercentage}%]</div>
+          <div>Loading</div>
+          <div>[{loadingPercentage}%]</div>
         </div>
       </motion.div>
     </motion.div>
